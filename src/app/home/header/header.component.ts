@@ -22,7 +22,7 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['/home']);
   }
   tranferPageFilm(): void{
-    this.router.navigate(['/home']);
+    this.router.navigate(['/film']);
   }
   tranferPageCinema(): void{
     this.router.navigate(['/cinema']);

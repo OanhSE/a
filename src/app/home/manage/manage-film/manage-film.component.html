@@ -51,10 +51,10 @@
       <tbody *ngFor="let  film of films ">
       <tr>
         <td></td>
-        <td> <img width="100px" height="150px" src = "../../../assets/images/{{film.imageLandscape}}"></td>
+        <td> <img width="100px" height="150px" src = "../../../assets/images/{{film.image}}"></td>
         <td>{{film.name}}</td>
         <td>{{film.duration}}</td>
-        <td>{{film.startdate | date:'d/M/yy'}}</td>
+        <td>{{film.startFrom | date:'d/M/yy'}}</td>
 <!--        <td>{{film.startFrom}}</td>-->
 
         <td>

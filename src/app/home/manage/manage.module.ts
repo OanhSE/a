@@ -9,7 +9,7 @@ import { ManageCategoryComponent } from './manage-category/manage-category.compo
 import { ManageTicketComponent } from './manage-ticket/manage-ticket.component';
 import { ReportComponent } from './report/report.component';
 import { BillComponent } from './bill/bill.component';
-import {MatIconModule} from "@angular/material/icon";
+import {MatIconModule} from '@angular/material/icon';
 import {MatFormFieldControl, MatFormFieldModule, MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -29,8 +29,14 @@ import { EditTicketComponent } from './manage-ticket/edit-ticket/edit-ticket.com
 import { MatDialogModule } from '@angular/material/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DatePipe, formatDate } from '@angular/common';
+import { ManageCinemaComponent } from './manage-cinema/manage-cinema.component';
+import { AddCinemaComponent } from './manage-cinema/add-cinema/add-cinema.component';
+import { EditCinemaComponent } from './manage-cinema/edit-cinema/edit-cinema.component';
+import { ManageHallComponent } from './manage-hall/manage-hall.component';
+import { AddHallComponent } from './manage-hall/add-hall/add-hall.component';
+import { EditHallComponent } from './manage-hall/edit-hall/edit-hall.component';
 @NgModule({
-  declarations: [ManageComponent, ManageClientComponent, ManageFilmComponent, ManageCategoryComponent, ManageTicketComponent, ReportComponent, BillComponent, AddClientComponent, AddFilmComponent, AddCategoryComponent, AddTicketComponent, EditClientComponent, EditFilmComponent, EditCategoryComponent, EditTicketComponent],
+  declarations: [ManageComponent, ManageClientComponent, ManageFilmComponent, ManageCategoryComponent, ManageTicketComponent, ReportComponent, BillComponent, AddClientComponent, AddFilmComponent, AddCategoryComponent, AddTicketComponent, EditClientComponent, EditFilmComponent, EditCategoryComponent, EditTicketComponent, ManageCinemaComponent, AddCinemaComponent, EditCinemaComponent, ManageHallComponent, AddHallComponent, EditHallComponent],
   exports: [
     CommonModule,
     ManageRoutingModule,

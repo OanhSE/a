@@ -4,6 +4,7 @@ import { User } from 'src/app/_models/User';
 import { UserService } from '../../_service/user.service';
 import { FilmService } from '../../_service/film.service';
 import { Film } from 'src/app/_models/Film';
+import {Router} from '@angular/router';
 @Component({
   selector: 'app-container',
   templateUrl: './container.component.html',
@@ -15,17 +16,24 @@ export class ContainerComponent implements OnInit {
   listfilms: Film[];
   constructor(
     private userService: UserService,
-    private filmService: FilmService
+    private filmService: FilmService,
+    private  router: Router
     ) {
-
     this.userService.user.subscribe(x => this.user = x);
 
-    this.filmService.getAll().subscribe((x)=>{
-        this.listfilms = x.movieCommingSoon;
-        console.log('listfilm', x.movieCommingSoon);
-    });
+    this.filmService.getAll().subscribe((x) => {
+       this.listfilms = x;
+
+   });
   }
   ngOnInit(): void {
   }
+  reserve(film: Film): void{
+    this.router.navigate(['/']);
 
+  }
+  tranfersingle(film: Film): void{
+    // this.router.navigate(['/film-single/'], film);
+
+  }
 }

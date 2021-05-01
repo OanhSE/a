@@ -4,8 +4,9 @@ export class Address{
   state: string;
   country: string;
 
-  constructor(id: number, city: string, state: string, country: string) {
-    this.id = id;
+
+  constructor( city: string, state: string, country: string) {
+
     this.city = city;
     this.state = state;
     this.country = country;

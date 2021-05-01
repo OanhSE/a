@@ -54,9 +54,9 @@ export class EditClientComponent implements OnInit {
       email: ['', Validators.required],
       pwd: ['', [Validators.required, Validators.minLength(6)]]
     });
-    this.form.patchValue(this.user)
-    let date = this.form.get('dayOfBirth').value;
-    this.form.controls.dayOfBirth.setValue(this.datePipe.transform(date ,'yyyy-MM-dd','en'));
+    this.form.patchValue(this.user);
+    const date = this.form.get('dayOfBirth').value;
+    this.form.controls.dayOfBirth.setValue(this.datePipe.transform(date , 'yyyy-MM-dd', 'en'));
 
     this.sex = this.form.get('sex').value;
 
@@ -98,18 +98,18 @@ export class EditClientComponent implements OnInit {
       return;
     }
     this.loading = true;
-    this.userService.editUser(this.form.value)
+    this.userService.update(this.form.value)
       .pipe(first())
       .subscribe({
         next: () => {
           this.submitted = true;
           this.dialogRef.close();
-          this.alertService.success('Sửa thành công')
+          this.alertService.success('Sửa thành công');
         },
         error: error => {
           this.submitted = false;
           this.loading = false;
-          this.alertService.error('Sửa thất bại')
+          this.alertService.error('Sửa thất bại');
         }
       });
   }

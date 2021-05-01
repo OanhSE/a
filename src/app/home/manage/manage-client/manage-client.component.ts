@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/_models/User';
 import { UserService } from './../../../_service/user.service';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { AddClientComponent } from './add-client/add-client.component'
+import { AddClientComponent } from './add-client/add-client.component';
 import { MatFormFieldControl, MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { EditClientComponent } from './edit-client/edit-client.component';
 import { first } from 'rxjs/operators';
@@ -31,7 +31,7 @@ export class ManageClientComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getUsers()
+    this.getUsers();
 
   }
   openDialog(): void {
@@ -58,12 +58,12 @@ export class ManageClientComponent implements OnInit {
     });
   }
   getUsers(): void{
-    this.userService.getAll().subscribe((result)=>{
-      this.users = result
-    })
+    this.userService.getUsers().subscribe((result) => {
+      this.users = result;
+    });
   }
   delete(user: User): void{
-    this.userService.deleteUser(user.id)
+    this.userService.deleteById(user.id)
       .pipe(first())
       .subscribe({
         next: () => {

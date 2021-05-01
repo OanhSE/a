@@ -32,5 +32,11 @@ export class ManageComponent implements OnInit {
   tranferReport(): void{
     this.router.navigate(['/manage/report']);
   }
+  tranferCinema(): void{
+    this.router.navigate(['/manage/cinema']);
+  }
+  tranferFilmSession(): void{
+    this.router.navigate(['/manage/filmsession']);
+  }
 
 }

@@ -4,6 +4,8 @@ import { Film } from '../../_models/film';
 import { Cinema } from '../../_models/cinema';
 import { FormControl } from '@angular/forms';
 import { CommonModule } from "@angular/common";
+import {Router} from '@angular/router';
+import {Address} from '../../_models/address';
 @Component({
   selector: 'app-cinema',
   templateUrl: './cinema.component.html',
@@ -652,9 +654,12 @@ export class CinemaComponent implements OnInit {
   listHN;
 
   myControl = new FormControl();
- cinemas: Cinema[];
+  cinemadetail$: Cinema = new Cinema(1, '1', new Address('1', '1', '1'));
+
+  cinemas: Cinema[];
   constructor(
     private cinamaService: CinemaService,
+    private  router: Router
 
   ) {
 
@@ -672,14 +677,23 @@ export class CinemaComponent implements OnInit {
     this.getALlCinema();
 
   }
+  tranferBySingle(cinema: Cinema): void{
+    this.cinemadetail$ = cinema;
+    console.log('cinema', cinema);
+  }
   getALlCinema(): void {
-    this.cinamaService.getAll().subscribe((result)=>{
-      this.cinemas = result;
-    })
-  }
-  getCinemaByArea(id: string): void{
 
+    this.cinamaService.getCinemaByArea(1).subscribe((result) => {
+      this.listHCM = result;
+    });
+    this.cinamaService.getCinemaByArea(2).subscribe((result) => {
+      this.listHN = result;
+    });
+    this.cinamaService.getCinemaByArea(3).subscribe((result) => {
+      this.listDBSH = result;
+    });
 
   }
+
 
 }

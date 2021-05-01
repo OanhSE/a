@@ -48,13 +48,13 @@
               <div class="image">
                 <a href="#">
 
-                   <img src = "../../../assets/images/{{film.imageLandscape}}">
+                   <img src = "../../../assets/images/{{film.image}}">
 <!--                  <img src = "{{film.image}}">-->
                 </a>
               </div>
               <div  class="layer_hover" >
-                <a href="#" onclick=""   class="btn_reserve">Đặt vé</a>
-                <a href="#" onclick="" routerLink = 'film-single/{{film.id}}'  class="btn_View">Chi tiết</a>
+                <a href="#" (click)="reserve(film)"  class="btn_reserve">Đặt vé</a>
+                <a href="#" (click)="tranfersingle(film)" routerLink= "/film-single/{{film.id}}"class="btn_View">Chi tiết</a>
               </div>
 
               <ul >
@@ -65,7 +65,7 @@
                   </b>
                 </li>
                 <li>
-                  <h4 class="date">{{film.startdate | date:'d/M/yy'}}</h4>
+                  <h4 class="date">{{film.startFrom | date:'d/M/yy'}}</h4>
                 </li>
               </ul>
 

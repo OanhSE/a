@@ -40,7 +40,7 @@
           </a>
           <div class="dropdown-menu" >
             <div *ngFor = "let  c of listHCM">
-              <a  class="dropdown-item" href="#">{{c.CinemaName}}</a>
+              <a  class="dropdown-item" (click)="tranferBySingle(c)">{{c.name}}</a>
             </div>
 
 
@@ -53,7 +53,7 @@
           </a>
           <div class="dropdown-menu">
             <div *ngFor = "let  c of listHN">
-              <a  class="dropdown-item" href="#">{{c.CinemaName}}</a>
+              <a  class="dropdown-item"  (click)="tranferBySingle(c)">{{c.name}}</a>
             </div>
           </div>
         </li>
@@ -63,7 +63,7 @@
           </a>
           <div class="dropdown-menu">
             <div *ngFor = "let  c of listDBSH">
-              <a  class="dropdown-item" href="#">{{c.CinemaName}}</a>
+              <a  class="dropdown-item" (click)="tranferBySingle(c)">{{c.name}}</a>
             </div>
           </div>
         </li>
@@ -124,7 +124,7 @@
     <img class="imgcinema"  src="https://media.lottecinemavn.com/Media/WebAdmin/5e62c5784d4348b7b90a05d1668df9b9.jpg">
   </div>
   <div>
-    <app-list-cinema></app-list-cinema>
+    <app-list-cinema [cinemadetail$]="cinemadetail$"></app-list-cinema>
   </div>
 
 

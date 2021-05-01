@@ -14,6 +14,7 @@ export class AddressService {
   public address: Observable<Address>;
   public addressvalue: Address ;
   public url = '';
+  public apiUrl = 'http://localhost:8080';
 
   constructor(
     private router: Router,
@@ -26,9 +27,40 @@ export class AddressService {
     return this.addressSubject.value;
 
   }
-  // getallAddress
-  getAll(): Observable<Address[]> {
-    // return this.http.get<User[]>(`${environment.apiUrl}/users`);
-    return this.http.get<Address[]>(this.url + 'getAddress');
+
+//   @GetMapping("/addresses")
+//   public List<Address> getAll(){
+//     return addressService.getAll();
+//   }
+//
+//
+//   @PostMapping("/addresses")
+//   public Address add(@RequestBody Address address){
+//   return addressService.add(address);
+// }
+//
+// @GetMapping("/address/{id}")
+// public Address getById(@PathVariable Long id){
+//   return addressService.getById(id);
+// }
+
+
+// getallAddress
+  getAllAddress(): Observable<Address[]> {
+    return this.http.get<Address[]>(`${this.apiUrl}/addresses` );
   }
+  addAdress(address: Address): Observable<Address>{
+    return this.http.post<Address>(`${this.apiUrl}/addresses`, address);
+  }
+  getById(id: number): Observable<Address> {
+    return this.http.get<Address>(`${this.apiUrl}/address/${id} `);
+  }
+  getByCinema(id: number): Observable<Address>{
+    return this.http.get<Address>(`${this.apiUrl}/address/getByCinema/${id} `);
+  }
+//   @GetMapping("/address/getByCinema/{id}")
+//   public Address getByCinema(@PathVariable("id") Long id){
+//   Address address = addressService.getAddressByCinema(id);
+//   return address;
+// }
 }

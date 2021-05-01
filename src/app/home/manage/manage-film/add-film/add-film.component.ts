@@ -78,10 +78,10 @@ export class AddFilmComponent implements OnInit {
     //   : yearDiff - 1;
 
     if (true){
-      this.isShowErrorDate = true;
+      this.isShowErrorDate = false;
     }
     else{
-      this.isShowErrorDate = false;
+      this.isShowErrorDate = true;
     }
 
 
@@ -93,6 +93,7 @@ export class AddFilmComponent implements OnInit {
     if (this.form.invalid) {
       return;
     }
+    console.log('this.form.value)', this.form.value);
     this.loading = true;
     this.filmService.addFilm(this.form.value)
       .pipe(first())
@@ -100,12 +101,12 @@ export class AddFilmComponent implements OnInit {
         next: () => {
           this.submitted = true;
           this.dialogRef.close();
-          this.alertService.success('Thêm thành công')
+          this.alertService.success('Thêm thành công');
         },
         error: error => {
           this.submitted = false;
           this.loading = false;
-          this.alertService.error('Thêm thất bại')
+          this.alertService.error('Thêm thất bại');
         }
       });
   }

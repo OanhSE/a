@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/_models/User';
 import { UserService } from './../../../_service/user.service';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { AddFilmComponent } from './add-film/add-film.component'
+import { AddFilmComponent } from './add-film/add-film.component';
 import { MatFormFieldControl, MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { EditFilmComponent } from './edit-film/edit-film.component';
 import { first } from 'rxjs/operators';
@@ -36,7 +36,7 @@ export class ManageFilmComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getFilms()
+    this.getFilms();
     this.dataSource = new MatTableDataSource<Film>(this.films);
 
   }
@@ -64,9 +64,9 @@ export class ManageFilmComponent implements OnInit {
     });
   }
   getFilms(): void{
-    this.filmService.getAll().subscribe((result)=>{
-      this.films = result.movieCommingSoon
-    })
+    this.filmService.getAll().subscribe((result) => {
+      this.films = result;
+    });
   }
   delete(film: Film): void{
     this.filmService.deleteFilm(film.id)

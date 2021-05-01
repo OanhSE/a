@@ -12,6 +12,7 @@ export class TicketService {
   public ticket: Observable<Ticket>;
   public ticketvalue: Ticket ;
   public url = '';
+  public apiUrl = 'http://localhost:8080';
   constructor(
     private router: Router,
     private http: HttpClient
@@ -25,7 +26,14 @@ export class TicketService {
   }
   // getallticket
   getAll(): Observable<Ticket[]> {
-    // return this.http.get<User[]>(`${environment.apiUrl}/users`);
-    return this.http.get<Ticket[]>(this.url + 'getTickets');
+    return this.http.get<Ticket[]>(`${this.apiUrl}/getTickets`);
   }
+  addTicket(ticket: Ticket): Observable<Ticket>{
+    return  this.http.post<Ticket>(`${this.apiUrl}/addTicket`, ticket);
+  }
+  getTicketById(id: string): Observable<Ticket>{
+    return  this.http.get<Ticket>(`${this.apiUrl}/tickets/${id}`);
+  }
+
+
 }

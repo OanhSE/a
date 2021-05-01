@@ -10,7 +10,7 @@
     <div class="row wide_top">
 
       <div class="col-3">
-          <img src="../../../assets/images{{film$.imageLandscape}}" width="100%" height="100%">
+          <img src="../../../assets/images{{film$.image}}" width="100%" height="100%">
           <button> Đặt vé </button>
       </div>
       <div class="col-9">
@@ -25,7 +25,7 @@
         </div>
         <div class="row">
           <p><b>Ngày phát hành </b></p>
-          <p>{{film$.startdate | date:'d/M/yy'}}</p>
+          <p>{{film$.startFrom | date:'d/M/yy'}}</p>
         </div>
         <div class="row">
           <p><b>Thông tin cơ bản</b></p>
@@ -88,3 +88,4 @@
 <!--    </mat-grid-tile>-->
 <!--  </mat-grid-list>-->
 
+</div>

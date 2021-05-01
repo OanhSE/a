@@ -61,9 +61,9 @@ export class EditFilmComponent implements OnInit {
 
 
     });
-    this.form.patchValue(this.data)
-    let date = this.form.get('startFrom').value;
-    this.form.controls.startFrom.setValue(this.datePipe.transform(date ,'yyyy-MM-dd','en'));
+    this.form.patchValue(this.data);
+    const date = this.form.get('startFrom').value;
+    this.form.controls.startFrom.setValue(this.datePipe.transform(date , 'yyyy-MM-dd', 'en'));
 
 
 
@@ -110,12 +110,12 @@ export class EditFilmComponent implements OnInit {
         next: () => {
           this.submitted = true;
           this.dialogRef.close();
-          this.alertService.success('Sửa thành công')
+          this.alertService.success('Sửa thành công');
         },
         error: error => {
           this.submitted = false;
           this.loading = false;
-          this.alertService.error('Sửa thất bại')
+          this.alertService.error('Sửa thất bại');
         }
       });
   }
