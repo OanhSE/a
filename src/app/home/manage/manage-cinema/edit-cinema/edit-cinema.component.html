@@ -1,0 +1,52 @@
+<h1 mat-dialog-title>Thêm Phim</h1>
+<div mat-dialog-content >
+  <div class="card" xmlns="http://www.w3.org/1999/html">
+
+    <div class="card-body">
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+        <div class="form-group">
+          <label  >Tên Rạp:</label>
+          <input type="text" formControlName="name" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
+          <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+            <div *ngIf="f.name.errors.required">Tên rạp là bắt buộc</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="area">Select list (select one):</label>
+          <select *ngFor="let area of Areas" class="form-control" formControlName="name" id="area" name="area">
+            <option>{{area}}</option>
+
+          </select>
+        </div>
+        <div class="form-group">
+          <label  >Địa chỉ:</label>
+          <input type="text" formControlName="adressID" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.addressId.errors }" />
+          <div *ngIf="submitted && f.addressId.errors" class="invalid-feedback">
+            <div *ngIf="f.addressId.errors.required">Địa chỉ rạp là bắt buộc</div>
+          </div>
+        </div>
+
+
+        <div class="form-group" >
+          <button mat-button  cdkFocusInitial [disabled]="loading" class="btn btn-primary">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+            Thêm
+          </button>
+
+
+        </div>
+
+
+      </form>
+    </div>
+
+  </div>
+
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Hủy</button>
+  <!--  <button mat-button [mat-dialog-close]="submitted" cdkFocusInitial>Ok</button>-->
+</div>
+
+
