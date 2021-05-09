@@ -22,9 +22,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDialogModule } from '@angular/material/dialog';
-import { ReactiveFormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { MatExpansionModule } from '@angular/material/expansion';
 import {ListCinemaComponent} from './cinema/list-cinema/list-cinema.component';
+import { BookTicketComponent } from './book-ticket/book-ticket.component';
 
 
 
@@ -32,7 +33,7 @@ import {ListCinemaComponent} from './cinema/list-cinema/list-cinema.component';
 
   declarations: [HeaderComponent, FooterComponent, ContainerComponent,
     HomeComponent, StarRatingComponent, PaymentComponent, FilmSingleComponent,
-    CinemaComponent, CheckOutComponent, UserProfileComponent, OrderHistoryComponent, ListCinemaComponent],
+    CinemaComponent, CheckOutComponent, UserProfileComponent, OrderHistoryComponent, ListCinemaComponent, BookTicketComponent],
   exports: [
     CommonModule,
     HomeRoutingModule,
@@ -48,22 +49,23 @@ import {ListCinemaComponent} from './cinema/list-cinema/list-cinema.component';
     ReactiveFormsModule,
     MatExpansionModule
   ],
-  imports: [
-    CommonModule,
-    HomeRoutingModule,
-    MatIconModule,
-    // MatFormFieldModule,
-    MatButtonModule,
-    MatTooltipModule,
-    MatGridListModule,
-    MatInputModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatDialogModule,
-    ReactiveFormsModule,
-    MatExpansionModule
+    imports: [
+        CommonModule,
+        HomeRoutingModule,
+        MatIconModule,
+        // MatFormFieldModule,
+        MatButtonModule,
+        MatTooltipModule,
+        MatGridListModule,
+        MatInputModule,
+        MatTableModule,
+        MatPaginatorModule,
+        MatDialogModule,
+        ReactiveFormsModule,
+        MatExpansionModule,
+        FormsModule
 
-  ],
+    ],
   providers: [
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } },
     { provide: MatFormFieldControl, useExisting: HomeModule}

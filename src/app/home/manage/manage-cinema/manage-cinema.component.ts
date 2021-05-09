@@ -57,7 +57,7 @@ export class ManageCinemaComponent implements OnInit {
     const dialogRef = this.dialog.open(EditCinemaComponent, {
       height: 'auto',
       width: '600px',
-      data : cinema
+      data : cinema ,
     });
 
     dialogRef.afterClosed().subscribe(result => {

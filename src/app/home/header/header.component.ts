@@ -31,7 +31,7 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['/manage']);
   }
   tranferPageTicket(): void{
-    this.router.navigate(['/manage']);
+    this.router.navigate(['/book-ticket']);
   }
   tranferPageBill(): void{
     this.router.navigate(['/checkout']);

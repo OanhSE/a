@@ -15,7 +15,7 @@
         <div class="form-group">
           <label for="area">Khu vực(Chọn một):</label>
           <select class="form-control" formControlName="name" id="area" name="area">
-            <option *ngFor="let area of Areas" >{{area}}</option>
+            <option *ngFor="let area of Areas" [value]="area" >{{area}}</option>
 
           </select>
           <div *ngIf="submitted && f.area.errors" class="invalid-feedback">
@@ -23,13 +23,17 @@
           </div>
         </div>
         <div class="form-group">
-          <label for="add">Địa chỉ(Chọn một):</label>
-          <select class="form-control" formControlName="add" id="add" name="add" [ngClass]="{ 'is-invalid': submitted && f.add.errors }">
-            <option *ngFor="let add of Addresses" >{{add}}</option>
-
-          </select>
+          <label for="add">Địa chỉ:</label>
+          <input id ="add" type="text" formControlName="add" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.add.errors }" />
           <div *ngIf="submitted && f.add.errors" class="invalid-feedback">
-            <div *ngIf="f.add.errors.required">Địa chỉ rạp là bắt buộc</div>
+            <div *ngIf="f.add.errors.required">Địa chỉ  là bắt buộc</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="city">Tỉnh:</label>
+          <input id ="city" type="text" formControlName="city" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.city.errors }" />
+          <div *ngIf="submitted && f.city.errors" class="invalid-feedback">
+            <div *ngIf="f.city.errors.required">Tỉnh là bắt buộc</div>
           </div>
         </div>
 <!--        <div class="form-group">-->

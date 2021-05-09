@@ -37,11 +37,12 @@ export class FilmSessionService {
     return  this.http.post<FilmSession>(`${this.apiUrl}/session`, filmSession);
   }
 
-  getFilmSessionByCinemaAndDate(date: Date, idCinema: number): Observable<FilmSession>{
+  getFilmSessionByCinemaAndDate(date: string, idCinema: number): Observable<FilmSession[]>{
     let params = new HttpParams();
-    params = params.append('date', date.toDateString());
-    params = params.append('idCinema', String(idCinema));
-    return this.http.get<FilmSession>(`${this.apiUrl}/filmSessions`, {params});
+    params = params.append('date', date);
+    // params = params.append('idCinema', String(idCinema));
+    // return this.http.get<FilmSession[]>(`${this.apiUrl}/filmSessions/${idCinema}`, {params});
+    return this.http.get<FilmSession[]>(`${this.apiUrl}/admin/session`);
   }
   getSessionById(id: number): Observable<FilmSession>{
     return this.http.get<FilmSession>(`${this.apiUrl}/getSession/${id}`);
@@ -50,6 +51,14 @@ export class FilmSessionService {
 // getallfilmSession
   getAll(): Observable<FilmSession[]> {
     // return this.http.get<User[]>(`${environment.apiUrl}/users`);
-    return this.http.get<FilmSession[]>(this.url + 'getFilmSessions');
+    return this.http.get<FilmSession[]>(`${this.apiUrl}/admin/session`);
+  }
+
+  getFilmSessionByCinemaAndDateAndFilm(newdate: string, id: number, film: Film): Observable<FilmSession[]> {
+    // let params = new HttpParams();
+    // params = params.append('date', newdate);
+    // params = params.append('film', film.id.toString());
+    // params = params.append('idCinema', id.toString());
+    return this.http.get<FilmSession[]>(`${this.apiUrl}/admin/session`);
   }
 }

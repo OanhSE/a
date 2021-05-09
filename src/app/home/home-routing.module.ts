@@ -5,6 +5,7 @@ import { HomeComponent } from './home.component';
 import { FilmSingleComponent } from './film-single/film-single.component';
 import { CinemaComponent } from './cinema/cinema.component';
 import { CheckOutComponent } from './check-out/check-out.component';
+import {BookTicketComponent} from './book-ticket/book-ticket.component';
 const manageModule = () => import('./manage/manage.module').then(x => x.ManageModule);
 const routes: Routes = [
   { path: '', component: HomeComponent,
@@ -14,6 +15,7 @@ const routes: Routes = [
     { path: 'film-single/:id', component: FilmSingleComponent },
     { path: 'cinema', component: CinemaComponent },
     { path: 'checkout', component: CheckOutComponent },
+    { path: 'book-ticket', component: BookTicketComponent },
     { path: 'manage', loadChildren:  manageModule },
   ]
 },

@@ -14,16 +14,23 @@
         </div>
         <div class="form-group">
           <label for="area">Select list (select one):</label>
-          <select *ngFor="let area of Areas" class="form-control" formControlName="name" id="area" name="area">
-            <option>{{area}}</option>
+          <select  class="form-control" formControlName="area" id="area" name="area">
+            <option *ngFor="let a of Areas"  [value]="a">{{a}}</option>
 
           </select>
         </div>
         <div class="form-group">
-          <label  >Địa chỉ:</label>
-          <input type="text" formControlName="adressID" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.addressId.errors }" />
-          <div *ngIf="submitted && f.addressId.errors" class="invalid-feedback">
-            <div *ngIf="f.addressId.errors.required">Địa chỉ rạp là bắt buộc</div>
+          <label for="add">Địa chỉ:</label>
+          <input id ="add" type="text" formControlName="add" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.add.errors }" />
+          <div *ngIf="submitted && f.add.errors" class="invalid-feedback">
+            <div *ngIf="f.add.errors.required">Địa chỉ  là bắt buộc</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="city">Tỉnh:</label>
+          <input id ="city" type="text" formControlName="city" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.city.errors }" />
+          <div *ngIf="submitted && f.city.errors" class="invalid-feedback">
+            <div *ngIf="f.city.errors.required">Tỉnh là bắt buộc</div>
           </div>
         </div>
 
@@ -31,7 +38,7 @@
         <div class="form-group" >
           <button mat-button  cdkFocusInitial [disabled]="loading" class="btn btn-primary">
             <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
-            Thêm
+            Sửa
           </button>
 
 

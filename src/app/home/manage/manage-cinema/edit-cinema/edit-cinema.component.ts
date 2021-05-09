@@ -9,6 +9,8 @@ import {Film} from '../../../../_models/film';
 import {first} from 'rxjs/operators';
 import {CinemaService} from '../../../../_service/cinema.service';
 import {Cinema} from '../../../../_models/cinema';
+import {Address} from '../../../../_models/address';
+import {AddressService} from '../../../../_service/address.service';
 
 @Component({
   selector: 'app-edit-cinema',
@@ -24,12 +26,13 @@ export class EditCinemaComponent implements OnInit {
   date = false;
   isShowErrorDate = false;
   Areas = ['0001', '0002', '0003', '0004', '0005', '0006', '0007', '0008'];
-
+  address: Address;
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
     private cinemaService: CinemaService,
+    private addressService: AddressService,
     private userService: UserService,
     private alertService: AlertService,
     public dialogRef: MatDialogRef<EditCinemaComponent>,
@@ -46,10 +49,25 @@ export class EditCinemaComponent implements OnInit {
     this.form = this.formBuilder.group({
       name: ['', Validators.required],
       area: ['', Validators.required],
-      addressId: ['', Validators.required],
+      add: ['', Validators.required],
+      city: ['', Validators.required],
+      address: ['', Validators.required],
 
     });
-    this.form.patchValue(this.data);
+    if (!this.data.id) {  this.data.id = 8; }
+    this.addressService.getByCinema(this.data.id).subscribe((x) => {
+      if (x){
+        this.form.controls.add.setValue(x.state);
+        this.form.controls.city.setValue(x.city);
+        this.form.patchValue(this.data);
+
+      }
+
+    });
+
+
+
+
   }
 
   get f(): {[p: string]: AbstractControl} {
@@ -62,6 +80,8 @@ export class EditCinemaComponent implements OnInit {
     if (this.form.invalid) {
       return;
     }
+    const addressNew = new Address(this.form.controls.city.value , this.form.controls.add.value, 'Việt Nam' );
+    this.form.controls.address.setValue(addressNew);
     this.loading = true;
     this.cinemaService.addCinema(this.form.value)
       .pipe(first())

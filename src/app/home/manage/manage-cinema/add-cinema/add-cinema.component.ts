@@ -49,6 +49,9 @@ export class AddCinemaComponent implements OnInit {
       name: ['', Validators.required],
       area: ['', Validators.required],
       add: ['', Validators.required],
+      city: ['', Validators.required],
+      address: ['', Validators.required],
+
 
 
     });
@@ -64,7 +67,8 @@ export class AddCinemaComponent implements OnInit {
     if (this.form.invalid) {
       return;
     }
-    this.form.controls.address.setValue(this.form.controls.add);
+    const addressNew = new Address(this.form.controls.city.value , this.form.controls.add.value, 'Việt Nam' );
+    this.form.controls.address.setValue(addressNew);
     console.log('this.form.value', this.form.value);
     this.loading = true;
     this.cinemaService.addCinema(this.form.value)
