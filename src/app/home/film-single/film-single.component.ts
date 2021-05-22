@@ -11,8 +11,10 @@ export interface Tile {
 }
 @Component({
   selector: 'app-film-single',
-  templateUrl: './film-single.component.html',
-  styleUrls: ['./film-single.component.css']
+  // templateUrl: './film-single.component.html',
+  // styleUrls: ['./film-single.component.css']
+  templateUrl: './film-single.components.html',
+  styleUrls: ['./film-single.components.css']
 })
 
 export class FilmSingleComponent implements OnInit {

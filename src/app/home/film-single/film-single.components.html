@@ -1,0 +1,71 @@
+<div class="film-detail">
+  <div class="film-detail-trailer">
+    <iframe height="500" width="800" src="https://www.youtube.com/embed/EWz4fITO5qg"
+            allowfullscreen>
+    </iframe>
+  </div>
+
+  <div class="film-detail-info">
+    <div class="col-2">
+      <img src="../../../assets/images{{film$.image}}" width="100%">
+    </div>
+
+    <div class="col-10">
+      <h3>{{film$.name || "Check hiển thị tên"}}</h3>
+
+      <div class="row">
+        <p> <b>Xem xếp hạng </b></p>
+        <app-star-rating [starCount]="5" [color]="starColor" disabled="true"></app-star-rating>
+      </div>
+
+      <div class="row">
+        <p><b>Xếp hạng </b></p>
+        <p>[Trong nước] 13 tuổi trở lên</p>
+      </div>
+
+      <div class="row">
+        <p><b>Ngày phát hành </b></p>
+        <p>{{film$.startFrom | date:'dd/MM/yyyy'}}</p>
+      </div>
+
+      <div class="row">
+        <p><b>Thông tin cơ bản</b></p>
+        <p>Drama Vietnam (128Phút)</p>
+      </div>
+
+      <div class="row">
+        <p><b>Loại</b></p>
+        <p>2D | Normal | Normal sound | Lồng tiếng</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="film-detail-summary">
+    <h3>Tóm tắt</h3>
+    <p>{{film$.description}}</p>
+  </div>
+
+  <div class="film-detail-review">
+    <h3>Xếp hạng và đánh giá phim</h3>
+    <div class="film-detail-review-block">
+      <div class="film-detail-review-rate">
+        <h5>Xếp hạng</h5>
+        <app-star-rating
+          [rating]="rating"  [starCount]="starCount"
+          [color]="starColor" (ratingUpdated)="onRatingChanged($event)"
+        >
+        </app-star-rating>
+      </div>
+
+      <textarea placeholder="Để bình luận, đánh giá bạn phải đăng nhập"></textarea>
+
+      <button>Bình luận</button>
+    </div>
+  </div>
+
+  <div class="film-detail-booking">
+    <button>
+      <span>Đặt vé</span>
+    </button>
+  </div>
+</div>
