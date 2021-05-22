@@ -1,102 +1,14 @@
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-sm-1">
+<div class="container" style="text-align: center" *ngIf="loading$">
+  <div style="">
+  <tr *ngFor='let in of counter(5) ;let i = index'>
+    <td *ngFor="let seat of getSeatByRow(i)" >
+      <mat-icon>event_seat</mat-icon>
+        <p>{{seat.rowIndex}}{{seat.columnIndex}}</p>
 
-    </div>
-    <div class="col-sm-10">
-      <form  [formGroup]="form" (ngSubmit)="onSubmit()">
-        <div class="form-group">
+    </td>
 
 
-          <input id ="date" type="date" formControlName="date" class="form-control"/>
-
-        </div>
-        <div class="form-group">
-
-          <button class="btn btn-success">Chọn</button>
-
-        </div>
-      </form>
-    </div>
-    <div class="col-sm-1">
-
-    </div>
+  </tr>
   </div>
-
-
-  <div class="row">
-    <div  class="col-sm-1"></div>
-    <div class="col-sm-4">
-      <div class="row">
-        <div class="nav flex-column nav-pills col-sm-2" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-          <a class="nav-link active" id="v-pills-hcm-tab" data-toggle="pill" href="#v-pills-hcm" role="tab" aria-controls="v-pills-hcm" aria-selected="true">Hồ Chí Minh</a>
-          <a class="nav-link" id="v-pills-hn-tab" data-toggle="pill" href="#v-pills-hn" role="tab" aria-controls="v-pills-hn" aria-selected="false">Hà Nội</a>
-          <a class="nav-link" id="v-pills-dbsh-tab" data-toggle="pill" href="#v-pills-dbsh" role="tab" aria-controls="v-pills-dbsh" aria-selected="false">ĐB Sông Hồng</a>
-          <a class="nav-link" id="v-pills-dbtb-tab" data-toggle="pill" href="#v-pills-dbtb" role="tab" aria-controls="v-pills-dbtb" aria-selected="false">Đông Bắc, Tây Bắc</a>
-          <a class="nav-link" id="v-pills-bmt-tab" data-toggle="pill" href="#v-pills-bmt" role="tab" aria-controls="v-pills-bmt" aria-selected="false">Bắc Miền Trung</a>
-          <a class="nav-link" id="v-pills-nmt-tab" data-toggle="pill" href="#v-pills-nmt" role="tab" aria-controls="v-pills-nmt" aria-selected="false">Nam Miền Trung</a>
-          <a class="nav-link" id="v-pills-dnb-tab" data-toggle="pill" href="#v-pills-dnb" role="tab" aria-controls="v-pills-dnb" aria-selected="false">Đông Nam Bộ</a>
-
-        </div>
-        <div class="tab-content col-sm-9" id="v-pills-tabContent">
-          <div class="tab-pane fade show active example-button-row " id="v-pills-hcm" role="tabpanel" aria-labelledby="v-pills-hcm-tab">
-            <div *ngFor = "let  c of listHCM">
-              <button (click)="tranferBySingle(c)"  mat-flat-button >{{c.name}}</button>
-            </div>
-          </div>
-          <div class="tab-pane fade example-button-row" id="v-pills-hn " role="tabpanel" aria-labelledby="v-pills-hn-tab">
-            <div *ngFor = "let  c of listHN">
-              <button (click)="tranferBySingle(c)">{{c.name}}</button>
-            </div>
-          </div>
-          <div class="tab-pane fade example-button-row" id="v-pills-dbsh" role="tabpanel" aria-labelledby="v-pills-dbsh-tab">
-            <div *ngFor = "let  c of listDBSH">
-              <button (click)="tranferBySingle(c)">{{c.name}}</button>
-            </div>
-          </div>
-          <div class="tab-pane fade example-button-row" id="v-pills-dbtb" role="tabpanel" aria-labelledby="v-pills-dbtb-tab">
-            <div *ngFor = "let  c of listDBTB">
-              <button (click)="tranferBySingle(c)">{{c.name}}</button>
-            </div>
-          </div>
-          <div class="tab-pane fade example-button-row" id="v-pills-bmt" role="tabpanel" aria-labelledby="v-pills-bmt-tab">
-            <div *ngFor = "let  c of listBMT">
-              <button (click)="tranferBySingle(c)">{{c.name}}</button>
-            </div>
-          </div>
-          <div class="tab-pane fade example-button-row" id="v-pills-nmt" role="tabpanel" aria-labelledby="v-pills-nmt-tab">
-            <div *ngFor = "let  c of listNMT">
-              <button (click)="tranferBySingle(c)">{{c.name}}</button>
-            </div>
-          </div>
-          <div class="tab-pane fade example-button-row" id="v-pills-dnb" role="tabpanel" aria-labelledby="v-pills-dnb-tab">
-            <div *ngFor = "let  c of listDNB">
-              <button (click)="tranferBySingle(c)">{{c.name}}</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-    <div class="col-sm-3">
-
-    </div>
-    <div class="col-sm-1">
-
-    </div>
-  </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 </div>

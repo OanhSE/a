@@ -4,8 +4,10 @@ import { UserService } from '../../_service/user.service';
 import { Route, Router } from '@angular/router';
 @Component({
   selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  // templateUrl: './header.component.html',
+  // styleUrls: ['./header.component.css']
+  templateUrl: './header.components.html',
+  styleUrls: ['./header.components.css']
 })
 export class HeaderComponent implements OnInit {
   user: User;

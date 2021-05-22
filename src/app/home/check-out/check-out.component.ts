@@ -8,6 +8,8 @@ import {FilmSessionService} from '../../_service/film-session.service';
 import {formatDate} from '@angular/common';
 import {Address} from '../../_models/address';
 import {Cinema} from '../../_models/cinema';
+import {SeatService} from '../../_service/seat.service';
+import {Seat} from '../../_models/seat';
 
 @Component({
   selector: 'app-check-out',
@@ -15,77 +17,51 @@ import {Cinema} from '../../_models/cinema';
   styleUrls: ['./check-out.component.css']
 })
 export class CheckOutComponent implements OnInit {
-  form: FormGroup;
-  listHCM ;
-  listTNB;
-  listDNB;
-  listNMT;
-  listBMT;
-  listDBTB;
-  listDBSH;
-  listHN;
-
-  myControl = new FormControl();
-  address$: Address =  new Address('TP.HCM', 'Tầng 7, Cantavil Premier, Số 1 đường Song Hành, Xa lộ Hà Nội, P.An Phú, Q.2', 'Việt Nam');
-
-  cinemadetail$: Cinema = new Cinema(1, 'Cantavil', this.address$);
-
-  cinemas: Cinema[];
-
-  constructor(
+  seats$: Seat[] = null;
+  loading$ = false;
+constructor(
     private cinamaService: CinemaService,
     private addressService: AddressService,
     private  router: Router,
     private formBuilder: FormBuilder,
+    private seatService: SeatService,
+    private  route: ActivatedRoute,
+    private filmSessionService: FilmSessionService,
 
   ) {
-  }
+}
 
-  ngOnInit(): void {
-    this.getALlCinema();
-    this.form = this.formBuilder.group({
-      date: ['', Validators.required],
-    });
-
-
-  }
-  tranferBySingle(cinema: Cinema): void{
-    this.cinemadetail$ = cinema;
-    if (this.cinemadetail$.id){
-      this.GetAddressByCinema(this.cinemadetail$.id);
-
-    }
-    console.log('cinema', cinema);
-  }
-  GetAddressByCinema(id: number): void{
-    this.addressService.getByCinema(id).subscribe((x) => {
-      console.log(x);
-      this.address$ = x;
-    });
-  }
-  getALlCinema(): void {
-
-    this.cinamaService.getCinemaByArea(1).subscribe((result) => {
-      this.listHCM = result;
-    });
-    this.cinamaService.getCinemaByArea(2).subscribe((result) => {
-      this.listHN = result;
-    });
-    this.cinamaService.getCinemaByArea(3).subscribe((result) => {
-      this.listDBSH = result;
-    });
+  async ngOnInit(): Promise<void> {
+   this.route.queryParamMap.subscribe((params) => {
+     console.log('filmsession', params.get('filmsession'));
+     this.filmSessionService.getSessionById(Number(params.get('filmsession'))).subscribe((result) => {
+       console.log('f', result);
+       this.seatService.getAvailableSeat(9).subscribe((x) => {
+         this.seats$ = x;
+         console.log('seats', this.seats$);
+         this.loading$ = true;
+       });
+     });
+   });
 
   }
+  _getAvailableSeat(id: number): void{
+    this.seatService.getAvailableSeat(id).subscribe((x) => {
+     this.seats$ = x;
+     console.log('seats', this.seats$);
+     this.loading$ = true;
+  });
+  }
 
+  counter(n: number): Array<number> {
+  return Array(n);
 
-  onSubmit(): void{
-    // const  newdate = formatDate(this.form.controls.date.value, 'yyyy-MM-dd\'T\'HH:mm:ss', 'en-US');
-    const  newdate = formatDate(this.form.controls.date.value, 'yyyy-MM-dd', 'en-US');
-    console.log('newdate', newdate);
-  //   this.filmSessionService.getFilmSessionByCinemaAndDate(newdate, this.cinemadetail$.id).subscribe((x) => {
-  //     console.log('filmsession', x);
-  //     this.listFilmSession$ = x;
-  //     console.log('filmsession', x[0]);
-  //   });
+  }
+  getSeatByRow(row: number): Seat[]{
+  // console.log('hhhh', this.seats$.filter(value => ) || []);
+  return this.seats$.filter(value => value.rowIndex === row) || [];
+  }
+  optionTicket(seat: Seat){
+
   }
 }

@@ -49,7 +49,7 @@ export class ListCinemaComponent implements OnInit {
     });
   }
   bookTicket(filmsession: FilmSession): void{
-    this.router.navigate(['/checkout']);
+    this.router.navigate(['/checkout'],  {queryParams: { filmsession: filmsession.id } });
   }
   onSubmit(): void{
      // const  newdate = formatDate(this.form.controls.date.value, 'yyyy-MM-dd\'T\'HH:mm:ss', 'en-US');

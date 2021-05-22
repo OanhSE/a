@@ -38,5 +38,8 @@ export class ManageComponent implements OnInit {
   tranferFilmSession(): void{
     this.router.navigate(['/manage/filmsession']);
   }
+  tranferSeat(): void {
+    this.router.navigate(['/manage/seat']);
+  }
 
 }

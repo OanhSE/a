@@ -25,3 +25,8 @@
   margin: 0.5em;
 
 }
+
+.header-nav {
+  background-color: #dad2b4;
+  heigh: 55px !important;
+}

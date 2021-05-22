@@ -29,8 +29,15 @@ export class SeatService {
     // return this.http.get<User[]>(`${environment.apiUrl}/users`);
     return this.http.get<Seat[]>(this.url + 'getSeats');
   }
-  addSeat(seat: Seat): Observable<Seat>{
-    return this.http.post<Seat>(`${this.apiUrl}/seat`, seat);
+//   @PostMapping("/seat/{hallId}")
+//   public List<Seat> addSeat(@PathVariable("halId") Long hallId, @RequestParam int row, @RequestParam int column){
+//   return service.addSeat(hallId,row,column);
+// }
+  addSeat(hallId: number, row: number, column: number): Observable<Seat[]>{
+    let params = new HttpParams();
+    params = params.append('row', row.toString());
+    params = params.append('column', column.toString());
+    return this.http.post<Seat[]>(`${this.apiUrl}/seat/${hallId}`, params);
   }
   getSeatByHall(hallId: number): Observable<Seat[]>{
     let params = new HttpParams();
@@ -40,6 +47,13 @@ export class SeatService {
   getSeatById(id: string): Observable<Seat>{
     return this.http.get<Seat>(`${this.apiUrl}/seats/${id}`);
   }
-
+  // @GetMapping("/getAvailableSeat")
+  // public List<Seat> getAvailableSeat(@RequestParam Long filmSession){
+  getAvailableSeat(id: number): Observable<Seat[]>{
+    // return this.http.get<Seat[]>(`${this.apiUrl}/getAvailableSeat`);
+    let params = new HttpParams();
+    params = params.append('hallId', id.toString());
+    return this.http.get<Seat[]>(`${this.apiUrl}/getAvailableSeat?filmSession=` + id);
+  }
 
 }

@@ -29,7 +29,7 @@ export class ContainerComponent implements OnInit {
   ngOnInit(): void {
   }
   reserve(film: Film): void{
-    this.router.navigate(['/']);
+    this.router.navigate(['/book-ticket', { idfilm: film.id }] );
 
   }
   tranfersingle(film: Film): void{

@@ -35,8 +35,11 @@ import { EditCinemaComponent } from './manage-cinema/edit-cinema/edit-cinema.com
 import { ManageHallComponent } from './manage-hall/manage-hall.component';
 import { AddHallComponent } from './manage-hall/add-hall/add-hall.component';
 import { EditHallComponent } from './manage-hall/edit-hall/edit-hall.component';
+import { ManageSeatComponent } from './manage-seat/manage-seat.component';
+import { AddSeatComponent } from './manage-seat/add-seat/add-seat.component';
+import { EditSeatComponent } from './manage-seat/edit-seat/edit-seat.component';
 @NgModule({
-  declarations: [ManageComponent, ManageClientComponent, ManageFilmComponent, ManageCategoryComponent, ManageTicketComponent, ReportComponent, BillComponent, AddClientComponent, AddFilmComponent, AddCategoryComponent, AddTicketComponent, EditClientComponent, EditFilmComponent, EditCategoryComponent, EditTicketComponent, ManageCinemaComponent, AddCinemaComponent, EditCinemaComponent, ManageHallComponent, AddHallComponent, EditHallComponent],
+  declarations: [ManageComponent, ManageClientComponent, ManageFilmComponent, ManageCategoryComponent, ManageTicketComponent, ReportComponent, BillComponent, AddClientComponent, AddFilmComponent, AddCategoryComponent, AddTicketComponent, EditClientComponent, EditFilmComponent, EditCategoryComponent, EditTicketComponent, ManageCinemaComponent, AddCinemaComponent, EditCinemaComponent, ManageHallComponent, AddHallComponent, EditHallComponent, ManageSeatComponent, AddSeatComponent, EditSeatComponent],
   exports: [
     CommonModule,
     ManageRoutingModule,

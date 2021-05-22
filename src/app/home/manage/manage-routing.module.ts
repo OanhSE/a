@@ -8,6 +8,7 @@ import { ManageClientComponent } from './manage-client/manage-client.component';
 import { ManageTicketComponent } from './manage-ticket/manage-ticket.component';
 import { ReportComponent } from './report/report.component';
 import {ManageCinemaComponent} from './manage-cinema/manage-cinema.component';
+import {ManageSeatComponent} from './manage-seat/manage-seat.component';
 const manageFilmsessionModule = () => import('./manage-filmsession/manage-filmsession.module').then(x => x.ManageFilmsessionModule
 );
 
@@ -23,6 +24,7 @@ const routes: Routes = [
       { path: 'report', component: ReportComponent },
       { path: 'client', component: ManageClientComponent},
       { path: 'cinema', component: ManageCinemaComponent},
+      { path: 'seat', component: ManageSeatComponent},
       { path: 'filmsession', loadChildren: manageFilmsessionModule}
 
     ]

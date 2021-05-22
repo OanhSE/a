@@ -70,6 +70,9 @@ export class FilmService {
   deleteFilm( id: number): Observable<string>{
     return this.http.delete<string>(`${this.apiUrl}/films/${id}`);
   }
+  getFilmById(id: number): Observable<Film>{
+    return this.http.get<Film>(`${this.apiUrl}/getMovies/${id}`);
+  }
 
 
 

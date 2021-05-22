@@ -1,0 +1,49 @@
+<h1 mat-dialog-title>Thêm Phim</h1>
+<div mat-dialog-content >
+  <div class="card" xmlns="http://www.w3.org/1999/html">
+
+    <div class="card-body">
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+        <div class="form-group">
+          <label  >Phòng chiếu:</label>
+          <input type="number" formControlName="hall" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.hall.errors }" />
+          <div *ngIf="submitted && f.hall.errors" class="invalid-feedback">
+            <div *ngIf="f.hall.errors.required">Phòng chiếu là bắt buộc</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label  >Số hàng:</label>
+          <input type="number" formControlName="row" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.row.errors }" />
+          <div *ngIf="submitted && f.row.errors" class="invalid-feedback">
+            <div *ngIf="f.row.errors.required">Số hàng</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label  >Số cột:</label>
+          <input type="number" formControlName="column" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.column.errors }" />
+          <div *ngIf="submitted && f.column.errors" class="invalid-feedback">
+            <div *ngIf="f.column.errors.required">Số hàng</div>
+          </div>
+        </div>
+
+          <button mat-button  cdkFocusInitial [disabled]="loading" class="btn btn-primary">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+            Thêm
+          </button>
+
+
+
+
+
+      </form>
+    </div>
+
+  </div>
+
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Hủy</button>
+  <!--  <button mat-button [mat-dialog-close]="submitted" cdkFocusInitial>Ok</button>-->
+</div>
+
