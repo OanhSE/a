@@ -1,0 +1,48 @@
+<div class="home">
+
+  <div id="demo" class="carousel slide home-slide" data-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="./assets/images/slide-01.jpg" alt="" width="100%" height=" 420px;">
+      </div>
+      <div class="carousel-item">
+        <img src="./assets/images/slide-02.jpg" alt="Chicago" width="100%" height=" 420px;">
+      </div>
+      <div class="carousel-item">
+        <img src="./assets/images/slide-03.jpg" alt="Chicago" width="100%" height=" 420px;">
+      </div>
+      <div class="carousel-item">
+        <img src="./assets/images/slide-04.jpg" alt="Chicago" width="100%" height=" 420px;">
+      </div>
+    </div>
+  </div>
+
+  <div class="home-content">
+    <div class="home-content-top">
+      <h2>Danh sách phim</h2>
+      <div class="home-btn-switch">
+        <button class="btn-film-active">Phim đang chiếu</button>
+        <button class="btn-film-future">Phim sắp chiếu</button>
+      </div>
+    </div>
+
+    <div class="home-content-list-films">
+      <div *ngFor = "let  film of listfilms" class="home-film-item">
+        <div class="home-film-item-box">
+          <img src='./assets/images/no-movie.png' class="home-list-item-image"/>
+
+          <div class="home-film-item-action">
+              <button (click)="reserve(film)">Đặt vé</button>
+              <button (click)="tranfersingle(film)" routerLink= "/film-single/{{film.id}}">Chi tiết</button>
+          </div>
+        </div>
+
+        <div class="home-film-item-text">
+          <h3 class="title">{{film.name}}</h3>
+          <h4 class="date">{{film.startFrom | date:'dd/MM/yyyy'}}</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,137 @@
+.home {
+  padding: 1rem;
+  width: 100%;
+}
+
+.home-slide {
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #c1b272;
+}
+
+.home-content {
+  padding-top: 1rem
+}
+
+.home-content-top {
+  display: flex;
+  justify-content: space-between;
+}
+
+.home-content-top > h2 {
+  text-transform: uppercase;
+}
+
+.btn-film-active {
+  border: none !important;
+  outline: none !important;
+  background-color: #e48484;
+  padding: 5px;
+}
+
+.btn-film-active:focus-within{
+  border: none !important;
+  outline: none !important;
+}
+
+.btn-film-future {
+  border: none !important;
+  outline: none !important;
+  padding: 5px;
+}
+
+.btn-film-future:focus-within {
+  border: none !important;
+  outline: none !important;
+}
+
+.home-content-list-films {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  margin-top: 1rem;
+  grid-gap: 20px;
+}
+
+.home-film-item {
+  height: 400px;
+  border: 1px solid #c1b272;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.home-film-item-box {
+  height: 320px;
+  width: 100%;
+  border-bottom: 1px solid #c1b272;
+  overflow: hidden;
+  position: relative;
+}
+
+.home-list-item-image {
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+}
+
+.home-film-item-action {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  background-color: black;
+  z-index: 2;
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.home-film-item-action > button {
+  background: black;
+  color: white;
+  font-weight: 700;
+  padding:10px;
+  min-width: 150px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  outline: none !important;
+  text-transform: uppercase;
+  border: 1px solid #fbe8c5!important;
+}
+
+.home-film-item-action > button:focus-within{
+  border: 1px solid #fbe8c5!important;
+  outline: none !important;
+}
+
+.home-film-item-action > button:active{
+  transform: scale(1.1);
+}
+
+.home-film-item-box:hover > .home-film-item-action {
+  opacity: 0.8;
+}
+
+.home-film-item-text {
+  padding: 5px;
+  background-color: #d2e4d6;
+  height: 80px;
+  width: 100%;
+  white-space: nowrap;
+}
+
+.home-film-item-text:hover {
+  white-space: normal;
+}
+
+.home-film-item-text > h3 {
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.home-film-item-text > .date {
+  color: firebrick !important;
+}
