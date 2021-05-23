@@ -31,23 +31,13 @@
   background-color: #6f6247;
 }
 
-.example-form {
-  min-width: 150px;
-  max-width: 500px;
-  width: 100%;
-}
-
-.example-full-width {
-  width: 100%;
-}
-.imgcinema{
+.cinema-banner {
   width: 100%;
   height: 100%;
+  margin-top: 2rem;
+  overflow: hidden;
 }
-.rowimgcinema{
-  width: 100%;
-  height: 100%;
-  padding: 20px;
-  margin: 20px;
 
+.cinema-banner > img {
+  width: 100%;
 }
