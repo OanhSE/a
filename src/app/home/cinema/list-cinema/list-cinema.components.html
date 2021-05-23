@@ -1,0 +1,70 @@
+<div class="cinema-list-film">
+
+  <div class="cinema-list-content">
+  <div class="cinema-info">
+
+    <div class="cinema-title">
+      <mat-icon>featured_video</mat-icon>
+      <span>{{cinemadetail$? cinemadetail$.name :''}}</span>
+    </div>
+
+    <div class="cinema-info-detail">
+      <div class="addresscinema">
+        <mat-icon> place</mat-icon>{{  address$? address$.state :''  }}
+      </div>
+
+      <div>
+        <mat-icon>tab</mat-icon>Tổng số phòng chiếu: <span>6</span>  phòng
+      </div>
+
+      <div>
+        <mat-icon>event_seat</mat-icon>Tổng số chỗ ngồi: <span>30</span> ghế
+      </div>
+
+    </div>
+  </div>
+
+
+  </div>
+  <div class="row justify-content-center">
+    <div class="btn-group">
+      <button type="button" class="btn clbtn">Lịch chiếu phim</button>
+      <button type="button" class="btn clbtn">Vị trí rạp</button>
+      <button type="button" class="btn clbtn">Hướng dẫn đi tới rạp</button>
+      <button type="button" class="btn clbtn">Tiện ích đi kèm</button>
+
+    </div>
+
+  </div>
+  <div>
+
+  </div>
+  <form  [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+
+
+      <input id ="date" type="date" formControlName="date" class="form-control"/>
+
+    </div>
+    <div class="form-group">
+
+      <button class="btn btn-success">Chọn</button>
+
+    </div>
+  </form>
+
+  <div class="row">
+    <div class="row" style="text-align: center;">
+      <button (click)="bookTicket(filmsession)" *ngFor="let filmsession of listFilmSession$ " color="primary" class="justify-content-center bg-success btn-hall">
+        <mat-icon >featured_play_list</mat-icon><br>
+        <h5> {{filmsession?filmsession.film.name:''}}</h5><br>
+        <h6>{{filmsession?filmsession.hall.name:''}}</h6><br>
+        <span>{{filmsession?filmsession.startFrom:''}}-{{filmsession?filmsession.endTo:''}}</span><br>
+
+      </button>
+
+
+    </div>
+
+  </div>
+</div>

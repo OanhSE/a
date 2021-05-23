@@ -12,8 +12,10 @@ import {FilmSession} from '../../../_models/filmSession';
 
 @Component({
   selector: 'app-list-cinema',
-  templateUrl: './list-cinema.component.html',
-  styleUrls: ['./list-cinema.component.css']
+  // templateUrl: './list-cinema.component.html',
+  // styleUrls: ['./list-cinema.component.css']
+  templateUrl: './list-cinema.components.html',
+  styleUrls: ['./list-cinema.components.css']
 })
 export class ListCinemaComponent implements OnInit {
   @Input() cinemadetail$: Cinema ;
