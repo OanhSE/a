@@ -1,0 +1,59 @@
+
+<div class="manage row">
+
+    <div class="col-2 sidebar" >
+      <div class="manage-image-banner">
+        <img class="css-1pqm26d-MuiAvatar-img" src="./../../../assets/images/oanh.png" alt="">
+      </div >
+
+      <div class="manage-sidebar-name">
+        <h5 class="css-ro3fvo-MuiTypography-root">Oanh</h5>
+        <p class="css-ays8ay-MuiTypography-root">Oanh Oanh</p>
+      </div>
+
+
+      <nav class="navbar manage-navbar">
+        <button (click)="tranferClient()">
+          <mat-icon> person_pin</mat-icon> Khách hàng
+        </button>
+
+        <button  (click)="tranferFilm()">
+          <mat-icon>movie</mat-icon> Phim
+        </button>
+
+        <button (click)="tranferCategory()">
+          <mat-icon> category</mat-icon> Loại phim
+        </button>
+
+        <button (click)="tranferFilmSession()">
+          <mat-icon>library_books</mat-icon> Lịch chiếu
+        </button>
+
+        <button (click)="tranferTicket()">
+          <mat-icon>library_books</mat-icon> Vé
+        </button>
+
+        <button (click)="tranferCinema()">
+          <mat-icon>settings_overscan</mat-icon> Rạp
+        </button>
+
+        <button (click)="tranferSeat()">
+
+          <mat-icon>settings_overscan</mat-icon> Ghế
+        </button>
+
+        <button (click)="tranferBill()">
+          <mat-icon>payment</mat-icon> Hóa đơn
+        </button>
+
+        <button (click)="tranferReport()">
+          <mat-icon>report_problem</mat-icon> Báo cáo
+        </button>
+
+      </nav>
+    </div>
+
+    <div class="col-10" style="background-color: rgb(244, 246, 248);">
+      <router-outlet></router-outlet>
+    </div>
+</div>

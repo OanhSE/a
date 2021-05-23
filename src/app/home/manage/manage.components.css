@@ -1,0 +1,72 @@
+.manage{
+  width: 100%;
+  padding: 1rem;
+  display: flex;
+  margin: 0px;
+}
+
+.manage > .sidebar {
+  background-color: #6f6247;
+  color: white !important;
+  padding: 1rem 0rem;
+  border: 1px solid #6f6247;
+}
+
+.manage-image-banner {
+  max-height: 400px;
+  width: 100%;
+  overflow: hidden;
+  background-color: #dedede;
+}
+
+.manage-image-banner > img {
+  max-height: 400px;
+  max-width: 100%;
+}
+
+.manage-sidebar-name {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 80px;
+  color: #f3b3a0;
+  font-weight: 600;
+}
+
+.manage-navbar {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 0px !important;
+}
+
+.manage-navbar > button {
+  width: 100%;
+  background-color: #6f6247;
+  border-top: 1px solid #dedede;
+  outline: none;
+  border-bottom: 0px !important;
+  border-right: 0px !important;
+  border-left: 0px !important;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.8);
+  padding: 0.75rem 0.5rem;
+}
+
+.manage-navbar > button:hover {
+  background-color: #b79f6c;
+  color: rgba(255, 255, 255, 1);
+}
+
+.manage-navbar > button >mat-icon {
+  margin-right: 10px;
+}
+
+.manage-navbar > button:focus-within {
+  background-color: #b79f6c;
+}

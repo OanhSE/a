@@ -4,8 +4,10 @@ import { Route, Router } from '@angular/router';
 import { UserService } from 'src/app/_service/user.service';
 @Component({
   selector: 'app-manage',
-  templateUrl: './manage.component.html',
-  styleUrls: ['./manage.component.css']
+  // templateUrl: './manage.component.html',
+  // styleUrls: ['./manage.component.css']
+  templateUrl: './manage.components.html',
+  styleUrls: ['./manage.components.css']
 })
 export class ManageComponent implements OnInit {
 
