@@ -55,3 +55,31 @@
   margin: 0px 5px;
   color: red;
 }
+
+.book-ticket-filter-date {
+  width: 100%;
+}
+
+.book-ticket-filter-date > form {
+  display: flex;
+}
+
+.book-ticket-filter-date > form  button {
+  margin-left: 10px;
+}
+
+.cinema-list-button {
+  margin: 2rem 0rem;
+}
+
+.cinema-list-button > div > button {
+  background-color: #6f6247;
+  color: white;
+  font-weight: 600;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.cinema-list-button > div > button:hover {
+  background-color: #b79f6c;
+}
