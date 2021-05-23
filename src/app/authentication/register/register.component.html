@@ -1,74 +1,76 @@
-<h1 mat-dialog-title>Thêm khách hàng</h1>
-<div mat-dialog-content>
-  <div class="card" xmlns="http://www.w3.org/1999/html">
-    <h4 class="card-header">Đăng ký</h4>
-    <div class="card-body">
-      <form [formGroup]="form" (ngSubmit)="onSubmit()">
-        <div class="form-group">
-          <label  >Tên người dùng:</label>
-          <input type="text" formControlName="name" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
-          <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
-            <div *ngIf="f.name.errors.required">Tên người dùng là bắt buộc</div>
-          </div>
-        </div>
-        <div class="form-group">
-          <label >Số điện thoại:</label>
-          <input type="tel" formControlName="phone" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.phone.errors }" />
-          <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
-            <div *ngIf="f.phone.errors.required">Số điện thoại là bắt buộc</div>
-            <div *ngIf="f.phone.errors.minlength">Số điện thoại 10 kí tự</div>
-            <div *ngIf="f.phone.errors.maxlength">Số điện thoại 10 kí tự</div>
-          </div>
-        </div>
-        <div class="form-group">
-          <label >Ngày sinh:</label>
-          <input type="date" formControlName="dayOfBirth" (ngModelChange)="checkDate()"
-                 class="form-control"
 
-          />
-          <!-- [ngClass]="{ 'is-invalid': submitted && f.date.errors }"  -->
-          <div *ngIf="submitted && f.dayOfBirth.errors" class="invalid-feedback">
-            <div *ngIf="f.dayOfBirth.errors.required"> Ngày sinh là bắt buộc</div>
+<div class="register">
+  <div mat-dialog-content>
+    <div class="card" xmlns="http://www.w3.org/1999/html">
+      <h4 class="card-header">Đăng ký</h4>
+      <div class="card-body">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label  >Tên người dùng:</label>
+            <input type="text" formControlName="name" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
+            <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+              <div *ngIf="f.name.errors.required">Tên người dùng là bắt buộc</div>
+            </div>
           </div>
-          <span style="color: red;" *ngIf="isShowErrorDate"> Ứng dụng cho người 18 tuổi trở lên. </span>
-
-        </div>
-        <div class="form-group">
-          <label >Giới tính:</label><br>
-          <div class="form-check-inline">
-            <label class="form-check-label">
-              <input type="radio" formControlName="sex" class="form-check-input" name="sex" id="male" value="male" checked/>Nam
-            </label>
+          <div class="form-group">
+            <label >Số điện thoại:</label>
+            <input type="tel" formControlName="phone" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.phone.errors }" />
+            <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
+              <div *ngIf="f.phone.errors.required">Số điện thoại là bắt buộc</div>
+              <div *ngIf="f.phone.errors.minlength">Số điện thoại 10 kí tự</div>
+              <div *ngIf="f.phone.errors.maxlength">Số điện thoại 10 kí tự</div>
+            </div>
           </div>
-          <div class="form-check-inline">
-            <label class="form-check-label">
-              <input type="radio" formControlName="sex" class="form-check-input" name="sex" id ="female"  value="felmale"/>Nữ
-            </label>
+          <div class="form-group">
+            <label >Ngày sinh:</label>
+            <input type="date" formControlName="dayOfBirth" (ngModelChange)="checkDate()"
+                   class="form-control"
+
+            />
+            <!-- [ngClass]="{ 'is-invalid': submitted && f.date.errors }"  -->
+            <div *ngIf="submitted && f.dayOfBirth.errors" class="invalid-feedback">
+              <div *ngIf="f.dayOfBirth.errors.required"> Ngày sinh là bắt buộc</div>
+            </div>
+            <span style="color: red;" *ngIf="isShowErrorDate"> Ứng dụng cho người 18 tuổi trở lên. </span>
+
+          </div>
+          <div class="form-group register-radio-gender">
+            <label >Giới tính:</label><br>
+            <div class="form-check-inline">
+              <label class="form-check-label">
+                <input type="radio" formControlName="sex" class="form-check-input" name="sex" id="male" value="male" checked/>Nam
+              </label>
+            </div>
+            <div class="form-check-inline">
+              <label class="form-check-label">
+                <input type="radio" formControlName="sex" class="form-check-input" name="sex" id ="female"  value="felmale"/>Nữ
+              </label>
+            </div>
+
           </div>
 
-        </div>
-
-        <div class="form-group">
-          <label >Mật khẩu:</label>
-          <input type="password" formControlName="pwd" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.pwd.errors }" />
-          <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-            <div *ngIf="f.pwd.errors.required">Mật khẩu là bắt buộc</div>
-            <div *ngIf="f.pwd.errors.minlength">Mật khẩu không dưới 6 kí tự</div>
+          <div class="form-group">
+            <label >Mật khẩu:</label>
+            <input type="password" formControlName="pwd" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.pwd.errors }" />
+            <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+              <div *ngIf="f.pwd.errors.required">Mật khẩu là bắt buộc</div>
+              <div *ngIf="f.pwd.errors.minlength">Mật khẩu không dưới 6 kí tự</div>
+            </div>
           </div>
-        </div>
-        <div class="form-group">
-          <button  [disabled]="loading" class="btn btn-primary">
-            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
-            Đăng kí
-          </button>
-          <a routerlink="/login"></a>
+          <div class="form-group">
+            <button  [disabled]="loading" class="btn btn-primary btn-register-user">
+              <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+              Đăng kí
+            </button>
+            <a routerlink="/login"></a>
 
-        </div>
-      </form>
+          </div>
+        </form>
+      </div>
     </div>
-  </div>Hủy
 
 
+  </div>
 </div>
 
 
