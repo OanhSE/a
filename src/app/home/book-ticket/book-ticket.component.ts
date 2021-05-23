@@ -13,8 +13,10 @@ import {FilmSessionService} from '../../_service/film-session.service';
 
 @Component({
   selector: 'app-book-ticket',
-  templateUrl: './book-ticket.component.html',
-  styleUrls: ['./book-ticket.component.css']
+  // templateUrl: './book-ticket.component.html',
+  // styleUrls: ['./book-ticket.component.css']
+  templateUrl: './book-ticket.components.html',
+  styleUrls: ['./book-ticket.components.css']
 })
 export class BookTicketComponent implements OnInit {
 

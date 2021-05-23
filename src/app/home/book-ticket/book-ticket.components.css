@@ -1,0 +1,169 @@
+
+.book-ticket {
+  width: 100%;
+  background-color: #fbfbf3;
+  padding: 1rem;
+}
+
+.book-ticket-block {
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+.book-ticket-filter-date {
+  width: 100%;
+}
+
+.book-ticket-filter-date > form {
+  display: flex;
+}
+
+.book-ticket-filter-date > form  button {
+  margin-left: 10px;
+}
+
+.book-ticket-body {
+  width: 100%;
+  margin: 1rem 0rem 0rem 0rem;
+}
+
+.book-ticket-sidebar{
+  border: 1px solid #dedede;
+  border-radius: 5px;
+  overflow: hidden;
+  padding: 0px;
+}
+
+.book-ticket-sidebar .nav-link {
+  border-radius: 0;
+  border-top: 1px solid #dedede;
+  padding: 1rem 0.5rem;
+}
+
+.book-ticket-sidebar .nav-link:first-child{
+  border-top: 0 !important;
+}
+
+.book-ticket-sidebar .nav-link:hover {
+  background-color: #4f98e6;
+  color: white;
+}
+
+.book-ticket-content {
+
+}
+
+.book-ticket-content > div {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.book-ticket-content > div > div {
+  margin-right: 1rem;
+}
+
+.book-ticket-content > div > div > button {
+  border-radius: 0;
+  background: #6f6247;
+  color: white;
+  padding: 0.5rem;
+  min-width: 100px;
+}
+
+.book-ticket-content > div > div > button:focus-within {
+  outline: none!important;
+  border: none !important;
+  background: #b79f6c;
+}
+
+.book-ticket-film{
+  border: 1px solid #dedede;
+  border-radius: 5px;
+  overflow: hidden;
+  padding: 0px;
+}
+
+.book-ticket-film > div {
+  width: 100%;
+}
+
+.book-ticket-film > div > .nav-link {
+  width: 100%;
+  border-radius: 0;
+  border-top: 1px solid #dedede !important;
+  padding: 1rem 0.5rem;
+  cursor: pointer;
+}
+
+.book-ticket-film > div:first-child > .nav-link{
+  border-top: 0 !important;
+}
+
+.book-ticket-film > div > .nav-link:focus-within {
+  /*background-color: #007bff !important;*/
+}
+
+.book-ticket-film .nav-link:hover {
+  background-color: #4f98e6;
+  color: white;
+}
+
+.book-ticket-film-info {
+  width: 100%;
+  border-top: 1px solid #dedede !important;
+  padding-top: 1rem;
+}
+
+.book-ticket-film-info > div {
+  display: flex;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+}
+
+.book-ticket-film-info > div > mat-icon {
+  margin-right: 1rem;
+}
+
+.book-ticket-film-info > .location > span {
+  color: #4a55c3;
+}
+
+/*Booking button*/
+
+.film-detail-booking {
+  position: fixed;
+  bottom: 150px;
+  right: 50px;
+}
+
+.film-detail-booking {
+  width: 100px;
+  height: 100px;
+}
+
+.film-detail-booking > button {
+  height: 100px;
+  width: 100px;
+  font-size: 1.25rem;
+  font-weight: 600;
+  border-radius: 50%;
+  color: firebrick;
+  outline: none !important;
+  border: 1px solid #dedede !important;
+}
+
+.film-detail-booking > button:active {
+  outline: none !important;
+  border: 1px solid #dedede !important;
+  border-radius: 50%;
+  transform: scale(1.02);
+}
+
+.film-detail-booking > button:hover {
+  background-color: #c0fecf;
+  color: red;
+}
+.book-ticket-film-info > .film-name > span {
+  color: firebrick;
+}

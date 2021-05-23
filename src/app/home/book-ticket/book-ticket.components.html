@@ -1,0 +1,103 @@
+<div class="book-ticket">
+  <div class="book-ticket-block">
+    <div class="book-ticket-filter-date">
+      <form  [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <input id ="date" type="date" formControlName="date" class="form-control"/>
+        </div>
+
+        <div class="form-group">
+          <button class="btn btn-success" >Chọn</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="book-ticket-body row">
+      <div class="book-ticket-sidebar col-3">
+        <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+          <a class="nav-link active" id="v-pills-hcm-tab" data-toggle="pill" href="#v-pills-hcm" role="tab" aria-controls="v-pills-hcm" aria-selected="true">Hồ Chí Minh</a>
+          <a class="nav-link" id="v-pills-hn-tab" data-toggle="pill" href="#v-pills-hn" role="tab" aria-controls="v-pills-hn" aria-selected="false">Hà Nội</a>
+          <a class="nav-link" id="v-pills-dbsh-tab" data-toggle="pill" href="#v-pills-dbsh" role="tab" aria-controls="v-pills-dbsh" aria-selected="false">ĐB Sông Hồng</a>
+          <a class="nav-link" id="v-pills-dbtb-tab" data-toggle="pill" href="#v-pills-dbtb" role="tab" aria-controls="v-pills-dbtb" aria-selected="false">Đông Bắc, Tây Bắc</a>
+          <a class="nav-link" id="v-pills-bmt-tab" data-toggle="pill" href="#v-pills-bmt" role="tab" aria-controls="v-pills-bmt" aria-selected="false">Bắc Miền Trung</a>
+          <a class="nav-link" id="v-pills-nmt-tab" data-toggle="pill" href="#v-pills-nmt" role="tab" aria-controls="v-pills-nmt" aria-selected="false">Nam Miền Trung</a>
+          <a class="nav-link" id="v-pills-dnb-tab" data-toggle="pill" href="#v-pills-dnb" role="tab" aria-controls="v-pills-dnb" aria-selected="false">Đông Nam Bộ</a>
+        </div>
+      </div>
+
+      <div class="book-ticket-content col-5" id="v-pills-tabContent">
+        <div class="tab-pane fade show active  " id="v-pills-hcm" role="tabpanel" aria-labelledby="v-pills-hcm-tab">
+          <div class="example-button-row"  *ngFor = "let  c of listHCM">
+            <button  (click)="tranferBySingle(c)"  mat-flat-button >{{c.name}}</button>
+          </div>
+        </div>
+
+        <div class="tab-pane fade " id="v-pills-hn " role="tabpanel" aria-labelledby="v-pills-hn-tab">
+          <div  class="example-button-row" *ngFor = "let  c of listHN">
+            <button  (click)="tranferBySingle(c)" mat-flat-button>{{c.name}}</button>
+          </div>
+        </div>
+
+        <div class="tab-pane fade " id="v-pills-dbsh" role="tabpanel" aria-labelledby="v-pills-dbsh-tab">
+          <div class="example-button-row" *ngFor = "let  c of listDBSH">
+            <button  (click)="tranferBySingle(c)" mat-flat-button>{{c.name}}</button>
+          </div>
+        </div>
+
+        <div class="tab-pane fade " id="v-pills-dbtb" role="tabpanel" aria-labelledby="v-pills-dbtb-tab">
+          <div class="example-button-row" *ngFor = "let  c of listDBTB">
+            <button (click)="tranferBySingle(c)" mat-flat-button>{{c.name}}</button>
+          </div>
+        </div>
+
+        <div class="tab-pane fade " id="v-pills-bmt" role="tabpanel" aria-labelledby="v-pills-bmt-tab">
+          <div class="example-button-row" *ngFor = "let  c of listBMT">
+            <button (click)="tranferBySingle(c)" mat-flat-button>{{c.name}}</button>
+          </div>
+        </div>
+
+        <div class="tab-pane fade " id="v-pills-nmt" role="tabpanel" aria-labelledby="v-pills-nmt-tab">
+          <div class="example-button-row" *ngFor = "let  c of listNMT">
+            <button (click)="tranferBySingle(c)" mat-flat-button>{{c.name}}</button>
+          </div>
+        </div>
+
+        <div class="tab-pane fade " id="v-pills-dnb" role="tabpanel" aria-labelledby="v-pills-dnb-tab">
+          <div class="example-button-row" *ngFor = "let  c of listDNB">
+            <button (click)="tranferBySingle(c)" mat-flat-button>{{c.name}}</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="book-ticket-film nav col-4">
+        <div class="linkname" *ngFor="let film of listfilms$ ">
+          <a class="nav-link active " (click)="tranferFilm(film)">{{film.name}}</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="book-ticket-film-info">
+    <div class="location">
+      <mat-icon> location_on</mat-icon>
+      <span>{{cinema$.name}}</span>
+    </div>
+
+    <div class="film-name">
+      <mat-icon>movie</mat-icon>
+      <span>{{film$.name}}</span>
+    </div>
+
+    <div class="date">
+      <mat-icon>date_range</mat-icon>
+      <span>{{date$ | date:'mm:hh - dd/MM/yyyy'}}</span>
+    </div>
+  </div>
+
+  <div class="film-detail-booking">
+    <button>
+      <span>Đặt vé</span>
+    </button>
+  </div>
+</div>
