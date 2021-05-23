@@ -9,8 +9,10 @@ import {Address} from '../../_models/address';
 import {AddressService} from '../../_service/address.service';
 @Component({
   selector: 'app-cinema',
-  templateUrl: './cinema.component.html',
-  styleUrls: ['./cinema.component.css']
+  // templateUrl: './cinema.component.html',
+  // styleUrls: ['./cinema.component.css']
+  templateUrl: './cinema.components.html',
+  styleUrls: ['./cinema.components.css']
 })
 export class CinemaComponent implements OnInit {
 
