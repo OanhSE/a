@@ -9,7 +9,7 @@
 }
 
 .home-content {
-  padding-top: 1rem
+  padding-top: 1rem;
 }
 
 .home-content-top {
@@ -28,7 +28,7 @@
   padding: 5px;
 }
 
-.btn-film-active:focus-within{
+.btn-film-active:focus-within {
   border: none !important;
   outline: none !important;
 }
@@ -52,14 +52,14 @@
 }
 
 .home-film-item {
-  height: 400px;
+  height: 360px;
   border: 1px solid #c1b272;
   border-radius: 10px;
   overflow: hidden;
 }
 
 .home-film-item-box {
-  height: 320px;
+  height: 280px;
   width: 100%;
   border-bottom: 1px solid #c1b272;
   overflow: hidden;
@@ -91,21 +91,21 @@
   background: black;
   color: white;
   font-weight: 700;
-  padding:10px;
+  padding: 10px;
   min-width: 150px;
   margin-bottom: 20px;
   border-radius: 5px;
   outline: none !important;
   text-transform: uppercase;
-  border: 1px solid #fbe8c5!important;
+  border: 1px solid #fbe8c5 !important;
 }
 
-.home-film-item-action > button:focus-within{
-  border: 1px solid #fbe8c5!important;
+.home-film-item-action > button:focus-within {
+  border: 1px solid #fbe8c5 !important;
   outline: none !important;
 }
 
-.home-film-item-action > button:active{
+.home-film-item-action > button:active {
   transform: scale(1.1);
 }
 

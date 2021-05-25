@@ -2,13 +2,74 @@
   <div style="">
   <tr *ngFor='let in of counter(5) ;let i = index'>
     <td *ngFor="let seat of getSeatByRow(i)" >
-      <mat-icon>event_seat</mat-icon>
+      <div (click)="optionTicket(seat)">
+        <mat-icon>event_seat</mat-icon>
         <p>{{seat.rowIndex}}{{seat.columnIndex}}</p>
+      </div>
+      
 
     </td>
 
 
   </tr>
   </div>
+  <div class="row">
+    <div class="col-sm-1">
+      <mat-icon>skip_previous</mat-icon>
+    </div>
+    <div class="col-sm-10">
+      <div class="row" >
+       <div class="col-sm-4">
+        <img src = "../../../assets/images/{{filmSession$.film.image}}" width="50%" height="50%">
+       </div>
+       <div class="col-sm-4">
+        <table>
+          <tr>
+            <td>Tên phim: </td>
+            <td>{{filmSession$.film.name}}</td>
+          </tr>
+          <tr>
+            <td>Rạp: </td>
+            <td>{{filmSession$.hall.cinema.name}}</td>
+          </tr>
+          <tr>
+            <td>Phòng chiếu: </td>
+            <td>{{filmSession$.hall.name}}</td>
+          </tr>
+          <tr>
+            <td>Giờ chiếu: </td>
+            <td>{{filmSession$.startFrom}}-{{filmSession$.endTo}}</td>
+          </tr>
+        </table>
+       </div>
+       <div class="col-sm-4">
+        <table>
+          <tr>
+            <td>Ghế: </td>
+            <td>{{listseats$.length}}</td>
+          </tr>
+          <tr>
+            <td> </td>
+            <td><span *ngFor='let seat of listseats$ '>{{seat.rowIndex}}{{seat.columnIndex}},</span></td>
+          </tr>
+          <tr>
+            <td>Tổng: </td>
+            <td>{{sum$}}</td>
+          </tr>
+         
+        </table>
+       </div>
+        
+        
+      </div>
+
+    </div>
+    <div class="col-sm-1">
+      <mat-icon>skip_next</mat-icon>
+
+    </div>
+
+  </div>
+
 
 </div>

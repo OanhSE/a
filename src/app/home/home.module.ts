@@ -30,11 +30,12 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
 
 
 
+
 @NgModule({
 
   declarations: [HeaderComponent, FooterComponent, ContainerComponent,
     HomeComponent, StarRatingComponent, PaymentComponent, FilmSingleComponent,
-    CinemaComponent, CheckOutComponent, UserProfileComponent, OrderHistoryComponent, ListCinemaComponent, BookTicketComponent],
+    CinemaComponent, CheckOutComponent, UserProfileComponent, OrderHistoryComponent, ListCinemaComponent, BookTicketComponent ],
   exports: [
     CommonModule,
     HomeRoutingModule,
