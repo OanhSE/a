@@ -25,7 +25,7 @@ export class FilmSessionService {
 
   }
   addSession(filmSession: FilmSession): Observable<FilmSession>{
-    return this.http.post<FilmSession>(`${this.apiUrl}/admin/add-session`,filmSession);
+    return this.http.post<FilmSession>(`${this.apiUrl}/admin/add-session`, filmSession);
   }
   deleteSession(id: number): Observable<string>{
     return this.http.get<string>(`${this.apiUrl}/admin/delete/session/${id}`);

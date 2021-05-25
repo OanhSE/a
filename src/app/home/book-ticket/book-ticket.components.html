@@ -3,10 +3,10 @@
     <div>
       <div class="header-nav">
         <mat-button-toggle-group name="fontStyle" aria-label="Font Style"  *ngFor="let d of dates$">
-          <mat-button-toggle value="bold">
-            <mat-icon color="accent">date_range</mat-icon>
+          <mat-button-toggle  class="calendar-button">
+            <mat-icon >date_range</mat-icon>
             <span class="dateCalendar">Thứ {{d.getUTCDay()}}</span><br>
-            <button mat-mini-fab  color="warn" aria-label="Example icon button with a home icon">
+            <button class="btn-day" mat-mini-fab  color="warn" aria-label="Example icon button with a home icon">
               <span>{{d.getDay()}}/{{d.getMonth()}}</span>
             </button>
 
@@ -94,20 +94,20 @@
 
   </div>
 
-  <div class="book-ticket-film-info">
-    <div class="location">
+  <div class="book-ticket-film-info row">
+    <div class="location col-sm-4">
       <mat-icon> location_on</mat-icon>
       <span>{{cinema$.name}}</span>
     </div>
 
-    <div class="film-name">
+    <div class="film-name col-sm-4">
       <mat-icon>movie</mat-icon>
       <span>{{film$.name}}</span>
     </div>
 
-    <div class="date">
+    <div class="date col-sm-4">
       <mat-icon>date_range</mat-icon>
-      <span>{{date$ | date:'hh:mm - dd/MM/yyyy'}}</span>
+      <span>{{date$ | date:'dd/MM/yyyy'}}</span>
     </div>
   </div>
 

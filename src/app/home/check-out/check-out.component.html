@@ -1,12 +1,12 @@
-<div class="container" style="text-align: center" *ngIf="loading$">
-  <div style="">
+<div class="container backgroundseat" style="text-align: center" *ngIf="loading$">
+  <div  class="seat">
   <tr *ngFor='let in of counter(5) ;let i = index'>
     <td *ngFor="let seat of getSeatByRow(i)" >
       <div (click)="optionTicket(seat)">
-        <mat-icon>event_seat</mat-icon>
+        <mat-icon style="width: 40px; height: 40px;">event_seat</mat-icon>
         <p>{{seat.rowIndex}}{{seat.columnIndex}}</p>
       </div>
-      
+
 
     </td>
 
@@ -19,33 +19,33 @@
     </div>
     <div class="col-sm-10">
       <div class="row" >
-       <div class="col-sm-4">
-        <img src = "../../../assets/images/{{filmSession$.film.image}}" width="50%" height="50%">
+       <div class="col-sm-3 checkoutimg">
+        <img src = "../../../assets/images/{{filmSession$.film.image}}" width="120px" height="180px">
        </div>
-       <div class="col-sm-4">
+       <div class="col-sm-4 checkoutcinema">
         <table>
           <tr>
-            <td>Tên phim: </td>
+            <th>Tên phim: </th>
             <td>{{filmSession$.film.name}}</td>
           </tr>
           <tr>
-            <td>Rạp: </td>
+            <th>Rạp: </th>
             <td>{{filmSession$.hall.cinema.name}}</td>
           </tr>
           <tr>
-            <td>Phòng chiếu: </td>
+            <th>Phòng chiếu: </th>
             <td>{{filmSession$.hall.name}}</td>
           </tr>
           <tr>
-            <td>Giờ chiếu: </td>
+            <th>Giờ chiếu: </th>
             <td>{{filmSession$.startFrom}}-{{filmSession$.endTo}}</td>
           </tr>
         </table>
        </div>
-       <div class="col-sm-4">
+       <div class="col-sm-5 checkoutseatselect">
         <table>
           <tr>
-            <td>Ghế: </td>
+            <th>Ghế: </th>
             <td>{{listseats$.length}}</td>
           </tr>
           <tr>
@@ -53,14 +53,18 @@
             <td><span *ngFor='let seat of listseats$ '>{{seat.rowIndex}}{{seat.columnIndex}},</span></td>
           </tr>
           <tr>
-            <td>Tổng: </td>
+            <th>Tổng: </th>
             <td>{{sum$}}</td>
           </tr>
-         
+          <tr>
+            <td> <img src="./assets/images/arrow.png"/></td>
+            <td><button class="btn btn-danger">Thanh Toán</button></td>
+          </tr>
+
         </table>
        </div>
-        
-        
+
+
       </div>
 
     </div>

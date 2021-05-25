@@ -1,5 +1,10 @@
 <div class="header">
+  <button style="float: left; " class="nav-link example-icon favorite-icon"  mat-icon-button color="warn" aria-label="Example icon button with a home icon" (click)="tranferManage()">
+    <mat-icon>home</mat-icon>
+  </button>
+  {{this.user.name}}
   <div class ="header-top">
+
     <div class ="header-top-login">
       <a (click)="tranferPageRegister()">Đăng ký</a>
       <a (click)="tranferPageLogin()">Đăng nhập</a>

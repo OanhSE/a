@@ -21,8 +21,11 @@ export class ListCinemaComponent implements OnInit {
   @Input() cinemadetail$: Cinema ;
   @Input()  address$: Address;
   listFilmSession$: FilmSession[];
+  dates$ = new Array<Date>();
+  ds: Date = new Date();
    date: Date;
      form: FormGroup;
+
   constructor(
     private  route: ActivatedRoute,
     private  filmService: FilmService,
@@ -40,7 +43,13 @@ export class ListCinemaComponent implements OnInit {
     this.form = this.formBuilder.group({
       date: ['', Validators.required],
 });
+    for ( let i = 0 ; i < 7; i++) {
+      this.ds.setDate(this.ds.getDate() + 1);
+      console.log('da', this.ds);
 
+      this.dates$.push(this.ds);
+      console.log('da', this.dates$);
+    }
 
 
   }
@@ -53,14 +62,21 @@ export class ListCinemaComponent implements OnInit {
   bookTicket(filmsession: FilmSession): void{
     this.router.navigate(['/checkout'],  {queryParams: { filmsession: filmsession.id } });
   }
-  onSubmit(): void{
-     // const  newdate = formatDate(this.form.controls.date.value, 'yyyy-MM-dd\'T\'HH:mm:ss', 'en-US');
-     const  newdate = formatDate(this.form.controls.date.value, 'yyyy-MM-dd', 'en-US');
-     console.log('newdate', newdate);
-     this.filmSessionService.getFilmSessionByCinemaAndDate(newdate, this.cinemadetail$.id).subscribe((x) => {
-      console.log('filmsession', x);
+  // onSubmit(): void{
+  //    // const  newdate = formatDate(this.form.controls.date.value, 'yyyy-MM-dd\'T\'HH:mm:ss', 'en-US');
+  //    const  newdate = formatDate(this.form.controls.date.value, 'yyyy-MM-dd', 'en-US');
+  //    console.log('newdate', newdate);
+  //    this.filmSessionService.getFilmSessionByCinemaAndDate(newdate, this.cinemadetail$.id).subscribe((x) => {
+  //     console.log('filmsession', x);
+  //     this.listFilmSession$ = x;
+  //     console.log('filmsession', x[0]);
+  //   });
+  // }
+  selectDate(d: Date): void{
+    // const  newdate = formatDate(this.form.controls.date.value, 'yyyy-MM-dd\'T\'HH:mm:ss', 'en-US');
+    const  newdate = formatDate(d, 'yyyy-MM-dd', 'en-US');
+    this.filmSessionService.getFilmSessionByCinemaAndDate(newdate, this.cinemadetail$.id).subscribe((x) => {
       this.listFilmSession$ = x;
-      console.log('filmsession', x[0]);
     });
   }
 }

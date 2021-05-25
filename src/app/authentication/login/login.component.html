@@ -1,31 +1,72 @@
-﻿<div class="login">
-  <div class="card">
-      <h4 class="card-header">Đăng nhập</h4>
-      <div class="card-body">
-          <form [formGroup]="form" (ngSubmit)="onSubmit()">
+﻿<div class="container">
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="login">
+        <div class="card">
+          <h4 class="card-header">Đăng nhập</h4>
+          <div class="card-body">
+            <form [formGroup]="form" (ngSubmit)="onSubmit()">
               <div class="form-group">
-                  <label >Mail:</label>
-                  <input type="text" formControlName="mail" class="form-control"  [ngClass]="{ 'is-invalid': submitted && f.mail.errors }" />
-                  <div *ngIf="submitted && f.mail.errors" class="invalid-feedback">
-                      <div *ngIf="f.mail.errors.required">Mail là bắt buộc</div>
-                  </div>
+                <label >Mail:</label>
+                <input type="text" formControlName="mail" class="form-control"  [ngClass]="{ 'is-invalid': submitted && f.mail.errors }" />
+                <div *ngIf="submitted && f.mail.errors" class="invalid-feedback">
+                  <div *ngIf="f.mail.errors.required">Mail là bắt buộc</div>
+                </div>
               </div>
               <div class="form-group">
-                  <label >Mật khẩu:</label>
-                  <input type="password" formControlName="pwd" class="form-control"  [ngClass]="{ 'is-invalid': submitted && f.pwd.errors }" />
-                  <div *ngIf="submitted && f.pwd.errors" class="invalid-feedback">
-                      <div *ngIf="f.pwd.errors.required">Mật khẩu là bắt buộc</div>
-                  </div>
+                <label >Mật khẩu:</label>
+                <input type="password" formControlName="pwd" class="form-control"  [ngClass]="{ 'is-invalid': submitted && f.pwd.errors }" />
+                <div *ngIf="submitted && f.pwd.errors" class="invalid-feedback">
+                  <div *ngIf="f.pwd.errors.required">Mật khẩu là bắt buộc</div>
+                </div>
               </div>
               <div class="form-group btn-login-user">
-                  <a routerLink="../register" class="btn btn-link">Đăng ký</a>
-                  <button [disabled]="loading" class="btn btn-danger">
-                      <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
-                      Đăng nhập
-                  </button>
+                <a routerLink="../register" class="btn btn-link">Đăng ký</a>
+                <button [disabled]="loading" class="btn btn-danger">
+                  <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                  Đăng nhập
+                </button>
               </div>
-          </form>
+            </form>
+          </div>
+        </div>
       </div>
+
+    </div>
+    <div class="col-sm-6">
+      <div id="demo" class="carousel slide" data-ride="carousel">
+
+        <!-- Indicators -->
+        <ul class="carousel-indicators">
+          <li data-target="#demo" data-slide-to="0" class="active"></li>
+          <li data-target="#demo" data-slide-to="1"></li>
+          <li data-target="#demo" data-slide-to="2"></li>
+        </ul>
+
+        <!-- The slideshow -->
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="./assets/images/cas/c1.jpg" alt="Los Angeles" width="100%" height="100%" >
+          </div>
+          <div class="carousel-item">
+            <img src="./assets/images/cas/c2.jpg" alt="Chicago" width="100%" height="100%">
+          </div>
+          <div class="carousel-item">
+            <img src="./assets/images/cas/c3.jpg" alt="New York" width="100%" height="100%" >
+          </div>
+        </div>
+
+        <!-- Left and right controls -->
+        <a class="carousel-control-prev" href="#demo" data-slide="prev">
+          <span class="carousel-control-prev-icon"></span>
+        </a>
+        <a class="carousel-control-next" href="#demo" data-slide="next">
+          <span class="carousel-control-next-icon"></span>
+        </a>
+      </div>
+
+    </div>
   </div>
 </div>
+
 

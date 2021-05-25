@@ -7,6 +7,7 @@ import { FilmService } from '../../_service/film.service';
 import { UserService } from '../../_service/user.service';
 import validate = WebAssembly.validate;
 import { DatePipe } from '@angular/common';
+import {User} from '../../_models/user';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -36,7 +37,8 @@ export class RegisterComponent implements OnInit {
       sex: ['', Validators.required],
       name: ['', Validators.required],
       email: ['', Validators.required],
-      pwd: ['', [Validators.required, Validators.minLength(6)]]
+      pwd: ['', [Validators.required, Validators.minLength(6)]],
+      pass: ['', [Validators.required, Validators.minLength(6)]]
     });
 }
 
@@ -47,7 +49,7 @@ export class RegisterComponent implements OnInit {
    }
   checkDate(): void{
 
-    const birthday = new Date(this.form.get('date').value);
+    const birthday = new Date(this.form.get('dayOfBirth').value);
     console.log(birthday);
 
     const now = new Date();
@@ -71,6 +73,16 @@ export class RegisterComponent implements OnInit {
     console.log(this.isShowErrorDate);
 
 }
+checkRePassword(): boolean{
+     const pass = this.form.get('pwd').value;
+     const repass = this.form.get('pass').value;
+     console.log('check', pass + repass);
+     if (pass === repass){
+
+       return  true;
+     }
+     return  false;
+}
 
  onSubmit(): void {
   this.submitted = true;
@@ -78,13 +90,21 @@ export class RegisterComponent implements OnInit {
       return;
   }
   this.loading = true;
-  this.userService.register(this.form.value)
+  console.log('this.form.value', this.form.value);
+  const email = this.form.get('email').value.toString();
+  const phone = this.form.get('phone').value.toString();
+  const pwd = this.form.get('pwd').value.toString();
+  const role = '1';
+  const name = this.form.get('name').value.toString();
+  const sex = this.form.get('sex').value.toString();
+  const dayOfBirth = new Date(this.form.get('dayOfBirth').value.toString());
+  const active = Number(0);
+  const status = false;
+  const user = new User(email, phone, pwd, role, name, sex, dayOfBirth, active, status);
+  this.userService.register(user)
     .pipe(first())
     .subscribe({
           next: () => {
-              const email  = this.form.get('email').value;
-              const pwd = this.form.get('pwd').value;
-
               // this.accountService.login(this.form.get('phone').value, this.form.get('password').value);
               this.userService.login(email, pwd)
                   .pipe(first())

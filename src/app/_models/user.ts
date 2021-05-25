@@ -10,9 +10,8 @@ export class User{
   active: number;
   status: boolean;
 
-  constructor(id: string, email: string, phone: string, pwd: string,
+  constructor(email: string, phone: string, pwd: string,
               role: string, name: string, sex: string, dayOfBirth: Date, active: number, status: boolean) {
-    this.id = id;
     this.email = email;
     this.phone = phone;
     this.pwd = pwd;

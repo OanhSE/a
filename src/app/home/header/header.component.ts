@@ -24,7 +24,7 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['/home']);
   }
   tranferPageFilm(): void{
-    this.router.navigate(['/film']);
+    this.router.navigate(['/']);
   }
   tranferPageCinema(): void{
     this.router.navigate(['/cinema']);

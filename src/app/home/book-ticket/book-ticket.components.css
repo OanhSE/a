@@ -119,6 +119,8 @@
   font-weight: 600;
   margin-bottom: 1rem;
   font-size: 1.25rem;
+  justify-content: center;
+
 }
 
 .book-ticket-film-info > div > mat-icon {
@@ -127,6 +129,12 @@
 
 .book-ticket-film-info > .location > span {
   color: #4a55c3;
+
+}
+.book-ticket-film-info div{
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
 }
 
 /*Booking button*/
@@ -189,7 +197,14 @@
   color: yellow;
 }
 .dateCalendar{
-  color: red;
+  color: black;
+}
+.calendar-button{
+  padding: 5px 10px;
+  margin: 2px 10px;
+}
+.btn-day{
+  margin-bottom: 5px;
 }
 
 

@@ -34,30 +34,46 @@
     </div>
 
   </div>
+  <div class="header-nav">
+    <mat-button-toggle-group name="fontStyle" aria-label="Font Style"  *ngFor="let d of dates$">
+      <mat-button-toggle  (click)="selectDate(d)" class="calendar-button">
+        <mat-icon >date_range</mat-icon>
+        <span class="dateCalendar">Thứ {{d.getUTCDay()}}</span><br>
+        <button class="btn-day" mat-mini-fab  color="warn" aria-label="Example icon button with a home icon">
+          <span>{{d.getDay()}}/{{d.getMonth()}}</span>
+        </button>
 
-  <div class="book-ticket-filter-date">
-    <form  [formGroup]="form" (ngSubmit)="onSubmit()">
-      <div class="form-group">
-        <input id ="date" type="date" formControlName="date" class="form-control"/>
-      </div>
+      </mat-button-toggle>
 
-      <div class="form-group">
-        <button class="btn btn-success" >Chọn</button>
-      </div>
-    </form>
+    </mat-button-toggle-group>
   </div>
+<!--  <div class="book-ticket-filter-date">-->
+<!--    <form  [formGroup]="form" (ngSubmit)="onSubmit()">-->
+<!--      <div class="form-group">-->
+<!--        <input id ="date" type="date" formControlName="date" class="form-control"/>-->
+<!--      </div>-->
+
+<!--      <div class="form-group">-->
+<!--        <button class="btn btn-success" >Chọn</button>-->
+<!--      </div>-->
+<!--    </form>-->
+<!--  </div>-->
 
   <div class="row">
-    <div class="row" style="text-align: center;">
-      <button (click)="bookTicket(filmsession)" *ngFor="let filmsession of listFilmSession$ " color="primary" class="justify-content-center bg-success btn-hall">
-        <mat-icon >featured_play_list</mat-icon><br>
-        <h5> {{filmsession?filmsession.film.name:''}}</h5><br>
-        <h6>{{filmsession?filmsession.hall.name:''}}</h6><br>
-        <span>{{filmsession?filmsession.startFrom:''}}-{{filmsession?filmsession.endTo:''}}</span><br>
+    <div class="home-content-list-films">
+      <div (click)="bookTicket(filmsession)" *ngFor = "let filmsession of listFilmSession$ " class="home-film-item row">
+        <div class="home-film-item-box  col-sm-4">
+          <!--          <img src='./assets/images' class="home-list-item-image"/>-->
+          <img src = "./assets/images/{{filmsession?filmsession.film.image:''}}" class="home-list-item-image">
 
-      </button>
+        </div>
 
-
+        <div class="home-film-item-text col-sm-8">
+          <h4>{{filmsession?filmsession.film.name:''}}</h4>
+          <h5>{{filmsession?filmsession.hall.name:''}}</h5>
+          <span>{{filmsession?filmsession.startFrom:''}}-{{filmsession?filmsession.endTo:''}}</span><br>
+        </div>
+      </div>
     </div>
 
   </div>

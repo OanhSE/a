@@ -42,7 +42,7 @@ export class UserService {
      let params = new HttpParams();
      params = params.append('email', email);
      params = params.append('pwd', pwd);
-     return this.http.post<User>(`${this.apiUrl}/login`, { params})
+     return this.http.post<User>(`${this.apiUrl}/login?`, { params})
          .pipe(map(user => {
            // store user details and jwt token in local storage to keep user logged in between page refreshes
            localStorage.setItem('user', JSON.stringify(user));
@@ -51,6 +51,7 @@ export class UserService {
          }));
    }
   register(user: User): Observable<User>{
+    console.log('user', user);
     return  this.http.post<User>(`${this.apiUrl}/signup`, user);
   }
   logOut(user: User): Observable<string>{
