@@ -12,7 +12,7 @@ const routes: Routes = [
   children: [
     { path: '', component: ContainerComponent },
     { path: 'home', component: ContainerComponent },
-    { path: 'film-single/:id', component: FilmSingleComponent },
+    { path: 'film-single', component: FilmSingleComponent },
     { path: 'cinema', component: CinemaComponent },
     { path: 'checkout', component: CheckOutComponent },
     { path: 'book-ticket', component: BookTicketComponent },

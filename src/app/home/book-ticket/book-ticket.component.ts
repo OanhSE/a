@@ -10,6 +10,7 @@ import {FilmService} from '../../_service/film.service';
 import {Film} from '../../_models/film';
 import {FilmSession} from '../../_models/filmSession';
 import {FilmSessionService} from '../../_service/film-session.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-book-ticket',
@@ -44,7 +45,8 @@ export class BookTicketComponent implements OnInit {
     'https://www.youtube.com/watch?v=GxV4BYmWnBE&list=RDGxV4BYmWnBE&start_radio=1', 0);
   cinema$: Cinema =  new Cinema(1, 'Cantavil', this.address$);
   date$: Date = new Date();
-
+  dates$ = new Array<Date>();
+  ds: Date = new Date();
   constructor(
     private cinamaService: CinemaService,
     private addressService: AddressService,
@@ -55,7 +57,19 @@ export class BookTicketComponent implements OnInit {
     private route: ActivatedRoute
 
   ) {
+
+    for ( let i = 0 ; i < 7; i++){
+      this.ds.setDate(this.ds.getDate() + 1);
+      console.log('da', this.ds);
+
+      this.dates$.push(this.ds);
+      console.log('da', this.dates$);
+
+
+    }
+
   }
+
 
   ngOnInit(): void {
     this.getALlCinema();

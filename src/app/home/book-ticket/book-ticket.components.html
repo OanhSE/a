@@ -1,5 +1,21 @@
 <div class="book-ticket">
   <div class="book-ticket-block">
+    <div>
+      <div class="header-nav">
+        <mat-button-toggle-group name="fontStyle" aria-label="Font Style"  *ngFor="let d of dates$">
+          <mat-button-toggle value="bold">
+            <mat-icon color="accent">date_range</mat-icon>
+            <span class="dateCalendar">Thứ {{d.getUTCDay()}}</span><br>
+            <button mat-mini-fab  color="warn" aria-label="Example icon button with a home icon">
+              <span>{{d.getDay()}}/{{d.getMonth()}}</span>
+            </button>
+
+          </mat-button-toggle>
+
+        </mat-button-toggle-group>
+      </div>
+
+    </div>
     <div class="book-ticket-filter-date">
       <form  [formGroup]="form" (ngSubmit)="onSubmit()">
         <div class="form-group">

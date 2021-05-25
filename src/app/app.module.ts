@@ -55,7 +55,7 @@ import AddBoxIcon from '@material-ui/icons/AddBox';
 import Icon from '@material-ui/core/Icon';
 import {MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldModule, MatFormFieldControl} from '@angular/material/form-field';
 import {DatePipe, formatDate} from '@angular/common';
-
+import * as moment from 'moment';
 @NgModule({
   exports: [
     MatAutocompleteModule,
@@ -129,6 +129,7 @@ import {DatePipe, formatDate} from '@angular/common';
     PortalModule,
     ScrollingModule,
     DatePipe,
+
     // MatFormFieldModule,
 
 

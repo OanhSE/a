@@ -28,9 +28,9 @@
 
     <div class="home-content-list-films">
       <div *ngFor = "let  film of listfilms" class="home-film-item">
-        <div class="home-film-item-box">
-          <img src='./assets/images/no-movie.png' class="home-list-item-image"/>
-
+        <div class="home-film-item-box image">
+<!--          <img src='./assets/images' class="home-list-item-image"/>-->
+          <img src = "./assets/images/{{film.image}}" class="home-list-item-image">
           <div class="home-film-item-action">
               <button (click)="reserve(film)">Đặt vé</button>
               <button (click)="tranfersingle(film)" routerLink= "/film-single/{{film.id}}">Chi tiết</button>

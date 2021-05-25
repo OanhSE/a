@@ -132,6 +132,6 @@
 }
 
 .film-detail-booking > button:hover {
-  background-color: #c0fecf;
-  color: red;
+  background-color: yellow;
+  color: black;
 }

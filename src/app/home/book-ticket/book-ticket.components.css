@@ -167,3 +167,29 @@
 .book-ticket-film-info > .film-name > span {
   color: firebrick;
 }
+.header-nav{
+  height: 100px;
+  border-bottom: 1px solid #c1b272;
+  display: flex;
+  justify-content: center;
+  background-color: #efebdb;
+}
+
+.header-nav-item{
+  /*text-transform: uppercase;*/
+  height: 100%;
+  display: flex;
+  align-items: center;
+
+}
+
+.header-nav-item > span {
+  padding: 0px 20px;
+  cursor: pointer;
+  color: yellow;
+}
+.dateCalendar{
+  color: red;
+}
+
+

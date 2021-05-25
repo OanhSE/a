@@ -26,6 +26,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { MatExpansionModule } from '@angular/material/expansion';
 import {ListCinemaComponent} from './cinema/list-cinema/list-cinema.component';
 import { BookTicketComponent } from './book-ticket/book-ticket.component';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 
 
 
@@ -63,7 +64,8 @@ import { BookTicketComponent } from './book-ticket/book-ticket.component';
         MatDialogModule,
         ReactiveFormsModule,
         MatExpansionModule,
-        FormsModule
+        FormsModule,
+        MatButtonToggleModule
 
     ],
   providers: [

@@ -35,7 +35,7 @@ export class ContainerComponent implements OnInit {
 
   }
   tranfersingle(film: Film): void{
-    // this.router.navigate(['/film-single/'], film);
+    this.router.navigate(['/film-single/', {id: film.id}]);
 
   }
 }

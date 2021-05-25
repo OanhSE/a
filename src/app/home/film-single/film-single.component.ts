@@ -3,6 +3,7 @@ import {StarRatingColor} from '../star-rating/star-rating.component';
 import { ActivatedRoute , Router } from '@angular/router';
 import { Film } from '../../_models/film';
 import { FilmService } from '../../_service/film.service';
+import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
 export interface Tile {
   color: string;
   cols: number;
@@ -21,7 +22,8 @@ export class FilmSingleComponent implements OnInit {
   constructor(
     private  route: ActivatedRoute,
     private  filmService: FilmService,
-    private  router: Router
+    private  router: Router,
+    private sanitizer: DomSanitizer,
   ) {
 
 
@@ -36,14 +38,14 @@ export class FilmSingleComponent implements OnInit {
   ];
   rating: number = Number(3);
   starCount: number = Number(5);
-  starColor: StarRatingColor = StarRatingColor.primary;
+  starColor: StarRatingColor = StarRatingColor.accent;
   starColorP: StarRatingColor = StarRatingColor.primary;
   starColorW: StarRatingColor = StarRatingColor.warn;
   film$: Film =  new Film(0, '', 0,
     '', '', '', new Date(),
     '', '', '', '/lotte.jpg',
-    'https://www.youtube.com/watch?v=GxV4BYmWnBE&list=RDGxV4BYmWnBE&start_radio=1', 0);
-
+    'https://www.youtube.com/embed/Mddnpxc2pF4', 0);
+  url$ = this.sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/Mddnpxc2pF4');
     films: Film[];
   onRatingChanged(rating): void{
     console.log(rating);
@@ -63,23 +65,16 @@ export class FilmSingleComponent implements OnInit {
     this.route.params.subscribe((param) => {
 
       this.findById(param.id);
+      this.transform(this.film$.urltrailer);
 
     });
 
 
   }
   findById(id: number): void{
-    this.filmService.getAll().subscribe((x) => {
-      this.films = x;
-      // this.films.forEach(( x) => {
-      //   if (x.id === id) {  this.film$ = x; }
-      // });
-      // tslint:disable-next-line:no-shadowed-variable
-      this.films.forEach(x =>  {
-         if (x.id === id) {this.film$ = x; }
-         console.log(this.film$.name);
-      });
-    });
+   this.filmService.getFilmById(id).subscribe((result) => {
+     this.film$ = result;
+   });
 
 
 
@@ -89,6 +84,9 @@ export class FilmSingleComponent implements OnInit {
   }
   comment(): void{
 
+  }
+  transform(url): void{
+    this.url$ = this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
 
 
