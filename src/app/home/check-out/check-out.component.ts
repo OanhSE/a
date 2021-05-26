@@ -13,6 +13,7 @@ import {Cinema} from '../../_models/cinema';
 import {SeatService} from '../../_service/seat.service';
 import { Seat } from '../../_models/seat';
 import { Film} from '../../_models/film';
+import {TicketService} from '../../_service/ticket.service';
 
 @Component({
   selector: 'app-check-out',
@@ -32,7 +33,7 @@ export class CheckOutComponent implements OnInit {
   hall: Hall = new Hall(0, 'Hall', 'a', this.cinemadetail$);
   filmSession$: FilmSession = new FilmSession(0, new Date(), this.film, this.hall, '0');
   listseats$: Seat[] = [];
-  sum$: number = 0;
+  sum$ = 0;
 constructor(
     private cinamaService: CinemaService,
     private addressService: AddressService,
@@ -41,6 +42,7 @@ constructor(
     private seatService: SeatService,
     private  route: ActivatedRoute,
     private filmSessionService: FilmSessionService,
+    private  ticketService: TicketService
 
   ) {
 }
@@ -49,7 +51,7 @@ constructor(
    this.route.queryParamMap.subscribe((params) => {
      console.log('filmsession', params.get('filmsession'));
      this.filmSessionService.getSessionById(Number(params.get('filmsession'))).subscribe((result) => {
-       
+
        this.filmSession$ = result ;
        console.log('f', result);
        this.seatService.getAvailableSeat(9).subscribe((x) => {
@@ -75,10 +77,39 @@ constructor(
   }
   getSeatByRow(row: number): Seat[]{
   // console.log('hhhh', this.seats$.filter(value => ) || []);
-  return this.seats$.filter(value => value.rowIndex === row) || [];
+  return this.seats$.filter(value => Number(value.rowIndex) === row) || [];
   }
-  optionTicket(seat: Seat){
+  optionTicket(seat: Seat): void{
+  let check = false;
+  let status = 0;
+  this.listseats$.forEach((item, index) => {
+    if (seat.id === item.id){
+      this.listseats$.splice(index, 1);
+      check = true;
+}
+
+  });
+  if (!check) {
     this.listseats$.push(seat);
-    this.sum$ = this.listseats$.length * 100;
+    status = 1;
+  }
+
+  this.seats$.forEach((item, index) => {
+      if (seat.id === item.id) {
+        const s = new Seat(seat.id, seat.rowIndex, seat.columnIndex, status);
+        this.seats$.splice(index, 1, s);
+   }
+    });
+  this.sum$ = this.listseats$.length * 100;
+
+  }
+  checkout(sum: number): boolean{
+    this.ticketService.makePayment(sum, 'https://www.cgv.vn/', 'https://www.cgv.vn/').subscribe((rs) => {
+      // this.router.navigateByUrl(rs.redirect_url);
+      window.location.href = rs.redirect_url;
+      console.log(rs.redirect_url);
+      return true;
+    });
+    return false;
   }
 }

@@ -10,7 +10,7 @@
 
     <div class="cinema-info-detail">
       <div class="addresscinema">
-        <mat-icon> place</mat-icon>{{  address$? address$.state :''  }}
+        <mat-icon> place</mat-icon>{{ cinemadetail$? cinemadetail$.address.state :''  }}
       </div>
 
       <div>
@@ -38,9 +38,11 @@
     <mat-button-toggle-group name="fontStyle" aria-label="Font Style"  *ngFor="let d of dates$">
       <mat-button-toggle  (click)="selectDate(d)" class="calendar-button">
         <mat-icon >date_range</mat-icon>
-        <span class="dateCalendar">Thứ {{d.getUTCDay()}}</span><br>
+        <span *ngIf="d.getDay()!=0 && d.getDay()!=1" class="dateCalendar">Thứ {{d.getDay()+1}}</span>
+        <span *ngIf="d.getDay()==0" class="dateCalendar">Chủ nhật</span>
+        <span *ngIf="d.getDay()==1" class="dateCalendar">Thứ 2</span><br>
         <button class="btn-day" mat-mini-fab  color="warn" aria-label="Example icon button with a home icon">
-          <span>{{d.getDay()}}/{{d.getMonth()}}</span>
+          <span>{{d.toDateString() | date: 'dd/MM'}}</span>
         </button>
 
       </mat-button-toggle>

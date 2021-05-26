@@ -9,6 +9,8 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {FilmSessionService} from '../../../_service/film-session.service';
 import {formatDate} from '@angular/common';
 import {FilmSession} from '../../../_models/filmSession';
+import {User} from '../../../_models/user';
+import {UserService} from '../../../_service/user.service';
 
 @Component({
   selector: 'app-list-cinema',
@@ -25,6 +27,7 @@ export class ListCinemaComponent implements OnInit {
   ds: Date = new Date();
    date: Date;
      form: FormGroup;
+  user: User = new User('', '', '', '', '', '', new Date(), 0, false);
 
   constructor(
     private  route: ActivatedRoute,
@@ -34,21 +37,20 @@ export class ListCinemaComponent implements OnInit {
     private  router: Router,
     private formBuilder: FormBuilder,
     private  filmSessionService: FilmSessionService,
+    private  userService: UserService
   ) {
 
-
+    this.userService.user.subscribe(x => this.user = x);
   }
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
       date: ['', Validators.required],
 });
-    for ( let i = 0 ; i < 7; i++) {
-      this.ds.setDate(this.ds.getDate() + 1);
-      console.log('da', this.ds);
-
-      this.dates$.push(this.ds);
-      console.log('da', this.dates$);
+    this.dates$.push(new Date(this.ds));
+    for ( let i = 0 ; i < 6; i++) {
+      const str = this.ds.setDate(this.ds.getDate() + 1);
+      this.dates$.push(new Date(this.ds));
     }
 
 
@@ -60,8 +62,13 @@ export class ListCinemaComponent implements OnInit {
     });
   }
   bookTicket(filmsession: FilmSession): void{
-    this.router.navigate(['/checkout'],  {queryParams: { filmsession: filmsession.id } });
-  }
+    if(this.user){
+      this.router.navigate(['/checkout'],  {queryParams: { filmsession: filmsession.id } });
+
+    }else {
+      this.router.navigate(['./authen/login']);
+    }
+      }
   // onSubmit(): void{
   //    // const  newdate = formatDate(this.form.controls.date.value, 'yyyy-MM-dd\'T\'HH:mm:ss', 'en-US');
   //    const  newdate = formatDate(this.form.controls.date.value, 'yyyy-MM-dd', 'en-US');

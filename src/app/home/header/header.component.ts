@@ -10,7 +10,7 @@ import { Route, Router } from '@angular/router';
   styleUrls: ['./header.components.css']
 })
 export class HeaderComponent implements OnInit {
-  user: User;
+  user: User = new User('', '', '', '', '', '', new Date(), 0, false);
   constructor(private userService: UserService, private  router: Router) {
     // this.user = this.accountService.user;
     this.userService.user.subscribe(x => this.user = x);

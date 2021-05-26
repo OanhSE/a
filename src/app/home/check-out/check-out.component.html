@@ -1,9 +1,11 @@
 <div class="container backgroundseat" style="text-align: center" *ngIf="loading$">
   <div  class="seat">
   <tr *ngFor='let in of counter(5) ;let i = index'>
+
     <td *ngFor="let seat of getSeatByRow(i)" >
       <div (click)="optionTicket(seat)">
-        <mat-icon style="width: 40px; height: 40px;">event_seat</mat-icon>
+        <mat-icon *ngIf="seat.status===1" style="width: 40px; height: 40px;" color="warn">event_seat</mat-icon>
+        <mat-icon *ngIf="seat.status!==1" style="width: 40px; height: 40px;" >event_seat</mat-icon>
         <p>{{seat.rowIndex}}{{seat.columnIndex}}</p>
       </div>
 
@@ -58,7 +60,7 @@
           </tr>
           <tr>
             <td> <img src="./assets/images/arrow.png"/></td>
-            <td><button class="btn btn-danger">Thanh Toán</button></td>
+            <td><button (click)="checkout(sum$)" class="btn btn-danger">Thanh Toán</button></td>
           </tr>
 
         </table>

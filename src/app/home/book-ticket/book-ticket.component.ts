@@ -11,6 +11,7 @@ import {Film} from '../../_models/film';
 import {FilmSession} from '../../_models/filmSession';
 import {FilmSessionService} from '../../_service/film-session.service';
 import * as moment from 'moment';
+import {TicketService} from '../../_service/ticket.service';
 
 @Component({
   selector: 'app-book-ticket',
@@ -54,7 +55,8 @@ export class BookTicketComponent implements OnInit {
     private formBuilder: FormBuilder,
     private filmService: FilmService,
     private  filmSessionService: FilmSessionService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private  ticketService: TicketService
 
   ) {
 
@@ -72,6 +74,11 @@ export class BookTicketComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.dates$.push(new Date(this.ds));
+    for ( let i = 0 ; i < 6; i++) {
+      const str = this.ds.setDate(this.ds.getDate() + 1);
+      this.dates$.push(new Date(this.ds));
+    }
     this.getALlCinema();
     this.form = this.formBuilder.group({
       date: ['', Validators.required],
@@ -103,18 +110,18 @@ export class BookTicketComponent implements OnInit {
   tranferBySingle(cinema: Cinema): void{
     this.cinemadetail$ = cinema;
     if (this.cinemadetail$.id){
-      this.GetAddressByCinema(this.cinemadetail$.id);
+      // this.GetAddressByCinema(this.cinemadetail$.id);
 
     }
     this.cinema$ = cinema;
     console.log('cinema', cinema);
   }
-  GetAddressByCinema(id: number): void{
-    this.addressService.getByCinema(id).subscribe((x) => {
-      console.log(x);
-      this.address$ = x;
-    });
-  }
+  // GetAddressByCinema(id: number): void{
+  //   this.addressService.getByCinema(id).subscribe((x) => {
+  //     console.log(x);
+  //     this.address$ = x;
+  //   });
+  // }
   getALlCinema(): void {
 
     this.cinamaService.getCinemaByArea(1).subscribe((result) => {
@@ -141,5 +148,6 @@ export class BookTicketComponent implements OnInit {
     //     console.log('filmsession', x[0]);
     //   });
   }
+
 
 }

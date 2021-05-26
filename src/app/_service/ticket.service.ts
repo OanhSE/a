@@ -34,6 +34,13 @@ export class TicketService {
   getTicketById(id: string): Observable<Ticket>{
     return  this.http.get<Ticket>(`${this.apiUrl}/tickets/${id}`);
   }
-
+//   @PostMapping(value = "/make/payment")
+//   public Map<String, Object> makePayment(@RequestParam double sum, @RequestParam String urlSuccess, @RequestParam String urlCancel ) {
+//   return service.createPayment(sum, urlCancel, urlSuccess);
+// }
+  makePayment(sum: number, urlSuccess: string, urlCancel: string): Observable<{redirect_url: ''}> {
+    return  this.http.post<{redirect_url: ''}>
+      (`${this.apiUrl}/make/payment?sum=${sum}&urlSuccess=${urlSuccess}&urlCancel=${urlCancel}`, sum);
+  }
 
 }
