@@ -46,7 +46,7 @@ export class ListCinemaComponent implements OnInit {
   ngOnInit(): void {
     this.form = this.formBuilder.group({
       date: ['', Validators.required],
-});
+    });
     this.dates$.push(new Date(this.ds));
     for ( let i = 0 ; i < 6; i++) {
       const str = this.ds.setDate(this.ds.getDate() + 1);
@@ -62,7 +62,7 @@ export class ListCinemaComponent implements OnInit {
     });
   }
   bookTicket(filmsession: FilmSession): void{
-    if(this.user){
+    if (this.user){
       this.router.navigate(['/checkout'],  {queryParams: { filmsession: filmsession.id } });
 
     }else {

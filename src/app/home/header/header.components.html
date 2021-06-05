@@ -1,5 +1,5 @@
 <div class="header">
-  <button style="float: left; " class="nav-link example-icon favorite-icon"  mat-icon-button color="warn" aria-label="Example icon button with a home icon" (click)="tranferManage()">
+  <button *ngIf="user && user.role === '1'" style="float: left; " class="nav-link example-icon favorite-icon"  mat-icon-button color="warn" aria-label="Example icon button with a home icon" (click)="tranferManage()">
     <mat-icon>home</mat-icon>
   </button>
 
@@ -7,8 +7,8 @@
 
     <div class ="header-top-login">
       <a *ngIf="user">{{user.name}}</a>
-      <a (click)="tranferPageRegister()">Đăng ký</a>
-      <a (click)="tranferPageLogin()">Đăng nhập</a>
+      <a *ngIf="!user" (click)="tranferPageRegister()">Đăng ký</a>
+      <a *ngIf="!user" (click)="tranferPageLogin()">Đăng nhập</a>
     </div>
   </div>
 

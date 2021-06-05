@@ -73,7 +73,7 @@
 .book-ticket-content > div > div > button:focus-within {
   outline: none!important;
   border: none !important;
-  background: #b79f6c;
+  background: firebrick;
 }
 
 .book-ticket-film{
@@ -169,8 +169,8 @@
 }
 
 .film-detail-booking > button:hover {
-  background-color: #c0fecf;
-  color: red;
+  background-color: yellow;
+  color: black;
 }
 .book-ticket-film-info > .film-name > span {
   color: firebrick;
@@ -205,6 +205,36 @@
 }
 .btn-day{
   margin-bottom: 5px;
+}
+
+.home-content-list-films {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 1rem;
+  grid-gap: 20px;
+}
+
+.home-film-item {
+  height: 160px;
+  border-style: none;
+  border-radius: 10px;
+  background-color:#efebdb;
+  overflow: hidden;
+  margin: 0px 20px;
+}
+
+.home-film-item-box {
+  height: 160px;
+  width: 100%;
+  border-bottom: 1px solid #c1b272;
+  overflow: hidden;
+  position: relative;
+}
+
+.home-list-item-image {
+  height: 150px;
+  width: 120px;
+  z-index: 1;
 }
 
 

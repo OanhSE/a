@@ -3,7 +3,7 @@
     <div>
       <div class="header-nav">
         <mat-button-toggle-group name="fontStyle" aria-label="Font Style"  *ngFor="let d of dates$">
-          <mat-button-toggle  class="calendar-button">
+          <mat-button-toggle  (click)="selectDate(d)" class="calendar-button">
             <mat-icon >date_range</mat-icon>
             <span *ngIf="d.getDay()!=0 && d.getDay()!=1" class="dateCalendar">Thứ {{d.getDay()+1}}</span>
             <span *ngIf="d.getDay()==0" class="dateCalendar">Chủ nhật</span>
@@ -18,17 +18,7 @@
       </div>
 
     </div>
-    <div class="book-ticket-filter-date">
-      <form  [formGroup]="form" (ngSubmit)="onSubmit()">
-        <div class="form-group">
-          <input id ="date" type="date" formControlName="date" class="form-control"/>
-        </div>
 
-        <div class="form-group">
-          <button class="btn btn-success" >Chọn</button>
-        </div>
-      </form>
-    </div>
 
     <div class="book-ticket-body row">
       <div class="book-ticket-sidebar col-3">
@@ -111,6 +101,24 @@
       <mat-icon>date_range</mat-icon>
       <span>{{date$ | date:'dd/MM/yyyy'}}</span>
     </div>
+  </div>
+  <div class="row">
+    <div class="home-content-list-films">
+      <div (click)="bookTicket(filmsession)" *ngFor = "let filmsession of listFilmSession$ " class="home-film-item row">
+        <div class="home-film-item-box  col-sm-4">
+          <!--          <img src='./assets/images' class="home-list-item-image"/>-->
+          <img src = "./assets/images/{{filmsession?filmsession.film.image:''}}" class="home-list-item-image">
+
+        </div>
+
+        <div class="home-film-item-text col-sm-8">
+          <h4>{{filmsession?filmsession.film.name:''}}</h4>
+          <h5>{{filmsession?filmsession.hall.name:''}}</h5>
+          <span>{{filmsession?filmsession.startFrom:''}}-{{filmsession?filmsession.endTo:''}}</span><br>
+        </div>
+      </div>
+    </div>
+
   </div>
 
   <div class="film-detail-booking">

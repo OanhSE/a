@@ -11,6 +11,8 @@ import {Film} from '../../_models/film';
 import {FilmSession} from '../../_models/filmSession';
 import {FilmSessionService} from '../../_service/film-session.service';
 import {TicketService} from '../../_service/ticket.service';
+import {User} from '../../_models/user';
+import {UserService} from '../../_service/user.service';
 
 @Component({
   selector: 'app-book-ticket',
@@ -47,6 +49,9 @@ export class BookTicketComponent implements OnInit {
   date$: Date = new Date();
   dates$ = new Array<Date>();
   ds: Date = new Date();
+  user: User = new User('', '', '', '', '', '', new Date(), 0, false);
+
+
   constructor(
     private cinamaService: CinemaService,
     private addressService: AddressService,
@@ -55,33 +60,20 @@ export class BookTicketComponent implements OnInit {
     private filmService: FilmService,
     private  filmSessionService: FilmSessionService,
     private route: ActivatedRoute,
-    private  ticketService: TicketService
+    private  ticketService: TicketService,
+    private userService: UserService
 
   ) {
-
-    for ( let i = 0 ; i < 7; i++){
-      this.ds.setDate(this.ds.getDate() + 1);
-      console.log('da', this.ds);
-
-      this.dates$.push(this.ds);
-      console.log('da', this.dates$);
-
-
-    }
-
-  }
-
-
-  ngOnInit(): void {
+    this.userService.user.subscribe(x => this.user = x);
     this.dates$.push(new Date(this.ds));
     for ( let i = 0 ; i < 6; i++) {
       const str = this.ds.setDate(this.ds.getDate() + 1);
       this.dates$.push(new Date(this.ds));
     }
+    }
+
+    ngOnInit(): void {
     this.getALlCinema();
-    this.form = this.formBuilder.group({
-      date: ['', Validators.required],
-    });
     this.filmService.getAll().subscribe((x) => {
       this.listfilms$ = x;
 
@@ -101,10 +93,19 @@ export class BookTicketComponent implements OnInit {
     });
   }
   bookTicket(filmsession: FilmSession): void{
-    this.router.navigate(['/checkout']);
+    if (this.user){
+      this.router.navigate(['/checkout'],  {queryParams: { filmsession: filmsession.id } });
+
+    }else {
+      this.router.navigate(['./authen/login']);
+    }
   }
   tranferFilm(film: Film): void{
     this.film$ = film;
+    const  newdate = formatDate(this.date$, 'yyyy-MM-dd', 'en-US');
+    this.filmSessionService.getFilmSessionByCinemaAndDateAndFilm(newdate, this.cinema$.id, this.film$).subscribe((x) => {
+      this.listFilmSession$ = x;
+    });
   }
   tranferBySingle(cinema: Cinema): void{
     this.cinemadetail$ = cinema;
@@ -113,7 +114,10 @@ export class BookTicketComponent implements OnInit {
 
     }
     this.cinema$ = cinema;
-    console.log('cinema', cinema);
+    const  newdate = formatDate(this.date$ , 'yyyy-MM-dd', 'en-US');
+    this.filmSessionService.getFilmSessionByCinemaAndDateAndFilm(newdate, this.cinema$.id, this.film$).subscribe((x) => {
+      this.listFilmSession$ = x;
+    });
   }
   // GetAddressByCinema(id: number): void{
   //   this.addressService.getByCinema(id).subscribe((x) => {
@@ -136,16 +140,13 @@ export class BookTicketComponent implements OnInit {
   }
 
 
-  onSubmit(): void{
-    this.date$ = this.form.controls.date.value;
+  selectDate(d: Date): void{
     // const  newdate = formatDate(this.form.controls.date.value, 'yyyy-MM-dd\'T\'HH:mm:ss', 'en-US');
-    // const  newdate = formatDate(this.form.controls.date.value, 'yyyy-MM-dd', 'en-US');
-    // console.log('newdate', newdate);
-    // this.filmSessionService.getFilmSessionByCinemaAndDateAndFilm(newdate, this.cinemadetail$.id, this.film$).subscribe((x) => {
-    //     console.log('filmsession', x);
-    //     this.listFilmSession$ = x;
-    //     console.log('filmsession', x[0]);
-    //   });
+    this.date$ = d;
+    const  newdate = formatDate(d, 'yyyy-MM-dd', 'en-US');
+    this.filmSessionService.getFilmSessionByCinemaAndDateAndFilm(newdate, this.cinema$.id, this.film$).subscribe((x) => {
+      this.listFilmSession$ = x;
+    });
   }
 
 
