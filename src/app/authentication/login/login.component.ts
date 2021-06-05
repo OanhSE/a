@@ -5,6 +5,8 @@ import { first } from 'rxjs/operators';
 import { FilmService } from '../../_service/film.service';
 import { UserService } from '../../_service/user.service';
 import {User} from '../../_models/user';
+import {AlertService} from '../../_service/alert.service';
+
 
 @Component({
   selector: 'app-login',
@@ -12,6 +14,7 @@ import {User} from '../../_models/user';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  public recentToken = '';
     user: User;
     form: FormGroup;
     loading = false;
@@ -22,6 +25,8 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
+    private alertService: AlertService,
+
 
     ) {
     // this.user = this.accountService.user;
@@ -42,6 +47,7 @@ export class LoginComponent implements OnInit {
 
 
     this.submitted = true;
+    this.alertService.clear();
 
 
     // stop here if form is invalid
@@ -54,13 +60,14 @@ export class LoginComponent implements OnInit {
         .subscribe({
             next: () => {
                 // get return url from query parameters or default to home page
-
-                const returnUrl = this.route.snapshot.queryParams.returnUrl || '/';
-                this.router.navigateByUrl(returnUrl);
+              console.log('mail', this.f.mail.value);
+              this.alertService.success('Đăng nhập thành công', { keepAfterRouteChange: true });
+              const returnUrl = this.route.snapshot.queryParams.returnUrl || '/';
+              this.router.navigateByUrl(returnUrl);
             },
             error: error => {
-
-                this.loading = false;
+              this.alertService.error('Đăng nhập lỗi' + error);
+              this.loading = false;
             }
         });
 }

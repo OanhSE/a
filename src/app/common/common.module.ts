@@ -3,10 +3,11 @@ import { CommonModule } from '@angular/common';
 
 import { CommonRoutingModule } from './common-routing.module';
 import { ScheduleComponent } from './schedule/schedule.component';
+import { AlertComponent } from './alert/alert.component';
 
 
 @NgModule({
-  declarations: [ScheduleComponent],
+  declarations: [ScheduleComponent, AlertComponent],
   imports: [
     CommonModule,
     CommonRoutingModule

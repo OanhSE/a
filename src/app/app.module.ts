@@ -55,7 +55,7 @@ import AddBoxIcon from '@material-ui/icons/AddBox';
 import Icon from '@material-ui/core/Icon';
 import {MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldModule, MatFormFieldControl} from '@angular/material/form-field';
 import {DatePipe, formatDate} from '@angular/common';
-import * as moment from 'moment';
+import { RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module } from 'ng-recaptcha';
 @NgModule({
   exports: [
     MatAutocompleteModule,
@@ -129,6 +129,7 @@ import * as moment from 'moment';
     PortalModule,
     ScrollingModule,
     DatePipe,
+    RecaptchaV3Module
 
     // MatFormFieldModule,
 
@@ -222,11 +223,13 @@ import * as moment from 'moment';
     PortalModule,
     ScrollingModule,
     MatFormFieldModule,
+    RecaptchaV3Module
 
   ],
   providers: [
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } },
-    { provide: MatFormFieldControl, useExisting: AppModule}
+    { provide: MatFormFieldControl, useExisting: AppModule},
+    { provide: RECAPTCHA_V3_SITE_KEY, useValue: '6LeGCZAUAAAAADuhzcuvSB-lYDsxJBl9HUWtZkUM' },
   ],
   bootstrap: [AppComponent]
 })

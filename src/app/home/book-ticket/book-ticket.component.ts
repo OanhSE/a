@@ -10,7 +10,6 @@ import {FilmService} from '../../_service/film.service';
 import {Film} from '../../_models/film';
 import {FilmSession} from '../../_models/filmSession';
 import {FilmSessionService} from '../../_service/film-session.service';
-import * as moment from 'moment';
 import {TicketService} from '../../_service/ticket.service';
 
 @Component({

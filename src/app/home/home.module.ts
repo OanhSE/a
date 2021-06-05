@@ -49,7 +49,9 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
     MatPaginatorModule,
     MatDialogModule,
     ReactiveFormsModule,
-    MatExpansionModule
+    MatExpansionModule,
+    HeaderComponent,
+    FooterComponent
   ],
     imports: [
         CommonModule,

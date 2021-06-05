@@ -3,9 +3,11 @@ import { RouterModule, Routes } from '@angular/router';
 import { from } from 'rxjs';
 import { LoginComponent} from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import {VerifyComponent} from './verify/verify.component';
 const routes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'register', component: RegisterComponent},
+  { path: 'verify', component: VerifyComponent},
 ];
 
 @NgModule({

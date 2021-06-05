@@ -84,7 +84,7 @@ constructor(
   let status = 0;
   this.listseats$.forEach((item, index) => {
     if (seat.id === item.id){
-      this.listseats$.splice(index, 1);
+      this.listseats$.slice(index, 1);
       check = true;
 }
 

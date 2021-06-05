@@ -47,6 +47,7 @@ export class UserService {
          // store user details and jwt token in local storage to keep user logged in between page refreshes
          localStorage.setItem('user', JSON.stringify(user));
          this.userSubject.next(user);
+         console.log('user', user);
          return user;
        }));
      // return this.http.post<User>(`${this.apiUrl}/login`, { params})
@@ -67,6 +68,17 @@ export class UserService {
     this.userSubject.next(null);
     this.router.navigate(['/authen/login']);
   }
+  verify(code: string): Observable<User>{
+    return this.http.post<User>(`${this.apiUrl}/verify?code=${code}`, code)
+      .pipe(map(user => {
+        // store user details and jwt token in local storage to keep user logged in between page refreshes
+        localStorage.setItem('user', JSON.stringify(user));
+        this.userSubject.next(user);
+        console.log('user', user);
+        return user;
+      }));
+  }
+
   findByPhone(phone: string): Observable<User>{
     return  this.http.get<User>(`${this.apiUrl}/customer/${phone}`);
   }
