@@ -123,12 +123,13 @@ export class CheckOutComponent implements OnInit {
     const description = '';
     const user = this.user;
     const status = 0;
-    this.seats$.forEach((x) => {
+    this.listseats$.forEach((x) => {
       const seatEmbeds = new SeatEmbed(x, 1);
       const ticket = new Ticket(time, filmSession, price, currency, method, intent, description, user, seatEmbeds, status);
       tickets.push(ticket);
 
     });
+    console.log('tic', tickets);
     this.ticketService.setTickets(tickets);
     this.ticketService.makePayment(sum, 'http://localhost:4200/resultpayment', 'http://localhost:4200').subscribe((rs) => {
       // this.router.navigateByUrl(rs.redirect_url);

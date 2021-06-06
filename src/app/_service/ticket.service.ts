@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import {HttpClient, HttpRequest} from '@angular/common/http';
+import {HttpClient, HttpParams, HttpRequest} from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import {Ticket} from '../_models/ticket';
 
@@ -51,8 +51,11 @@ fetchTickets(): Ticket[]{
 //   return service.completePayment(request, wrapperTicket);
 // }
   completePayment(paymentId: string, payerId: string): Observable<{}>{
-    // tslint:disable-next-line:max-line-length
-    return this.http.post<{}>(this.apiUrl + '/pay/success?paymentId=' + paymentId + '&payerId=' + payerId , localStorage.getItem('tickets'));
+    // let params = new HttpParams();
+    // params = params.append('wrapperTicket',  localStorage.getItem('tickets'));
+    const json = JSON.parse(localStorage.getItem('tickets'));
+    return this.http.post<{}>(this.apiUrl + '/pay/success?paymentId=' + paymentId + '&payerId=' + payerId
+    , json);
   }
 
 }
