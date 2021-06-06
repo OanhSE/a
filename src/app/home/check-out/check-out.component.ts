@@ -84,7 +84,7 @@ export class CheckOutComponent implements OnInit {
 
   }
   getSeatByRow(row: number): Seat[]{
-  // console.log('hhhh', this.seats$.filter(value => ) || []);
+  console.log('hhhh', this.seats$);
   return this.seats$.filter(value => Number(value.rowIndex) === row) || [];
   }
   optionTicket(seat: Seat): void{
@@ -99,7 +99,7 @@ export class CheckOutComponent implements OnInit {
   });
   if (!check) {
     this.listseats$.push(seat);
-    status = 1;
+    status = 2;
   }
 
   this.seats$.forEach((item, index) => {

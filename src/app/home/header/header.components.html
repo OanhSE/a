@@ -7,7 +7,7 @@
 
     <div class ="header-top-login">
       <a *ngIf="user">{{user.name}}</a>
-      <a *ngIf="user" (click)="logout()">>>></a>
+      <a *ngIf="user" (click)="logout()">	<mat-icon>arrow_right</mat-icon></a>
       <a *ngIf="!user" (click)="tranferPageRegister()">Đăng ký</a>
       <a *ngIf="!user" (click)="tranferPageLogin()">Đăng nhập</a>
     </div>

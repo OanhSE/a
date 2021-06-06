@@ -3,9 +3,13 @@
   <tr *ngFor='let in of counter(5) ;let i = index'>
 
     <td *ngFor="let seat of getSeatByRow(i)" >
-      <div (click)="optionTicket(seat)">
-        <mat-icon *ngIf="seat.status===1" style="width: 40px; height: 40px;" color="warn">event_seat</mat-icon>
-        <mat-icon *ngIf="seat.status!==1" style="width: 40px; height: 40px;" >event_seat</mat-icon>
+      <div (click)="optionTicket(seat)" *ngIf="seat.status!==1">
+        <mat-icon *ngIf="seat.status===2" style="width: 40px; height: 40px;" color="warn">event_seat</mat-icon>
+        <mat-icon *ngIf="seat.status!==2 && seat.status!==1" style="width: 40px; height: 40px;" >event_seat</mat-icon>
+        <p>{{seat.rowIndex}}{{seat.columnIndex}}</p>
+      </div>
+      <div  *ngIf="seat.status===1">
+        <mat-icon  style="width: 40px; height: 40px;" color="primary">event_seat</mat-icon>
         <p>{{seat.rowIndex}}{{seat.columnIndex}}</p>
       </div>
 
@@ -14,6 +18,20 @@
 
 
   </tr>
+  </div>
+  <div class="row seatview"  >
+    <div class="col-sm-4 ">
+      <mat-icon style="width: 40px; height: 40px;" color="primary">event_seat</mat-icon>
+      <p>Ghế đã được đặt</p>
+    </div>
+    <div class="col-sm-4">
+      <mat-icon style="width: 40px; height: 40px;" color="warn">event_seat</mat-icon>
+      <p>Ghế đã chọn </p>
+    </div>
+    <div class="col-sm-4">
+      <mat-icon style="width: 40px; height: 40px;" >event_seat</mat-icon>
+      <p>Ghế chưa chọn </p>
+    </div>
   </div>
   <div class="row">
     <div class="col-sm-1">
