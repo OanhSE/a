@@ -30,6 +30,7 @@ export class UserService {
     private router: Router,
     private http: HttpClient
   ) {
+    this.uservalue = JSON.parse(localStorage.getItem('user'));
     this.userSubject = new BehaviorSubject<User>(this.uservalue);
     this.user = this.userSubject.asObservable();
   }
@@ -46,7 +47,7 @@ export class UserService {
        .pipe(map(user => {
          // store user details and jwt token in local storage to keep user logged in between page refreshes
          localStorage.setItem('user', JSON.stringify(user));
-         this.userSubject.next(user);
+         this.userSubject.next( user);
          console.log('user', user);
          return user;
        }));
@@ -63,10 +64,12 @@ export class UserService {
     return  this.http.post<User>(`${this.apiUrl}/signup`, user);
   }
   logOut(user: User): Observable<string>{
-    return  this.http.post<string>(`${this.apiUrl}/logout`, user);
     localStorage.removeItem('user');
+    // localStorage.clear();
     this.userSubject.next(null);
     this.router.navigate(['/authen/login']);
+    return  this.http.post<string>(`${this.apiUrl}/logout`, user);
+
   }
   verify(code: string): Observable<User>{
     return this.http.post<User>(`${this.apiUrl}/verify?code=${code}`, code)

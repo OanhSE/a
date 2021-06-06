@@ -8,10 +8,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class SeatComponent implements OnInit {
 
-  
+
   @Input()  color: string = String('primary');
   @Output() private ratingUpdated = new EventEmitter();
-
+ private  i;
    snackBarDuration: number = Number(2000);
 
 
@@ -20,13 +20,11 @@ export class SeatComponent implements OnInit {
 
 
   ngOnInit(): void {
-   
-  }
+}
   onClick(): void {
     this.color = String('accent');
   }
 
- 
 
 }
 export enum StarRatingColor {

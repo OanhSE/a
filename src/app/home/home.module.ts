@@ -27,6 +27,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import {ListCinemaComponent} from './cinema/list-cinema/list-cinema.component';
 import { BookTicketComponent } from './book-ticket/book-ticket.component';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {ResultpaymentComponent} from './resultpayment/resultpayment.component';
 
 
 
@@ -35,7 +36,8 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
 
   declarations: [HeaderComponent, FooterComponent, ContainerComponent,
     HomeComponent, StarRatingComponent, PaymentComponent, FilmSingleComponent,
-    CinemaComponent, CheckOutComponent, UserProfileComponent, OrderHistoryComponent, ListCinemaComponent, BookTicketComponent ],
+    CinemaComponent, CheckOutComponent, UserProfileComponent, OrderHistoryComponent,
+    ListCinemaComponent, BookTicketComponent , ResultpaymentComponent],
   exports: [
     CommonModule,
     HomeRoutingModule,

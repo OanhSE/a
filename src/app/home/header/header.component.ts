@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../_models/user';
 import { UserService } from '../../_service/user.service';
-import { Route, Router } from '@angular/router';
+import {ActivatedRoute, Route, Router} from '@angular/router';
+import {first} from 'rxjs/operators';
+import {AlertService} from '../../_service/alert.service';
 @Component({
   selector: 'app-header',
   // templateUrl: './header.component.html',
@@ -11,7 +13,12 @@ import { Route, Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
   user: User = new User('', '', '', '', '', '', new Date(), 0, false);
-  constructor(private userService: UserService, private  router: Router) {
+  constructor(
+    private userService: UserService,
+    private  router: Router,
+    private route: ActivatedRoute,
+    private alertService: AlertService
+  ) {
     // this.user = this.accountService.user;
     this.userService.user.subscribe(x => this.user = x);
   }
@@ -46,6 +53,18 @@ export class HeaderComponent implements OnInit {
   }
   tranferPageLogin(): void{
     this.router.navigate(['../authen/login']);
+  }
+  logout(): void{
+    this.userService.logOut(this.user)
+      .pipe(first())
+      .subscribe({
+        next: () => {
+          console.log('logout');
+        },
+        error: error => {
+          this.alertService.error('Đăng xuất lỗi' + error);
+        }
+      });
   }
 
 

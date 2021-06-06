@@ -14,6 +14,10 @@ import {SeatService} from '../../_service/seat.service';
 import { Seat } from '../../_models/seat';
 import { Film} from '../../_models/film';
 import {TicketService} from '../../_service/ticket.service';
+import {Ticket} from '../../_models/ticket';
+import {UserService} from '../../_service/user.service';
+import {User} from '../../_models/user';
+import {SeatEmbed} from '../../_models/seatembed';
 
 @Component({
   selector: 'app-check-out',
@@ -34,7 +38,9 @@ export class CheckOutComponent implements OnInit {
   filmSession$: FilmSession = new FilmSession(0, new Date(), this.film, this.hall, '0');
   listseats$: Seat[] = [];
   sum$ = 0;
-constructor(
+  user: User = new User('', '', '', '', '', '', new Date(), 0, false);
+
+  constructor(
     private cinamaService: CinemaService,
     private addressService: AddressService,
     private  router: Router,
@@ -42,13 +48,15 @@ constructor(
     private seatService: SeatService,
     private  route: ActivatedRoute,
     private filmSessionService: FilmSessionService,
-    private  ticketService: TicketService
+    private  ticketService: TicketService,
+    private  userService: UserService
 
   ) {
 }
 
   async ngOnInit(): Promise<void> {
-   this.route.queryParamMap.subscribe((params) => {
+    this.userService.user.subscribe(x => this.user = x);
+    this.route.queryParamMap.subscribe((params) => {
      console.log('filmsession', params.get('filmsession'));
      this.filmSessionService.getSessionById(Number(params.get('filmsession'))).subscribe((result) => {
 
@@ -84,7 +92,7 @@ constructor(
   let status = 0;
   this.listseats$.forEach((item, index) => {
     if (seat.id === item.id){
-      this.listseats$.slice(index, 1);
+      this.listseats$.splice(index, 1);
       check = true;
 }
 
@@ -104,7 +112,25 @@ constructor(
 
   }
   checkout(sum: number): boolean{
-    this.ticketService.makePayment(sum, 'https://www.cgv.vn/', 'https://www.cgv.vn/').subscribe((rs) => {
+    const tickets: Ticket[] = [];
+
+    const time = new Date();
+    const filmSession = this.filmSession$;
+    const price = 100;
+    const currency = '';
+    const method = '';
+    const intent = '';
+    const description = '';
+    const user = this.user;
+    const status = 0;
+    this.seats$.forEach((x) => {
+      const seatEmbeds = new SeatEmbed(x, 1);
+      const ticket = new Ticket(time, filmSession, price, currency, method, intent, description, user, seatEmbeds, status);
+      tickets.push(ticket);
+
+    });
+    this.ticketService.setTickets(tickets);
+    this.ticketService.makePayment(sum, 'http://localhost:4200/resultpayment', 'http://localhost:4200').subscribe((rs) => {
       // this.router.navigateByUrl(rs.redirect_url);
       window.location.href = rs.redirect_url;
       console.log(rs.redirect_url);
