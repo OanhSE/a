@@ -93,6 +93,18 @@ export class ManageFilmsessionComponent implements OnInit {
     this.cinamaService.getCinemaByArea(3).subscribe((result) => {
       this.listDBSH = result;
     });
+    this.cinamaService.getCinemaByArea(4).subscribe((result) => {
+      this.listDBTB = result;
+    });
+    this.cinamaService.getCinemaByArea(5).subscribe((result) => {
+      this.listBMT = result;
+    });
+    this.cinamaService.getCinemaByArea(6).subscribe((result) => {
+      this.listNMT = result;
+    });
+    this.cinamaService.getCinemaByArea(7).subscribe((result) => {
+      this.listDNB = result;
+    });
 
   }
 

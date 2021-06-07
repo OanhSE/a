@@ -34,7 +34,7 @@ export class CheckOutComponent implements OnInit {
     address$: Address =  new Address('TP.HCM', 'Tầng 7, Cantavil Premier, Số 1 đường Song Hành, Xa lộ Hà Nội, P.An Phú, Q.2', 'Việt Nam');
 
     cinemadetail$: Cinema = new Cinema(1, 'Cantavil', this.address$);
-  hall: Hall = new Hall(0, 'Hall', 'a', this.cinemadetail$);
+   hall: Hall = new Hall('0', '', this.cinemadetail$, Number(0), Number(0), Number(0));
   filmSession$: FilmSession = new FilmSession(0, new Date(), this.film, this.hall, '0');
   listseats$: Seat[] = [];
   sum$ = 0;

@@ -40,7 +40,7 @@
         </a>
         <div class="dropdown-menu">
           <div *ngFor = "let  c of listDBTB">
-            <a  class="dropdown-item" href="#">{{c.CinemaName}}</a>
+            <a  class="dropdown-item" (click)="tranferBySingle(c)">{{c.name}}</a>
           </div>
         </div>
       </li>
@@ -50,7 +50,7 @@
         </a>
         <div class="dropdown-menu">
           <div *ngFor = "let  c of listBMT">
-            <a  class="dropdown-item" href="#">{{c.CinemaName}}</a>
+            <a  class="dropdown-item" (click)="tranferBySingle(c)">{{c.name}}</a>
           </div>
         </div>
       </li>
@@ -60,7 +60,7 @@
         </a>
         <div class="dropdown-menu">
           <div *ngFor = "let  c of listNMT">
-            <a  class="dropdown-item" href="#">{{c.CinemaName}}</a>
+            <a  class="dropdown-item" (click)="tranferBySingle(c)">{{c.name}}</a>
           </div>
         </div>
       </li>
@@ -70,7 +70,7 @@
         </a>
         <div class="dropdown-menu">
           <div *ngFor = "let  c of listDNB">
-            <a  class="dropdown-item" href="#">{{c.CinemaName}}</a>
+            <a  class="dropdown-item" (click)="tranferBySingle(c)">{{c.name}}</a>
           </div>
         </div>
       </li>
@@ -80,7 +80,7 @@
         </a>
         <div class="dropdown-menu ">
           <div *ngFor = "let  c of listTNB">
-            <a  class="dropdown-item" href="#">{{c.CinemaName}}</a>
+            <a  class="dropdown-item" (click)="tranferBySingle(c)">{{c.name}}</a>
           </div>
         </div>
       </li>

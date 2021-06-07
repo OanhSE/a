@@ -22,8 +22,8 @@ export class ManageComponent implements OnInit {
   tranferBill(): void{
     this.router.navigate(['/manage/bill']);
   }
-  tranferCategory(): void{
-    this.router.navigate(['/manage/category']);
+  tranferHall(): void{
+    this.router.navigate(['/manage/hall']);
   }
   tranferFilm(): void{
     this.router.navigate(['/manage/film']);

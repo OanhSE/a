@@ -34,42 +34,42 @@
   </div>
 
 
-  <div class="mat-elevation-z8 table-wrapper-scroll-y my-custom-scrollbar">
+<!--  <div class="mat-elevation-z8 table-wrapper-scroll-y my-custom-scrollbar">-->
 
-    <table class="table table-striped tableheight" >
-      <thead>
-      <tr>
-        <th>STT</th>
-        <th>Hình</th>
-        <th>Tên</th>
-        <th>Thời lượng</th>
-        <th>Ngày khởi chiếu</th>
+<!--    <table class="table table-striped tableheight" >-->
+<!--      <thead>-->
+<!--      <tr>-->
+<!--        <th>STT</th>-->
+<!--        <th>Hình</th>-->
+<!--        <th>Tên</th>-->
+<!--        <th>Thời lượng</th>-->
+<!--        <th>Ngày khởi chiếu</th>-->
 
 
-      </tr>
-      </thead>
-      <tbody *ngFor="let  seat of seats ">
-      <tr>
-        <td></td>
-        <td>{{seat.columnIndex}}</td>
-        <td>{{seat.rowIndex}}</td>
+<!--      </tr>-->
+<!--      </thead>-->
+<!--      <tbody *ngFor="let  seat of seats ">-->
+<!--      <tr>-->
+<!--        <td></td>-->
+<!--        <td>{{seat.columnIndex}}</td>-->
+<!--        <td>{{seat.rowIndex}}</td>-->
 
-        <td>
-          <button  (click)="openDialogeEdit(seat)" mat-icon-button color="success" aria-label="Example icon button with a home icon">
-            <mat-icon>edit</mat-icon>
-          </button>
-        </td>
-        <td>
-          <button (click)="delete(seat)" mat-icon-button color="warn" aria-label="Example icon button with a home icon">
-            <mat-icon>delete</mat-icon>
-          </button>
-        </td>
-      </tr>
-      </tbody>
-    </table>
+<!--        <td>-->
+<!--          <button  (click)="openDialogeEdit(seat)" mat-icon-button color="success" aria-label="Example icon button with a home icon">-->
+<!--            <mat-icon>edit</mat-icon>-->
+<!--          </button>-->
+<!--        </td>-->
+<!--        <td>-->
+<!--          <button (click)="delete(seat)" mat-icon-button color="warn" aria-label="Example icon button with a home icon">-->
+<!--            <mat-icon>delete</mat-icon>-->
+<!--          </button>-->
+<!--        </td>-->
+<!--      </tr>-->
+<!--      </tbody>-->
+<!--    </table>-->
 
-    <mat-paginator [pageSizeOptions]="[5, 10, 20]"  showFirstLastButtons></mat-paginator>
-  </div>
+<!--    <mat-paginator [pageSizeOptions]="[5, 10, 20]"  showFirstLastButtons></mat-paginator>-->
+<!--  </div>-->
 
 
 

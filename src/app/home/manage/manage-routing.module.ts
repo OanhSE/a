@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ManageComponent } from './manage.component'
+import { ManageComponent } from './manage.component';
 import { BillComponent } from './bill/bill.component';
 import { ManageCategoryComponent } from './manage-category/manage-category.component';
 import { ManageFilmComponent } from './manage-film/manage-film.component';
@@ -9,6 +9,7 @@ import { ManageTicketComponent } from './manage-ticket/manage-ticket.component';
 import { ReportComponent } from './report/report.component';
 import {ManageCinemaComponent} from './manage-cinema/manage-cinema.component';
 import {ManageSeatComponent} from './manage-seat/manage-seat.component';
+import {ManageHallComponent} from './manage-hall/manage-hall.component';
 const manageFilmsessionModule = () => import('./manage-filmsession/manage-filmsession.module').then(x => x.ManageFilmsessionModule
 );
 
@@ -18,7 +19,7 @@ const routes: Routes = [
     children: [
       { path: '', component: ManageClientComponent },
       { path: 'bill', component: BillComponent },
-      { path: 'category', component: ManageCategoryComponent },
+      { path: 'hall', component: ManageHallComponent },
       { path: 'film', component:  ManageFilmComponent },
       { path: 'ticket', component: ManageTicketComponent },
       { path: 'report', component: ReportComponent },
