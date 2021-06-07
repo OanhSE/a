@@ -39,21 +39,21 @@ export class SeatService {
     params = params.append('column', column.toString());
     return this.http.post<Seat[]>(`${this.apiUrl}/seat/${hallId}`, params);
   }
-  getSeatByHall(hallId: number): Observable<Seat[]>{
-    let params = new HttpParams();
-    params = params.append('hallId', hallId.toString());
-    return  this.http.post<Seat[]>(`${this.apiUrl}/seats`, {params});
-  }
+  // getSeatByHall(hallId: number): Observable<Seat[]>{
+  //   let params = new HttpParams();
+  //   params = params.append('hallId', hallId.toString());
+  //   return  this.http.post<Seat[]>(`${this.apiUrl}/seats`, {params});
+  // }
   getSeatById(id: string): Observable<Seat>{
     return this.http.get<Seat>(`${this.apiUrl}/seats/${id}`);
   }
-  // @GetMapping("/getAvailableSeat")
-  // public List<Seat> getAvailableSeat(@RequestParam Long filmSession){
+
   getAvailableSeat(id: number): Observable<Seat[]>{
-    // return this.http.get<Seat[]>(`${this.apiUrl}/getAvailableSeat`);
-    let params = new HttpParams();
-    params = params.append('hallId', id.toString());
-    return this.http.get<Seat[]>(`${this.apiUrl}/getAvailableSeat?filmSession=` + id);
+    return this.http.get<Seat[]>(`${this.apiUrl}/getAvailableSeat?filmSession=${id}`);
+  }
+
+  getSeatByHall(id: number): Observable<Seat[]>{
+      return this.http.get<Seat[]>(`${this.apiUrl}/seats?hallId=${id}`);
   }
 
 }

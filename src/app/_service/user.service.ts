@@ -72,7 +72,7 @@ export class UserService {
 
   }
   verify(code: string): Observable<User>{
-    return this.http.post<User>(`${this.apiUrl}/verify?code=${code}`, code)
+    return this.http.get<User>(`${this.apiUrl}/verify?code=${code}`)
       .pipe(map(user => {
         // store user details and jwt token in local storage to keep user logged in between page refreshes
         localStorage.setItem('user', JSON.stringify(user));

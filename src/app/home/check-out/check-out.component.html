@@ -1,6 +1,6 @@
 <div class="container backgroundseat" style="text-align: center" *ngIf="loading$">
   <div  class="seat">
-  <tr *ngFor='let in of counter(5) ;let i = index'>
+  <tr *ngFor='let in of counter(filmSession$.hall.totalRow) ;let i = index'>
 
     <td *ngFor="let seat of getSeatByRow(i)" >
       <div (click)="optionTicket(seat)" *ngIf="seat.status!==1">

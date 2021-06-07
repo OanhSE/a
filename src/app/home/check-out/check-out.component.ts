@@ -37,6 +37,7 @@ export class CheckOutComponent implements OnInit {
    hall: Hall = new Hall('0', '', this.cinemadetail$, Number(0), Number(0), Number(0));
   filmSession$: FilmSession = new FilmSession(0, new Date(), this.film, this.hall, '0');
   listseats$: Seat[] = [];
+  list$: Seat[] = [];
   sum$ = 0;
   user: User = new User('', '', '', '', '', '', new Date(), 0, false);
 
@@ -57,34 +58,52 @@ export class CheckOutComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     this.userService.user.subscribe(x => this.user = x);
     this.route.queryParamMap.subscribe((params) => {
-     console.log('filmsession', params.get('filmsession'));
-     this.filmSessionService.getSessionById(Number(params.get('filmsession'))).subscribe((result) => {
+      console.log('filmsession', params.get('filmsession'));
+      this.filmSessionService.getSessionById(Number(params.get('filmsession'))).subscribe((result) => {
 
-       this.filmSession$ = result ;
-       console.log('f', result);
-       this.seatService.getAvailableSeat(9).subscribe((x) => {
-         this.seats$ = x;
-         console.log('seats', this.seats$);
-         this.loading$ = true;
-       });
-     });
-   });
+        this.filmSession$ = result;
+        console.log('f', result);
+        this.seatService.getAvailableSeat(this.filmSession$.id).subscribe((seatAvailable) => {
+          this.list$ = seatAvailable;
+          this.seatService.getSeatByHall(this.filmSession$.hall.id).subscribe((x) => {
+            this.seats$ = x;
 
+            this.loading$ = true;
+            this.seats$.forEach((item, index) => {
+              x = this.list$.filter((i) => i.id === item.id) || [];
+              console.log('x', x);
+              if (x.length === 0){
+                const s = new Seat(item.id, item.rowIndex, item.columnIndex, 1);
+                this.seats$.splice(index, 1, s);
+                console.log('s', s);
+              }else {
+
+                const s = new Seat(item.id, item.rowIndex, item.columnIndex, 0);
+                this.seats$.splice(index, 1, s);
+              }
+            });
+            this.loading$ = true;
+          });
+        });
+
+      });
+
+    });
   }
   _getAvailableSeat(id: number): void{
     this.seatService.getAvailableSeat(id).subscribe((x) => {
      this.seats$ = x;
+
      console.log('seats', this.seats$);
      this.loading$ = true;
   });
   }
 
-  counter(n: number): Array<number> {
+  counter(n: number): Array < number > {
   return Array(n);
 
   }
   getSeatByRow(row: number): Seat[]{
-  console.log('hhhh', this.seats$);
   return this.seats$.filter(value => Number(value.rowIndex) === row) || [];
   }
   optionTicket(seat: Seat): void{
@@ -108,7 +127,7 @@ export class CheckOutComponent implements OnInit {
         this.seats$.splice(index, 1, s);
    }
     });
-  this.sum$ = this.listseats$.length * 100;
+  this.sum$ = this.listseats$.length * 1;
 
   }
   checkout(sum: number): boolean{

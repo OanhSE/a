@@ -38,11 +38,7 @@ export class FilmSessionService {
   }
 
   getFilmSessionByCinemaAndDate(date: string, idCinema: number): Observable<FilmSession[]>{
-    let params = new HttpParams();
-    params = params.append('date', date);
-    // params = params.append('idCinema', String(idCinema));
-    // return this.http.get<FilmSession[]>(`${this.apiUrl}/filmSessions/${idCinema}`, {params});
-    return this.http.get<FilmSession[]>(`${this.apiUrl}/admin/session`);
+    return this.http.get<FilmSession[]>(`${this.apiUrl}/filmSessions?date=${date}&idCinema=${idCinema}`);
   }
   getSessionById(id: number): Observable<FilmSession>{
     return this.http.get<FilmSession>(`${this.apiUrl}/getSession/${id}`);
@@ -55,10 +51,7 @@ export class FilmSessionService {
   }
 
   getFilmSessionByCinemaAndDateAndFilm(newdate: string, id: number, film: Film): Observable<FilmSession[]> {
-    // let params = new HttpParams();
-    // params = params.append('date', newdate);
-    // params = params.append('film', film.id.toString());
-    // params = params.append('idCinema', id.toString());
-    return this.http.get<FilmSession[]>(`${this.apiUrl}/admin/session`);
+
+    return this.http.get<FilmSession[]>(`${this.apiUrl}/getfilmSessions/${film.id}?date=${newdate}&idCinema=${id}`);
   }
 }

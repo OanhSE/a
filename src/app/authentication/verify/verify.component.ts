@@ -14,6 +14,7 @@ import {UserService} from '../../_service/user.service';
 export class VerifyComponent implements OnInit {
   code: string;
   currentURL: string;
+  notification  = 'Xác thực thành công';
   constructor(
     private  route: ActivatedRoute,
     private  alertService: AlertService,
@@ -22,19 +23,23 @@ export class VerifyComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.currentURL = this.router.url.toString();
-    this.code = this.currentURL.slice(this.currentURL.indexOf('=') + 1, this.currentURL.length);
-    this.verify(this.code);
-  }
+    this.route.queryParamMap.subscribe((params) => {
+      const param = params.get('code');
+      this.verify(param);
+    });
+  //   this.currentURL = this.router.url.toString();
+  //   this.code = this.currentURL.slice(this.currentURL.indexOf('=') + 1, this.currentURL.length);
+   }
 verify(code: string): void{
   this.userService.verify(code)
     .pipe(first())
     .subscribe({
       next: () => {
-        const returnUrl = this.route.snapshot.queryParams.returnUrl || '/';
+        const returnUrl = '/';
         this.router.navigateByUrl(returnUrl);
       },
       error: error => {
+        this.notification = 'Xác thực không thành công' ;
         this.alertService.error('Đăng nhập lỗi' + error);
       }
     });
