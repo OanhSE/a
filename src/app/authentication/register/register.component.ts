@@ -106,18 +106,10 @@ checkRePassword(): boolean{
     .subscribe({
           next: () => {
               // this.accountService.login(this.form.get('phone').value, this.form.get('password').value);
-              this.userService.login(email, pwd)
-                  .pipe(first())
-                  .subscribe({
-                      next: () => {
-                          const returnUrl = this.route.snapshot.queryParams.returnUrl || '/';
-                          this.router.navigateByUrl(returnUrl);
-                      },
-                      error: error => {
 
-                          this.loading = false;
-                      }
-                  });
+            const returnUrl = this.route.snapshot.queryParams.returnUrl || '/';
+            this.router.navigateByUrl(returnUrl);
+
           },
           error: error => {
 
