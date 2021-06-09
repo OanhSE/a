@@ -88,6 +88,9 @@ export class FilmSingleComponent implements OnInit {
   transform(url): void{
     this.url$ = this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
+  bookingTicket(film: Film): void{
+  this.router.navigate(['/book-ticket', { idfilm: film.id }] );
 
+}
 
 }

@@ -81,6 +81,7 @@
   border-radius: 5px;
   overflow: hidden;
   padding: 0px;
+  scroll-behavior: smooth;
 }
 
 .book-ticket-film > div {

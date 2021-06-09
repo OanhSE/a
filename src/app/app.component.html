@@ -1,4 +1,5 @@
 ﻿<div class="container-fluid" >
+  <alert></alert>
   <router-outlet></router-outlet>
   <h3 *ngIf="recentToken">Most recent token</h3>
   <pre *ngIf="recentToken">{{ formatToken(recentToken) }}</pre>

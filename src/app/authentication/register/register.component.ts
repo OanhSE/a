@@ -8,6 +8,7 @@ import { UserService } from '../../_service/user.service';
 import validate = WebAssembly.validate;
 import { DatePipe } from '@angular/common';
 import {User} from '../../_models/user';
+import {AlertService} from '../../_service/alert.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -26,7 +27,8 @@ export class RegisterComponent implements OnInit {
       private route: ActivatedRoute,
       private router: Router,
       private filmService: FilmService,
-      private userService: UserService
+      private userService: UserService,
+      private alertService: AlertService
   ) { }
 
   ngOnInit(): void {
@@ -104,20 +106,17 @@ checkRePassword(): boolean{
   this.userService.register(user)
     .pipe(first())
     .subscribe({
-          next: () => {
-              // this.accountService.login(this.form.get('phone').value, this.form.get('password').value);
-              this.userService.login(email, pwd)
-                  .pipe(first())
-                  .subscribe({
-                      next: () => {
-                          const returnUrl = this.route.snapshot.queryParams.returnUrl || '/';
-                          this.router.navigateByUrl(returnUrl);
-                      },
-                      error: error => {
+          next: (rs) => {
+            if (!rs){
+              this.alertService.error('Tài khoản này đã tồn tại' );
+              this.loading = false;
+            }else {
+              this.alertService.success('Đăng ký thành công', { keepAfterRouteChange: true });
+              const returnUrl = this.route.snapshot.queryParams.returnUrl || '/';
+              this.router.navigateByUrl(returnUrl);
 
-                          this.loading = false;
-                      }
-                  });
+            }
+
           },
           error: error => {
 

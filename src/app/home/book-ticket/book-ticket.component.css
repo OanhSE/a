@@ -36,10 +36,13 @@
 }
 .linkname{
   padding: 0px 2px;
-  margin: 0px;
+  margin: 2px 0px;
   background-color: #e6eeff;
   color: black;
+  border-bottom-style: solid;
+  border-bottom-color: #3f51b5;
   border-radius: 0.1em;
   size: B4;
+
 
 }

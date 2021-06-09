@@ -48,7 +48,7 @@ export class UserService {
          // store user details and jwt token in local storage to keep user logged in between page refreshes
          localStorage.setItem('user', JSON.stringify(user));
          this.userSubject.next( user);
-         console.log('user', user);
+         console.log('user haha', user);
          return user;
        }));
      // return this.http.post<User>(`${this.apiUrl}/login`, { params})

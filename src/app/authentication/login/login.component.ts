@@ -6,6 +6,8 @@ import { FilmService } from '../../_service/film.service';
 import { UserService } from '../../_service/user.service';
 import {User} from '../../_models/user';
 import {AlertService} from '../../_service/alert.service';
+import {MatDialog} from '@angular/material/dialog';
+
 
 
 @Component({
@@ -26,6 +28,7 @@ export class LoginComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private alertService: AlertService,
+    public dialog: MatDialog,
 
 
     ) {
@@ -43,6 +46,7 @@ export class LoginComponent implements OnInit {
   get f(): {[p: string]: AbstractControl}{
       return this.form.controls;
   }
+
   onSubmit(): void{
 
 
@@ -58,12 +62,16 @@ export class LoginComponent implements OnInit {
     this.userService.login(this.f.mail.value, this.f.pwd.value)
         .pipe(first())
         .subscribe({
-            next: () => {
-                // get return url from query parameters or default to home page
-              console.log('mail', this.f.mail.value);
-              this.alertService.success('Đăng nhập thành công', { keepAfterRouteChange: true });
-              const returnUrl = this.route.snapshot.queryParams.returnUrl || '/';
-              this.router.navigateByUrl(returnUrl);
+            next: (rs) => {
+              if (!rs){
+                this.alertService.error('Tài khoản này không tồn tại' );
+                this.loading = false;
+              }else {
+                this.alertService.success('Đăng nhập thành công', { keepAfterRouteChange: true });
+                const returnUrl = this.route.snapshot.queryParams.returnUrl || '/';
+                this.router.navigateByUrl(returnUrl);
+
+              }
             },
             error: error => {
               this.alertService.error('Đăng nhập lỗi' + error);

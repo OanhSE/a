@@ -24,8 +24,8 @@
       </div>
 
       <div class="row">
-        <p><b>Xếp hạng </b></p>
-        <p>[Trong nước] 13 tuổi trở lên</p>
+        <p><b>Ngôn ngữ</b></p>
+        <p>{{film$.language}}</p>
       </div>
 
       <div class="row">
@@ -35,12 +35,12 @@
 
       <div class="row">
         <p><b>Thông tin cơ bản</b></p>
-        <p>Drama Vietnam (128Phút)</p>
+        <p>{{film$.genres}}({{film$.duration}})</p>
       </div>
 
       <div class="row">
-        <p><b>Loại</b></p>
-        <p>2D | Normal | Normal sound | Lồng tiếng</p>
+        <p><b>Năm</b></p>
+        <p>{{film$.year}}</p>
       </div>
     </div>
   </div>
@@ -68,7 +68,7 @@
     </div>
   </div>
 
-  <div class="film-detail-booking">
+  <div class="film-detail-booking"  (click)="bookingTicket( film$)">
     <button>
       <span>Đặt vé</span>
     </button>

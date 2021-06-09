@@ -32,7 +32,6 @@ export class BookTicketComponent implements OnInit {
   listDBTB;
   listDBSH;
   listHN;
-
   myControl = new FormControl();
   address$: Address =  new Address('TP.HCM', 'Tầng 7, Cantavil Premier, Số 1 đường Song Hành, Xa lộ Hà Nội, P.An Phú, Q.2', 'Việt Nam');
 

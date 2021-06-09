@@ -75,10 +75,15 @@
             <button (click)="tranferBySingle(c)" mat-flat-button>{{c.name}}</button>
           </div>
         </div>
+        <div class="tab-pane fade " id="v-pills-tnb" role="tabpanel" aria-labelledby="v-pills-tnb-tab">
+          <div class="example-button-row" *ngFor = "let  c of listTNB">
+            <button (click)="tranferBySingle(c)" mat-flat-button>{{c.name}}</button>
+          </div>
+        </div>
       </div>
 
-      <div class="book-ticket-film nav col-4">
-        <div class="linkname" *ngFor="let film of listfilms$ ">
+      <div class="book-ticket-film nav col-4 ">
+        <div class="linkname " *ngFor="let film of listfilms$ ">
           <a class="nav-link active " (click)="tranferFilm(film)">{{film.name}}</a>
         </div>
       </div>
