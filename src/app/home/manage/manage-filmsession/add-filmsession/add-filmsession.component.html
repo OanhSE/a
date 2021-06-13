@@ -1,0 +1,63 @@
+<h1 mat-dialog-title>Thêm Phòng Chiếu</h1>
+<div mat-dialog-content >
+  <div class="card" xmlns="http://www.w3.org/1999/html">
+
+    <div class="card-body">
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label  >Phim:</label>
+          <input disabled type="text" formControlName="film" class="form-control" />
+
+        </div>
+        <div class="form-group">
+          <label  >Rạp:</label>
+          <input disabled type="text" formControlName="cinema" class="form-control" />
+
+        </div>
+        <div class="form-group">
+          <label  >Phòng chiếu:</label>
+          <input disabled type="text" formControlName="hall" class="form-control" />
+
+        </div>
+        <div class="form-group">
+          <label  >Ngày chiếu:</label>
+          <input disabled type="date" formControlName="date" class="form-control" />
+
+        </div>
+
+        <div class="form-group">
+          <label  >Giờ bắt đầu:</label>
+          <input type="text" formControlName="startFrom" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.startFrom.errors }" />
+          <div *ngIf="submitted && f.startFrom.errors" class="invalid-feedback">
+            <div *ngIf="f.startFrom.errors.required">Giờ bắt đầu là bắt buộc</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label  >Giờ kết thúc:</label>
+          <input type="text" formControlName="endTo" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.endTo.errors }" />
+          <div *ngIf="submitted && f.endTo.errors" class="invalid-feedback">
+            <div *ngIf="f.endTo.errors.required">Giờ kết thúc là bắt buộc là bắt buộc</div>
+          </div>
+        </div>
+
+        <div class="form-group" >
+          <button mat-button  cdkFocusInitial [disabled]="loading" class="btn btn-primary">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+            Thêm
+          </button>
+
+
+        </div>
+
+
+      </form>
+    </div>
+
+  </div>
+
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Hủy</button>
+  <!--  <button mat-button [mat-dialog-close]="submitted" cdkFocusInitial>Ok</button>-->
+</div>
+
