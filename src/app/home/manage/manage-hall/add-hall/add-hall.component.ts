@@ -29,6 +29,7 @@ export class AddHallComponent implements OnInit {
   isShowErrorDate = false;
 
   constructor(
+    private cinamaService: CinemaService,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
@@ -36,8 +37,9 @@ export class AddHallComponent implements OnInit {
     private userService: UserService,
     private alertService: AlertService,
     private hallService: HallService,
+    private seatService: SeatService,
     public dialogRef: MatDialogRef<AddSeatComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Hall) {}
+    @Inject(MAT_DIALOG_DATA) public data: Cinema) {}
 
   onNoClick(): void {
     this.dialogRef.close();
@@ -47,8 +49,8 @@ export class AddHallComponent implements OnInit {
 
 
   ngOnInit(): void {
+
     this.form = this.formBuilder.group({
-      cinema: ['', Validators.required],
       name: ['', Validators.required],
       row: ['', Validators.required],
       column: ['', Validators.required],
@@ -58,15 +60,30 @@ export class AddHallComponent implements OnInit {
   get f(): {[p: string]: AbstractControl} {
     return this.form.controls;
   }
+  checkRow(): boolean{
+    const  row = this.form.get('row').value;
+    if ( (Number(row) > 10) || (Number(row) < 5) ){
+        return  false;
+    }
+    return  true;
+  }
+  checkColumn(): boolean{
+    const  column = this.form.get('column').value;
+    if ( (Number(column) > 10) || (Number(column) < 5) ){
+      return  false;
+    }
+    return  true;
+  }
  onSubmit(): void {
 
-    if (this.form.invalid) {
-      return;
+    this.submitted = true;
+    if (this.form.invalid || !this.checkColumn() || !this.checkRow()) {
+       return;
     }
     console.log('this.form.value)', this.form.value);
     this.loading = true;
     const name = this.form.value.name;
-    const cinema = Number(this.form.value.cinema);
+    const cinema = Number(this.data.id);
     const description = '';
     const status = Number(0);
     const totalRow = this.form.value.row;
@@ -76,10 +93,21 @@ export class AddHallComponent implements OnInit {
       this.hallService.addHall(cinema, hall)
         .pipe(first())
         .subscribe({
-          next: () => {
-            this.submitted = true;
-            this.dialogRef.close();
-            this.alertService.success('Thêm thành công');
+          next: (result) => {
+            this.seatService.addSeat(result.id, result.totalRow, result.totalColumn)
+              .pipe(first())
+              .subscribe({
+                next: () => {
+                  this.submitted = true;
+                  this.dialogRef.close();
+                  this.alertService.success('Thêm thành công');
+                },
+                error: error => {
+                  this.submitted = false;
+                  this.loading = false;
+                  this.alertService.error('Thêm thất bại');
+                }
+              });
           },
           error: error => {
             this.submitted = false;

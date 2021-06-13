@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FilmSessionService} from '../../../_service/film-session.service';
-import { UserService } from '../../../_service/user.service';
 import {HallService} from '../../../_service/hall.service';
-import {SeatService} from '../../../_service/seat.service';
-import {TicketService} from '../../../_service/ticket.service';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Address} from '../../../_models/address';
 import {Cinema} from '../../../_models/cinema';
@@ -14,6 +11,10 @@ import {Router} from '@angular/router';
 import {FilmService} from '../../../_service/film.service';
 import {formatDate} from '@angular/common';
 import {FilmSession} from '../../../_models/filmSession';
+import {Hall} from '../../../_models/hall';
+import {AddFilmsessionComponent} from './add-filmsession/add-filmsession.component';
+import {MatDialog} from '@angular/material/dialog';
+import {EditFilmsessionComponent} from './edit-filmsession/edit-filmsession.component';
 
 @Component({
   selector: 'app-manage-filmsession',
@@ -40,14 +41,23 @@ export class ManageFilmsessionComponent implements OnInit {
 
   cinemas: Cinema[];
   listfilms$: Film[];
+  halls: Hall[];
   listFilmSession$: FilmSession[];
+  hall: Hall;
+  film: Film;
+  startFrom: string;
+  endTo: string;
+  date: Date;
+  messageError: string;
   constructor(
     private cinamaService: CinemaService,
     private addressService: AddressService,
     private  router: Router,
     private formBuilder: FormBuilder,
     private filmService: FilmService,
-    private filmSessionService: FilmSessionService
+    private filmSessionService: FilmSessionService,
+    private hallService: HallService,
+    private dialog: MatDialog
 
   ) {
   }
@@ -61,20 +71,11 @@ export class ManageFilmsessionComponent implements OnInit {
       this.listfilms$ = x;
 
     });
-    this.filmSessionService.getAll().subscribe((x) => {
-
-      this.listFilmSession$ = x;
-  });
-
-
-  }
-  tranferBySingle(cinema: Cinema): void{
-    this.cinemadetail$ = cinema;
-    if (this.cinemadetail$.id){
-      this.GetAddressByCinema(this.cinemadetail$.id);
-
-    }
-    console.log('cinema', cinema);
+}
+  tranferBySingle(c: Cinema): void{
+    this.hallService.getHallByCinema(c.id).subscribe((result) => {
+      this.halls = result;
+    });
   }
   GetAddressByCinema(id: number): void{
     this.addressService.getByCinema(id).subscribe((x) => {
@@ -121,4 +122,63 @@ export class ManageFilmsessionComponent implements OnInit {
   }
 
 
+  selectHall(hall: Hall): void {
+    this.hall = hall;
+
+
+  }
+
+  selectFilm(film: Film): void {
+    this.film = film;
+
+  }
+
+  findFilmSession(): void {
+    this.date = this.form.controls.date.value;
+    const  newdate = formatDate(this.date, 'yyyy-MM-dd', 'en-US');
+    this.filmSessionService.getFilmSessionByCinemaAndDateAndFilm(newdate, this.hall.cinema.id, this.film).subscribe((x) => {
+      this.listFilmSession$ = x;
+    });
+
+  }
+
+  addFilmSession(): void{
+    if (!this.date){
+      this.messageError = 'Chọn ngày là bắt buộc';
+      return;
+    }
+    if (!this.film){
+      this.messageError = 'Chọn phim là bắt buộc';
+      return;
+    }
+    if (!this.hall){
+      this.messageError = 'Chọn phòng chiếu là bắt buộc';
+      return;
+    }
+    this.date = this.form.controls.date.value;
+    const dialogRef = this.dialog.open(AddFilmsessionComponent, {
+      height: 'auto',
+      width: '600px',
+      data: {date: this.date, film: this.film, hall: this.hall}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
+
+
+  editFilmSession(filmsession: FilmSession): void {
+    const dialogRef = this.dialog.open(EditFilmsessionComponent, {
+      height: 'auto',
+      width: '600px',
+      data : filmsession
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+
+    });
+
+  }
 }

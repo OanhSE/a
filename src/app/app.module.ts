@@ -56,7 +56,7 @@ import Icon from '@material-ui/core/Icon';
 import {MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldModule, MatFormFieldControl} from '@angular/material/form-field';
 import {DatePipe, formatDate} from '@angular/common';
 import { RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module } from 'ng-recaptcha';
-import {AlertComponent} from "./common/alert/alert.component";
+import {AlertComponent} from './common/alert/alert.component';
 
 @NgModule({
   exports: [

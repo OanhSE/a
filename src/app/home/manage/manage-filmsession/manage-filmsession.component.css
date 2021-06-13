@@ -107,6 +107,42 @@
 
 
 }
+.filmsession{
+  background-color: #cdc197;
+  padding: 3px;
+  margin-bottom: 10px;
+  max-height: 200px;
+}
+.home-content-list-films {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  margin-top: 1rem;
+  grid-gap: 20px;
+}
+
+.home-film-item {
+  height: 160px;
+  border-style: none;
+  border-radius: 10px;
+  background-color:#efebdb;
+  overflow: hidden;
+  margin: 5px 20px;
+}
+
+.home-film-item-box {
+  height: 160px;
+  width: 100%;
+  border-bottom: 1px solid #c1b272;
+  overflow: hidden;
+  position: relative;
+}
+
+.home-list-item-image {
+  height: 150px;
+  width: 120px;
+  z-index: 1;
+}
+
 
 
 

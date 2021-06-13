@@ -88,7 +88,7 @@ checkRePassword(): boolean{
 
  onSubmit(): void {
   this.submitted = true;
-  if (this.form.invalid) {
+  if (this.form.invalid || this.isShowErrorDate || !this.checkRePassword()) {
       return;
   }
   this.loading = true;

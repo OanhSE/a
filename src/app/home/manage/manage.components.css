@@ -70,3 +70,11 @@
 .manage-navbar > button:focus-within {
   background-color: #b79f6c;
 }
+.scroll-manage{
+  width: 100%;
+  height: 400px;
+  line-height: 3em;
+  overflow:scroll;
+  border: thin #000 solid;
+  padding: 5px;
+}

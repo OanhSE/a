@@ -20,4 +20,6 @@ export class Hall{
     this.totalRow = totalRow;
     this.totalColumn = totalColumn;
   }
+
+
 }

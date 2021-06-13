@@ -47,6 +47,7 @@ export class EditFilmComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
+      id: ['', Validators.required],
       name: ['', Validators.required],
       duration: ['', Validators.required],
       genres: ['', Validators.required],
@@ -103,6 +104,7 @@ export class EditFilmComponent implements OnInit {
     if (this.form.invalid) {
       return;
     }
+    this.form.controls.id.setValue(this.data.id);
     this.loading = true;
     this.filmService.editFilm(this.form.value)
       .pipe(first())

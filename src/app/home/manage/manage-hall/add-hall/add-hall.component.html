@@ -5,15 +5,9 @@
     <div class="card-body">
       <form [formGroup]="form" (ngSubmit)="onSubmit()">
 
+        <h5>Tên rạp:{{data.name}}</h5>
         <div class="form-group">
-          <label  >Rạp:</label>
-          <input type="number" formControlName="cinema" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.cinema.errors }" />
-          <div *ngIf="submitted && f.cinema.errors" class="invalid-feedback">
-            <div *ngIf="f.cinema.errors.required">Rạp là bắt buộc</div>
-          </div>
-        </div>
-        <div class="form-group">
-          <label  >Tên rạp:</label>
+          <label  >Tên phòng chiếu:</label>
           <input type="text" formControlName="name" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
           <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
             <div *ngIf="f.name.errors.required">Tên là bắt buộc</div>
@@ -21,16 +15,20 @@
         </div>
         <div class="form-group">
           <label  >Số hàng:</label>
-          <input type="number" formControlName="row" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.row.errors }" />
-          <div *ngIf="submitted && f.row.errors" class="invalid-feedback">
-            <div *ngIf="f.row.errors.required">Số hàng</div>
+          <input type="number" formControlName="row" class="form-control" [ngClass]="{ 'is-invalid': submitted && (f.row.errors || !checkRow()) }" />
+         <div *ngIf="submitted && (f.row.errors || !checkRow())" class="invalid-feedback">
+            <div *ngIf="f.row.errors.required">Số hàng là bắt buộc</div>
+            <div *ngIf="!checkRow()">Số hàng từ 5-10</div>
+
           </div>
         </div>
         <div class="form-group">
           <label  >Số cột:</label>
-          <input type="number" formControlName="column" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.column.errors }" />
-          <div *ngIf="submitted && f.column.errors" class="invalid-feedback">
-            <div *ngIf="f.column.errors.required">Số cột</div>
+          <input type="number" formControlName="column" class="form-control" [ngClass]="{ 'is-invalid': submitted && (f.column.errors || !checkColumn()) }" />
+          <div *ngIf="submitted && (f.column.errors || !checkColumn())" class="invalid-feedback">
+            <div *ngIf="f.column.errors.required">Số cột là bắt buộc</div>
+            <div *ngIf="!checkColumn()">Số cột từ 5-10</div>
+
           </div>
         </div>
 

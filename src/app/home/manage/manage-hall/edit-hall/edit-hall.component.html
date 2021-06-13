@@ -1,1 +1,54 @@
-<p>edit-hall works!</p>
+<h1 mat-dialog-title>Cập nhật phòng chiếu</h1>
+<div mat-dialog-content >
+  <div class="card" xmlns="http://www.w3.org/1999/html">
+
+    <div class="card-body">
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+        <h5>Tên rạp:{{data.cinema.name}}</h5>
+        <div class="form-group">
+          <label  >Tên phòng chiếu:</label>
+          <input type="text" formControlName="name" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
+          <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+            <div *ngIf="f.name.errors.required">Tên là bắt buộc</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label  >Số hàng:</label>
+          <input  disabled type="number" formControlName="totalRow" class="form-control" [ngClass]="{ 'is-invalid': submitted && (f.totalRow.errors || !checkRow()) }" />
+          <div *ngIf="submitted && (f.totalRow.errors || !checkRow())" class="invalid-feedback">
+            <div *ngIf="f.totalRow.errors.required">Số hàng là bắt buộc</div>
+            <div *ngIf="!checkRow()">Số hàng từ 5-10</div>
+
+          </div>
+        </div>
+        <div class="form-group">
+          <label  >Số cột:</label>
+          <input disabled type="number" formControlName="totalColumn" class="form-control" [ngClass]="{ 'is-invalid': submitted && (f.totalColumn.errors || !checkColumn()) }" />
+          <div *ngIf="submitted && (f.totalColumn.errors || !checkColumn())" class="invalid-feedback">
+            <div *ngIf="f.totalColumn.errors.required">Số cột là bắt buộc</div>
+            <div *ngIf="!checkColumn()">Số cột từ 5-10</div>
+
+          </div>
+        </div>
+
+        <button mat-button  cdkFocusInitial [disabled]="loading" class="btn btn-primary">
+          <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+          Cập nhật
+        </button>
+
+
+
+
+
+      </form>
+    </div>
+
+  </div>
+
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Hủy</button>
+  <!--  <button mat-button [mat-dialog-close]="submitted" cdkFocusInitial>Ok</button>-->
+</div>
+

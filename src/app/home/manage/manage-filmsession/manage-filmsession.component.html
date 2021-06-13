@@ -11,10 +11,6 @@
           <div class="dropdown-menu" >
             <div *ngFor = "let  c of listHCM">
               <a  class="dropdown-item" (click)="tranferBySingle(c)">{{c.name}}</a>
-              <ul class="menu" >
-                <a class="item">123</a>
-
-              </ul>
             </div>
           </div>
         </li>
@@ -98,42 +94,128 @@
 
     <div class="col-sm-8">
       <div class="row">
+        <div class="col-sm-4 ">
+          <table class="scroll-manage table">
+            <thead>
+            <tr>
+              <th>Phòng chiếu</th>
+              <th></th>
 
-        <div class="col-sm-8">
-          <form  [formGroup]="form" (ngSubmit)="onSubmit()">
+            </tr>
 
-            <div class="input-group mb-3 row">
-              <div class="col-sm-6">
-                <mat-icon>play_circle_filled</mat-icon>
-                <input  type="text">
-              </div>
-              <div class="col-sm-6">
-                <mat-icon>pause_circle_filled</mat-icon>
-                <input width="20px" type="text">
-              </div>
-              <div class="col-sm-6 form-inline">
-                <mat-icon>date_range</mat-icon>
-                <input  type="date" formControlName="date" class="form-control"/>
+            </thead>
+            <tbody>
+            <tr *ngFor="let hall of halls" >
+              <td>{{hall.name}}({{hall.cinema.name}})</td>
+              <td>
+                <button mat-icon-button (click)="selectHall(hall)">
+                  <mat-icon>keyboard_arrow_right</mat-icon>
 
-                <div class="input-group-append">
-                  <button class="btn btn-success" type="submit">Chọn</button>
+                </button>
+
+              </td>
+            </tr>
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+        <div class="col-sm-8 filmsession">
+<!--          <form  [formGroup]="form" (ngSubmit)="onSubmit()">-->
+
+<!--            <div class="input-group mb-3 row">-->
+<!--              <div class="col-sm-6">-->
+<!--                <mat-icon>play_circle_filled</mat-icon>-->
+<!--                <input  type="text">-->
+<!--              </div>-->
+<!--              <div class="col-sm-6">-->
+<!--                <mat-icon>pause_circle_filled</mat-icon>-->
+<!--                <input width="20px" type="text">-->
+<!--              </div>-->
+<!--              <div class="col-sm-6 form-inline">-->
+<!--                <mat-icon>date_range</mat-icon>-->
+<!--                <input  type="date" formControlName="date" class="form-control"/>-->
+
+<!--                <div class="input-group-append">-->
+<!--                  <button class="btn btn-success" type="submit">Chọn</button>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </div>-->
+
+<!--          </form>-->
+          <form  [formGroup]="form" class=" form-inline" (ngSubmit)="onSubmit()">
+
+                            <input  type="date" formControlName="date" class="form-control"/>
+
+          </form>
+          <h5 *ngIf="hall"> Phòng chiếu: {{hall.name}}</h5>
+          <h5 *ngIf="film"> Phim: {{film.name}}</h5>
+          <p class="text-danger">{{messageError}}</p>
+          <div class="row">
+            <div class="col-sm-6">
+              <button (click)="findFilmSession()" class="btn-success">Tìm</button>
+            </div>
+            <div class="col-sm-6">
+              <button (click)="addFilmSession()" class="btn-danger">Thêm</button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="home-content-list-films">
+              <div *ngFor = "let filmsession of listFilmSession$ " class="home-film-item row">
+                <div class="home-film-item-box  col-sm-4">
+                  <!--          <img src='./assets/images' class="home-list-item-image"/>-->
+                  <img src = "./assets/images/{{filmsession?filmsession.film.image:''}}" class="home-list-item-image">
+
+                </div>
+
+                <div class="home-film-item-text col-sm-7">
+                  <h4>{{filmsession?filmsession.film.name:''}}</h4>
+                  <h5>{{filmsession?filmsession.hall.name:''}}</h5>
+                  <span>{{filmsession?filmsession.startFrom:''}}-{{filmsession?filmsession.endTo:''}}</span><br>
+                </div>
+                <div class="col-sm-1">
+                  <button  (click)="editFilmSession(filmsession)" mat-icon-button color="success" aria-label="Example icon button with a home icon">
+                    <mat-icon>edit</mat-icon>
+                  </button>
                 </div>
               </div>
             </div>
 
-          </form>
+          </div>
         </div>
+
 
       </div>
 
     </div>
 
-    <div class="col-sm-4 nav flex-column">
-      <div class="scroll">
-        <div class="linkname" *ngFor="let film of listfilms$ ">
-          <a class="nav-link active ">{{film.name}}</a>
-        </div>
-      </div>
+    <div class="col-sm-4 ">
+      <table class="scroll-manage table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Phim</th>
+
+          </tr>
+
+        </thead>
+        <tbody>
+        <tr *ngFor="let film of listfilms$" >
+          <td>
+            <button (click)="selectFilm(film)" mat-icon-button>
+              <mat-icon>keyboard_arrow_left</mat-icon>
+            </button>
+
+          </td>
+          <td>{{film.name}}</td>
+
+        </tr>
+
+        </tbody>
+
+      </table>
 
     </div>
 

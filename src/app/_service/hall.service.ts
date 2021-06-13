@@ -22,9 +22,8 @@ export class HallService {
     this.hallsSubject = new BehaviorSubject<Hall>(this.hallvalue);
     this.hall = this.hallsSubject.asObservable();
   }
-
-  getHallByCinema(idCinema: number): Observable<Cinema[]>{
-    return  this.http.get<Cinema[]>(`${this.apiUrl}/halls/{idCinema}`);
+  getHallByCinema(idCinema: number): Observable<Hall[]>{
+    return  this.http.get<Hall[]>(`${this.apiUrl}/halls/getByCinema/${idCinema}`);
   }
   addHall(idCinema: number, hall: Hall): Observable<Hall>{
     return  this.http.post<Hall>(`${this.apiUrl}/halls/${idCinema}`, hall);

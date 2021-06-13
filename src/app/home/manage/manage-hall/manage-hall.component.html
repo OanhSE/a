@@ -1,79 +1,225 @@
 
-<div class="container-fluid">
-  <div>
-    <div class="row">
-      <div class="col-9">
+<!--<div class="container-fluid">-->
+<!--  <div>-->
+<!--    <div class="row">-->
+<!--      <div class="col-9">-->
 
-        <mat-form-field class="example-full-width">
-          <div class="css-dixqhs-MuiInputBase-root-MuiOutlinedInput-root">
+<!--        <mat-form-field class="example-full-width">-->
+<!--          <div class="css-dixqhs-MuiInputBase-root-MuiOutlinedInput-root">-->
 
-            <input  matInput type="text"  height="100%" class="form-control form-control"/>
+<!--            <input  matInput type="text"  height="100%" class="form-control form-control"/>-->
 
 
-            <button mat-icon-button disabled aria-label="Example icon button with a open in new tab icon">
-              <mat-icon>search</mat-icon>
-            </button>
+<!--            <button mat-icon-button disabled aria-label="Example icon button with a open in new tab icon">-->
+<!--              <mat-icon>search</mat-icon>-->
+<!--            </button>-->
+<!--          </div>-->
+<!--        </mat-form-field>-->
+
+
+
+
+<!--      </div>-->
+
+<!--      <div class="col-3">-->
+<!--        <div class="example-button-container">-->
+<!--          <button mat-fab (click)="openDialog()" color="warn" aria-label="Example icon button with a delete icon">-->
+<!--            <mat-icon>add_circle</mat-icon>-->
+<!--          </button>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+
+
+<!--  </div>-->
+
+
+<!--  &lt;!&ndash;  <div class="mat-elevation-z8 table-wrapper-scroll-y my-custom-scrollbar">&ndash;&gt;-->
+
+<!--  &lt;!&ndash;    <table class="table table-striped tableheight" >&ndash;&gt;-->
+<!--  &lt;!&ndash;      <thead>&ndash;&gt;-->
+<!--  &lt;!&ndash;      <tr>&ndash;&gt;-->
+<!--  &lt;!&ndash;        <th>STT</th>&ndash;&gt;-->
+<!--  &lt;!&ndash;        <th>Hình</th>&ndash;&gt;-->
+<!--  &lt;!&ndash;        <th>Tên</th>&ndash;&gt;-->
+<!--  &lt;!&ndash;        <th>Thời lượng</th>&ndash;&gt;-->
+<!--  &lt;!&ndash;        <th>Ngày khởi chiếu</th>&ndash;&gt;-->
+
+
+<!--  &lt;!&ndash;      </tr>&ndash;&gt;-->
+<!--  &lt;!&ndash;      </thead>&ndash;&gt;-->
+<!--  &lt;!&ndash;      <tbody *ngFor="let  seat of seats ">&ndash;&gt;-->
+<!--  &lt;!&ndash;      <tr>&ndash;&gt;-->
+<!--  &lt;!&ndash;        <td></td>&ndash;&gt;-->
+<!--  &lt;!&ndash;        <td>{{seat.columnIndex}}</td>&ndash;&gt;-->
+<!--  &lt;!&ndash;        <td>{{seat.rowIndex}}</td>&ndash;&gt;-->
+
+<!--  &lt;!&ndash;        <td>&ndash;&gt;-->
+<!--  &lt;!&ndash;          <button  (click)="openDialogeEdit(seat)" mat-icon-button color="success" aria-label="Example icon button with a home icon">&ndash;&gt;-->
+<!--  &lt;!&ndash;            <mat-icon>edit</mat-icon>&ndash;&gt;-->
+<!--  &lt;!&ndash;          </button>&ndash;&gt;-->
+<!--  &lt;!&ndash;        </td>&ndash;&gt;-->
+<!--  &lt;!&ndash;        <td>&ndash;&gt;-->
+<!--  &lt;!&ndash;          <button (click)="delete(seat)" mat-icon-button color="warn" aria-label="Example icon button with a home icon">&ndash;&gt;-->
+<!--  &lt;!&ndash;            <mat-icon>delete</mat-icon>&ndash;&gt;-->
+<!--  &lt;!&ndash;          </button>&ndash;&gt;-->
+<!--  &lt;!&ndash;        </td>&ndash;&gt;-->
+<!--  &lt;!&ndash;      </tr>&ndash;&gt;-->
+<!--  &lt;!&ndash;      </tbody>&ndash;&gt;-->
+<!--  &lt;!&ndash;    </table>&ndash;&gt;-->
+
+<!--  &lt;!&ndash;    <mat-paginator [pageSizeOptions]="[5, 10, 20]"  showFirstLastButtons></mat-paginator>&ndash;&gt;-->
+<!--  &lt;!&ndash;  </div>&ndash;&gt;-->
+
+
+
+<!--</div>-->
+<div class="container">
+  <div class="row">
+    <nav class="navbar  navbar-expand-sm  justify-content-center">
+      <ul class="navbar-nav">
+        <!-- Dropdown -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbardrop1" data-toggle="dropdown">
+            Hồ Chí Minh
+          </a>
+          <div class="dropdown-menu" >
+            <div *ngFor = "let  c of listHCM">
+              <a  class="dropdown-item" (click)="tranferBySingle(c)">{{c.name}}</a>
+            </div>
           </div>
-        </mat-form-field>
+        </li>
+        <!-- Dropdown -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbardrop2" data-toggle="dropdown">
+            Hà Nội
+          </a>
+          <div class="dropdown-menu">
+            <div *ngFor = "let  c of listHN">
+              <a  class="dropdown-item"  (click)="tranferBySingle(c)">{{c.name}}</a>
+            </div>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbardrop3" data-toggle="dropdown">
+            ĐB Sông Hồng
+          </a>
+          <div class="dropdown-menu">
+            <div *ngFor = "let  c of listDBSH">
+              <a  class="dropdown-item" (click)="tranferBySingle(c)">{{c.name}}</a>
+            </div>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbardrop4" data-toggle="dropdown">
+            Đông Bắc, Tây Bắc
+          </a>
+          <div class="dropdown-menu">
+            <div *ngFor = "let  c of listDBTB">
+              <a  class="dropdown-item" (click)="tranferBySingle(c)">{{c.name}}</a>
+            </div>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbardrop5" data-toggle="dropdown">
+            Bắc Miền Trung
+          </a>
+          <div class="dropdown-menu">
+            <div *ngFor = "let  c of listBMT">
+              <a  class="dropdown-item" (click)="tranferBySingle(c)">{{c.name}}</a>
+            </div>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbardrop6" data-toggle="dropdown">
+            Nam Miền Trung
+          </a>
+          <div class="dropdown-menu">
+            <div *ngFor = "let  c of listNMT">
+              <a  class="dropdown-item" (click)="tranferBySingle(c)">{{c.name}}</a>
+            </div>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbardrop7" data-toggle="dropdown">
+            Đông Nam Bộ
+          </a>
+          <div class="dropdown-menu">
+            <div *ngFor = "let  c of listDNB">
+              <a  class="dropdown-item" (click)="tranferBySingle(c)">{{c.name}}</a>
+            </div>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbardrop8" data-toggle="dropdown">
+            Tây Nam Bộ
+          </a>
+          <div class="dropdown-menu ">
+            <div *ngFor = "let  c of listTNB">
+              <a  class="dropdown-item" (click)="tranferBySingle(c)">{{c.name}}</a>
+            </div>
+          </div>
+        </li>
 
+      </ul>
+    </nav>
+  </div>
+  <div class="row">
+    <div class="col-9">
 
-
-
-      </div>
-
-      <div class="col-3">
-        <div class="example-button-container">
-          <button mat-fab (click)="openDialog()" color="warn" aria-label="Example icon button with a delete icon">
-            <mat-icon>add_circle</mat-icon>
-          </button>
+      <form class=" form-inline formhall" >
+         <input   type="text"   class=" form-control" />
+        <div>
+          <mat-icon>search</mat-icon>
         </div>
-      </div>
+
+      </form>
+
+
+
+
     </div>
 
-
+    <div class="col-3">
+      <div >
+        <button mat-fab (click)="openDialog()" color="warn" aria-label="Example icon button with a delete icon">
+          <mat-icon>add_circle</mat-icon>
+        </button>
+      </div>
+    </div>
   </div>
+  <div class="row ">
+    <table class="table table-striped scroll-manage">
+      <thead>
+      <tr>
+        <th>Stt</th>
+        <th>Tên phòng chiếu</th>
+        <th>Tên rạp</th>
+        <th></th>
 
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let hall of listHall">
+        <td></td>
+        <td>{{hall.name}}</td>
+        <td>{{hall.cinema.name}}</td>
+        <td>
+          <button  (click)="openDialogeEditHall(hall)" mat-icon-button color="success" aria-label="Example icon button with a home icon">
+            <mat-icon>edit</mat-icon>
+          </button>
+        </td>
+        <td>
+          <button (click)="deleteHall(hall)" mat-icon-button color="warn" aria-label="Example icon button with a home icon">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
 
-  <!--  <div class="mat-elevation-z8 table-wrapper-scroll-y my-custom-scrollbar">-->
-
-  <!--    <table class="table table-striped tableheight" >-->
-  <!--      <thead>-->
-  <!--      <tr>-->
-  <!--        <th>STT</th>-->
-  <!--        <th>Hình</th>-->
-  <!--        <th>Tên</th>-->
-  <!--        <th>Thời lượng</th>-->
-  <!--        <th>Ngày khởi chiếu</th>-->
-
-
-  <!--      </tr>-->
-  <!--      </thead>-->
-  <!--      <tbody *ngFor="let  seat of seats ">-->
-  <!--      <tr>-->
-  <!--        <td></td>-->
-  <!--        <td>{{seat.columnIndex}}</td>-->
-  <!--        <td>{{seat.rowIndex}}</td>-->
-
-  <!--        <td>-->
-  <!--          <button  (click)="openDialogeEdit(seat)" mat-icon-button color="success" aria-label="Example icon button with a home icon">-->
-  <!--            <mat-icon>edit</mat-icon>-->
-  <!--          </button>-->
-  <!--        </td>-->
-  <!--        <td>-->
-  <!--          <button (click)="delete(seat)" mat-icon-button color="warn" aria-label="Example icon button with a home icon">-->
-  <!--            <mat-icon>delete</mat-icon>-->
-  <!--          </button>-->
-  <!--        </td>-->
-  <!--      </tr>-->
-  <!--      </tbody>-->
-  <!--    </table>-->
-
-  <!--    <mat-paginator [pageSizeOptions]="[5, 10, 20]"  showFirstLastButtons></mat-paginator>-->
-  <!--  </div>-->
-
-
-
+      </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
 
 
-a
+

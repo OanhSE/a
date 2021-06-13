@@ -60,6 +60,7 @@ export class ManageClientComponent implements OnInit {
   getUsers(): void{
     this.userService.getUsers().subscribe((result) => {
       this.users = result;
+      console.log('users', result);
     });
   }
   delete(user: User): void{

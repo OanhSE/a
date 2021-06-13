@@ -53,7 +53,8 @@ export class AddClientComponent implements OnInit {
       sex: ['', Validators.required],
       name: ['', Validators.required],
       email: ['', Validators.required],
-      pwd: ['', [Validators.required, Validators.minLength(6)]]
+      pwd: ['', [Validators.required, Validators.minLength(6)]],
+      pass: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
 
@@ -86,25 +87,52 @@ export class AddClientComponent implements OnInit {
     console.log(this.isShowErrorDate);
 
   }
+  checkRePassword(): boolean{
+    const pass = this.form.get('pwd').value;
+    const repass = this.form.get('pass').value;
+    console.log('check', pass + repass);
+    if (pass === repass){
+
+      return  true;
+    }
+    return  false;
+  }
 
   onSubmit(): void {
-
+    this.submitted = true;
     if (this.form.invalid) {
       return;
     }
     this.loading = true;
-    this.userService.register(this.form.value)
+    console.log('this.form.value', this.form.value);
+    const email = this.form.get('email').value.toString();
+    const phone = this.form.get('phone').value.toString();
+    const pwd = this.form.get('pwd').value.toString();
+    const role = '1';
+    const name = this.form.get('name').value.toString();
+    const sex = this.form.get('sex').value.toString();
+    const dayOfBirth = new Date(this.form.get('dayOfBirth').value.toString());
+    const active = Number(0);
+    const status = false;
+    const user = new User(email, phone, pwd, role, name, sex, dayOfBirth, active, status);
+    this.userService.register(user)
       .pipe(first())
       .subscribe({
-        next: () => {
-          this.submitted = true;
-          this.dialogRef.close();
-          this.alertService.success('Thêm thành công')
+        next: (rs) => {
+          if (!rs){
+            this.alertService.error('Tài khoản này đã tồn tại' );
+            this.loading = false;
+          }else {
+            this.alertService.success('Đăng ký thành công', { keepAfterRouteChange: true });
+            const returnUrl = this.route.snapshot.queryParams.returnUrl || '/';
+            this.router.navigateByUrl(returnUrl);
+
+          }
+
         },
         error: error => {
-          this.submitted = false;
+
           this.loading = false;
-          this.alertService.error('Thêm thất bại')
         }
       });
   }

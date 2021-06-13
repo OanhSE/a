@@ -9,8 +9,9 @@
     recentError.error || "Most recent execution resulted in error"
     }}</pre>
 
-  <h3>reCAPTCHA execution log</h3>
-  <pre *ngIf="executionLog.length === 0">(empty)</pre>
+<!--  <h3>reCAPTCHA execution log</h3>-->
+<!--  <pre *ngIf="executionLog.length === 0">(empty)</pre>-->
+  <pre *ngIf="executionLog.length === 0"></pre>
   <ol *ngIf="executionLog.length > 0">
     <li *ngFor="let entry of executionLog">
       Action: <code>{{ entry.action }}</code

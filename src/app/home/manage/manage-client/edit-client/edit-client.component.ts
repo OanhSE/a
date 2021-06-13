@@ -57,7 +57,6 @@ export class EditClientComponent implements OnInit {
     this.form.patchValue(this.user);
     const date = this.form.get('dayOfBirth').value;
     this.form.controls.dayOfBirth.setValue(this.datePipe.transform(date , 'yyyy-MM-dd', 'en'));
-
     this.sex = this.form.get('sex').value;
 
   }

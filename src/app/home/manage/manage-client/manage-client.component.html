@@ -56,7 +56,8 @@
         <td></td>
         <td>{{user.name}}</td>
         <td>{{user.dayOfBirth  | date:'d/M/yy' }}</td>
-        <td>{{user.sex}}</td>
+        <td *ngIf="user.sex === 'male'">Nam</td>
+        <td *ngIf="user.sex !== 'male'">Nữ</td>
         <td>{{user.email}}</td>
         <td>{{user.phone}}</td>
         <td>
